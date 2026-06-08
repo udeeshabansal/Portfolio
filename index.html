@@ -197,7 +197,7 @@
   }
 
 <style>
-.dash-modal .page-header{background:#252525;padding:2rem 5%;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;}
+.dash-modal .page-header{background:#252525 !important;padding:2rem 5%;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;} .dash-modal .ph-title{font-family:'Cormorant Garamond',serif !important;font-size:2rem !important;font-weight:400 !important;color:#ffffff !important;line-height:1.1 !important;} .dash-modal .ph-title span{color:#e8c9a8 !important;font-style:italic !important;} .dash-modal .ph-sub{color:rgba(255,255,255,0.5) !important;} .dash-modal .ph-tag{color:#e8c9a8 !important;}
 .dash-modal .ph-tag{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:#e8c9a8;margin-bottom:0.5rem;font-family:'Outfit',sans-serif;}
 .dash-modal .ph-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:#fff;line-height:1.1;}
 .dash-modal .ph-title span{color:#e8c9a8;font-style:italic;}
@@ -410,6 +410,16 @@
 <hr class="div">
 
 <!-- PROJECTS -->
+
+<div style="background:#252525;padding:1.25rem 8%;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+  <span style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.4);font-family:'Outfit',sans-serif;font-weight:500;">Interactive Dashboards:</span>
+  <a href="#" onclick="openDash('pfizer');return false;" style="font-size:0.75rem;color:#e8c9a8;text-decoration:none;padding:0.3rem 0.85rem;border:1px solid rgba(232,201,168,0.3);border-radius:100px;font-family:'Outfit',sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(193,127,74,0.15)'" onmouseout="this.style.background='transparent'">📊 Pfizer</a>
+  <a href="#" onclick="openDash('reliance');return false;" style="font-size:0.75rem;color:#e8c9a8;text-decoration:none;padding:0.3rem 0.85rem;border:1px solid rgba(232,201,168,0.3);border-radius:100px;font-family:'Outfit',sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(193,127,74,0.15)'" onmouseout="this.style.background='transparent'">📊 Reliance Industries</a>
+  <a href="#" onclick="openDash('hala');return false;" style="font-size:0.75rem;color:#e8c9a8;text-decoration:none;padding:0.3rem 0.85rem;border:1px solid rgba(232,201,168,0.3);border-radius:100px;font-family:'Outfit',sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(193,127,74,0.15)'" onmouseout="this.style.background='transparent'">📊 HALA Holding</a>
+  <a href="#" onclick="openDash('cvs');return false;" style="font-size:0.75rem;color:#e8c9a8;text-decoration:none;padding:0.3rem 0.85rem;border:1px solid rgba(232,201,168,0.3);border-radius:100px;font-family:'Outfit',sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(193,127,74,0.15)'" onmouseout="this.style.background='transparent'">📊 CVS Health</a>
+  <a href="#" onclick="openDash('onholding');return false;" style="font-size:0.75rem;color:#e8c9a8;text-decoration:none;padding:0.3rem 0.85rem;border:1px solid rgba(232,201,168,0.3);border-radius:100px;font-family:'Outfit',sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(193,127,74,0.15)'" onmouseout="this.style.background='transparent'">📊 On Holding AG</a>
+</div>
+
 <section class="proj-sec" id="projects">
   <div class="sec-label">02 — Finance Projects</div>
   <h2 class="sec-title">Five engagements. Rigorous analysis.</h2>
@@ -1640,6 +1650,7 @@ function closeDash(key) {
   var el = document.getElementById('dash_' + key);
   if (el) el.style.display = 'none';
   document.body.style.overflow = '';
+  window.scrollTo(0,0);
 }
 function dashTab(key, panelId) {
   var modal = document.getElementById('dash_' + key);
@@ -1648,7 +1659,32 @@ function dashTab(key, panelId) {
   modal.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
   var panel = document.getElementById(panelId);
   if (panel) { panel.style.display = 'block'; panel.classList.add('active'); }
-  event.target.classList.add('active');
+  if (event && event.target) event.target.classList.add('active');
+  // Trigger lazy chart inits for sub-tabs
+  var tabName = panelId.replace(key + '_panel-', '');
+  var lazyMap = {
+    'revenue': ['initRevenueCharts', 'initRev'],
+    'pnl': ['initPnlCharts', 'initPnl'],
+    'dcf': ['initDcfCharts', 'initDcf'],
+    'scenario': ['initScenarioCharts', 'initSc'],
+    'market': ['initMarket'],
+    'moat': ['initMoat'],
+    'exit': ['initExit'],
+    'risk': ['initRisk'],
+    'fx': ['initFx'],
+    'supply': ['initSupply'],
+    'solutions': ['initSolutions'],
+    'fscore': [],
+    'peers': ['initPeers'],
+    'thesis': ['initThesis']
+  };
+  // Call any lazy init functions scoped to this dashboard
+  var fns = lazyMap[tabName] || [];
+  fns.forEach(function(fnName) {
+    // These functions are defined inside initDash_KEY closure - call via stored refs
+    var ref = window['_lazy_' + key + '_' + fnName];
+    if (ref) ref();
+  });
 }
 function toggleProj(header) {
   var card = header.closest('.proj-card');
@@ -1699,6 +1735,11 @@ new Chart(document.getElementById('pfizer_scenRevChart'),{type:'line',data:{labe
 new Chart(document.getElementById('pfizer_scenPriceChart'),{type:'bar',data:{labels:['FY25E','FY27E'],datasets:[{label:'Bear',data:[16,18],backgroundColor:red+'88',borderColor:red,borderWidth:1,borderRadius:4},{label:'Base',data:[32,38],backgroundColor:sage+'88',borderColor:sage,borderWidth:1,borderRadius:4},{label:'Bull',data:[48,56],backgroundColor:accent+'88',borderColor:accent,borderWidth:1,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,scales:{x:{grid:{display:false}},y:{grid:{color:rule},ticks:{callback:v=>'$'+v}}}}});
 }
 
+    // Store lazy refs
+    if (typeof initRev !== 'undefined') window['_lazy_pfizer_initRev'] = initRev;
+    if (typeof initPnl !== 'undefined') window['_lazy_pfizer_initPnl'] = initPnl;
+    if (typeof initDcf !== 'undefined') window['_lazy_pfizer_initDcf'] = initDcf;
+    if (typeof initSc !== 'undefined') window['_lazy_pfizer_initSc'] = initSc;
   } catch(e) { console.log('Dashboard pfizer init:', e.message); }
 }
 
@@ -1898,6 +1939,11 @@ function initScenarioCharts() {
   });
 }
 
+    // Store lazy refs
+    if (typeof initRevenueCharts !== 'undefined') window['_lazy_reliance_initRevenueCharts'] = initRevenueCharts;
+    if (typeof initPnlCharts !== 'undefined') window['_lazy_reliance_initPnlCharts'] = initPnlCharts;
+    if (typeof initDcfCharts !== 'undefined') window['_lazy_reliance_initDcfCharts'] = initDcfCharts;
+    if (typeof initScenarioCharts !== 'undefined') window['_lazy_reliance_initScenarioCharts'] = initScenarioCharts;
   } catch(e) { console.log('Dashboard reliance init:', e.message); }
 }
 
@@ -1931,6 +1977,11 @@ function initRisk(){
 new Chart(document.getElementById('hala_riskRadarChart'),{type:'radar',data:{labels:['Lending NPL Risk','Take Rate Compression','Vision 2030 Risk','Regional Conflict','Regulatory Risk','Competition Risk'],datasets:[{label:'Risk Severity',data:[85,45,10,40,25,50],borderColor:red,backgroundColor:red+'22',pointBackgroundColor:red},{label:'Mitigation Strength',data:[60,75,95,70,80,85],borderColor:green,backgroundColor:green+'11',pointBackgroundColor:green}]},options:{responsive:true,maintainAspectRatio:false,scales:{r:{grid:{color:rule},ticks:{display:false},min:0,max:100}}}});
 }
 
+    // Store lazy refs
+    if (typeof initMarket !== 'undefined') window['_lazy_hala_initMarket'] = initMarket;
+    if (typeof initMoat !== 'undefined') window['_lazy_hala_initMoat'] = initMoat;
+    if (typeof initExit !== 'undefined') window['_lazy_hala_initExit'] = initExit;
+    if (typeof initRisk !== 'undefined') window['_lazy_hala_initRisk'] = initRisk;
   } catch(e) { console.log('Dashboard hala init:', e.message); }
 }
 
@@ -1959,6 +2010,9 @@ function initThesis(){
 new Chart(document.getElementById('cvs_returnChart'),{type:'bar',data:{labels:['Bear (FTC+MLR worst case)','Base (moderate long)','Bull (MLR normalises)'],datasets:[{label:'Annualised Return %',data:[3,9,15],backgroundColor:[red+'88',accent+'88',green+'88'],borderColor:[red,accent,green],borderWidth:1,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:rule},ticks:{callback:v=>v+'%'},max:20},x:{grid:{display:false}}}}});
 }
 
+    // Store lazy refs
+    if (typeof initPeers !== 'undefined') window['_lazy_cvs_initPeers'] = initPeers;
+    if (typeof initThesis !== 'undefined') window['_lazy_cvs_initThesis'] = initThesis;
   } catch(e) { console.log('Dashboard cvs init:', e.message); }
 }
 
@@ -1988,6 +2042,10 @@ function initSolutions(){
 new Chart(document.getElementById('onholding_solutionChart'),{type:'bar',data:{labels:['Current Margin Drag','FX Hedge (US R&D Hub)','Tariff Elimination\n(Production Diversification)','Combined Recovery'],datasets:[{data:[-55,20,25,50],backgroundColor:[red+'88',green+'66',green+'88',green+'cc'],borderColor:[red,green,green,green],borderWidth:1,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:rule},ticks:{callback:v=>'CHF '+v+'M'}},x:{grid:{display:false}}}}});
 }
 
+    // Store lazy refs
+    if (typeof initFx !== 'undefined') window['_lazy_onholding_initFx'] = initFx;
+    if (typeof initSupply !== 'undefined') window['_lazy_onholding_initSupply'] = initSupply;
+    if (typeof initSolutions !== 'undefined') window['_lazy_onholding_initSolutions'] = initSolutions;
   } catch(e) { console.log('Dashboard onholding init:', e.message); }
 }
 
