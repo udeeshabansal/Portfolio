@@ -194,6 +194,124 @@
     nav { padding:0 4%; }
     .nav-links { display:none; }
   }
+
+<style>
+.dash-modal .page-header{background:#252525;padding:2rem 5%;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;}
+.dash-modal .ph-tag{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:#e8c9a8;margin-bottom:0.5rem;font-family:'Outfit',sans-serif;}
+.dash-modal .ph-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:#fff;line-height:1.1;}
+.dash-modal .ph-title span{color:#e8c9a8;font-style:italic;}
+.dash-modal .ph-sub{font-size:0.8rem;color:rgba(255,255,255,0.4);margin-top:0.4rem;font-weight:300;font-family:'Outfit',sans-serif;}
+.dash-modal .ph-verdict{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:#c17f4a;border:1px solid rgba(193,127,74,0.4);padding:0.4rem 0.9rem;border-radius:100px;margin-bottom:0.5rem;display:inline-block;font-family:'Outfit',sans-serif;}
+.dash-modal .ph-analyst{font-size:0.75rem;color:rgba(255,255,255,0.3);font-weight:300;font-family:'Outfit',sans-serif;}
+.dash-modal .tabs{background:#fff;border-bottom:1px solid #e0dbd3;padding:0 5%;display:flex;overflow-x:auto;}
+.dash-modal .tab{padding:1rem 1.5rem;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;color:#888;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;font-weight:400;font-family:'Outfit',sans-serif;}
+.dash-modal .tab.active{color:#c17f4a;border-bottom-color:#c17f4a;font-weight:500;}
+.dash-modal .panel{display:none;padding:2.5rem 5%;background:#faf8f5;}
+.dash-modal .panel.active{display:block;}
+.dash-modal .kpi-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#e0dbd3;border:1px solid #e0dbd3;border-radius:10px;overflow:hidden;margin-bottom:2rem;}
+.dash-modal .kpi{background:#fff;padding:1.25rem 1.5rem;}
+.dash-modal .kpi-label{font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:#888;margin-bottom:0.3rem;font-weight:500;font-family:'Outfit',sans-serif;}
+.dash-modal .kpi-val{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:500;color:#252525;line-height:1;}
+.dash-modal .kpi-sub{font-size:0.72rem;color:#888;margin-top:0.2rem;font-weight:300;font-family:'Outfit',sans-serif;}
+.dash-modal .kpi-up{color:#27ae60;}.dash-modal .kpi-dn{color:#c0392b;}
+.dash-modal .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;}
+.dash-modal .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;}
+.dash-modal .grid-full{margin-bottom:1.5rem;}
+.dash-modal .card{background:#fff;border:1px solid #e0dbd3;border-radius:10px;padding:1.5rem;}
+.dash-modal .card-title{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:#888;margin-bottom:1.25rem;font-weight:500;font-family:'Outfit',sans-serif;}
+.dash-modal .chart-wrap{position:relative;height:240px;}
+.dash-modal .chart-wrap-tall{position:relative;height:300px;}
+.dash-modal .insight-box{background:#f3ede4;border-left:3px solid #c17f4a;border-radius:0 8px 8px 0;padding:1rem 1.25rem;margin-top:1rem;font-size:0.82rem;color:#555;line-height:1.7;font-weight:300;font-family:'Outfit',sans-serif;}
+.dash-modal .insight-box strong{color:#252525;font-weight:500;}
+.dash-modal .scenario-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;}
+.dash-modal .scenario-card{border-radius:10px;padding:1.5rem;border:1px solid #e0dbd3;}
+.dash-modal .sc-bear{background:#fff5f5;border-color:#f5c6cb;}.dash-modal .sc-base{background:#f0f7f1;border-color:#b8dbbf;}.dash-modal .sc-bull{background:#fffbf0;border-color:#fde68a;}
+.dash-modal .sc-label{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;margin-bottom:0.75rem;font-family:'Outfit',sans-serif;}
+.dash-modal .sc-bear .sc-label{color:#c0392b;}.dash-modal .sc-base .sc-label{color:#27ae60;}.dash-modal .sc-bull .sc-label{color:#b45309;}
+.dash-modal .sc-price{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:500;color:#252525;margin-bottom:0.2rem;}
+.dash-modal .sc-note{font-size:0.75rem;color:#888;font-weight:300;}
+.dash-modal .sc-metrics{margin-top:1rem;display:flex;flex-direction:column;gap:0.4rem;}
+.dash-modal .sc-row{display:flex;justify-content:space-between;font-size:0.78rem;}
+.dash-modal .sc-row-key{color:#888;font-weight:300;}.dash-modal .sc-row-val{font-weight:500;color:#252525;}
+.dash-modal .wacc-item{display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0;border-bottom:1px solid #e0dbd3;}
+.dash-modal .wacc-item:last-child{border-bottom:none;}
+.dash-modal .wacc-key{font-size:0.82rem;color:#555;font-weight:300;}.dash-modal .wacc-val{font-size:0.88rem;font-weight:500;color:#252525;}
+.dash-modal .wacc-highlight{background:#f3ede4;border-radius:8px;padding:1rem 1.25rem;margin-top:1rem;display:flex;justify-content:space-between;align-items:center;}
+.dash-modal .wacc-highlight .wacc-key{font-weight:500;color:#252525;font-size:0.85rem;}
+.dash-modal .wacc-highlight .wacc-val{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#c17f4a;}
+.dash-modal .sensitivity-table{width:100%;border-collapse:collapse;font-size:0.78rem;}
+.dash-modal .sensitivity-table th{background:#252525;color:#fff;padding:0.6rem 0.8rem;text-align:center;font-weight:400;font-size:0.7rem;}
+.dash-modal .sensitivity-table th:first-child{text-align:left;}
+.dash-modal .sensitivity-table td{padding:0.55rem 0.8rem;text-align:center;border:1px solid #e0dbd3;}
+.dash-modal .sensitivity-table td:first-child{text-align:left;background:#f3ede4;font-weight:500;}
+.dash-modal .cell-high{background:#d4edda;color:#155724;font-weight:500;}
+.dash-modal .cell-mid{background:#fff3cd;color:#856404;font-weight:500;}
+.dash-modal .cell-low{background:#f8d7da;color:#721c24;font-weight:500;}
+.dash-modal .cell-base{background:#cce5ff;color:#004085;font-weight:600;border:2px solid #004085!important;}
+.dash-modal .data-table{width:100%;border-collapse:collapse;font-size:0.8rem;}
+.dash-modal .data-table th{border-bottom:2px solid #e0dbd3;padding:0.6rem 0.75rem;text-align:right;color:#888;font-weight:500;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;}
+.dash-modal .data-table th:first-child{text-align:left;}
+.dash-modal .data-table td{padding:0.55rem 0.75rem;text-align:right;border-bottom:1px solid #e0dbd3;color:#555;font-weight:300;}
+.dash-modal .data-table td:first-child{text-align:left;color:#252525;font-weight:400;}
+.dash-modal .data-table tr:last-child td{border-bottom:none;font-weight:600;color:#252525;}
+.dash-modal .neg{color:#c0392b;}.dash-modal .pos{color:#27ae60;}.dash-modal .est{color:#c17f4a;}
+.dash-modal .moat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#e0dbd3;border:1px solid #e0dbd3;border-radius:10px;overflow:hidden;margin-bottom:1.5rem;}
+.dash-modal .moat-cell{background:#fff;padding:1.25rem 1rem;text-align:center;}
+.dash-modal .moat-icon{font-size:1.5rem;margin-bottom:0.5rem;}
+.dash-modal .moat-title{font-size:0.72rem;font-weight:600;color:#252525;margin-bottom:0.3rem;}
+.dash-modal .moat-desc{font-size:0.72rem;color:#888;font-weight:300;line-height:1.5;}
+.dash-modal .exit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;}
+.dash-modal .exit-card{border-radius:10px;padding:1.5rem;border:1px solid #e0dbd3;}
+.dash-modal .exit-primary{background:linear-gradient(135deg,#f0f7f1,#e8f5ea);border-color:#b8dbbf;}
+.dash-modal .exit-secondary{background:#f3ede4;border-color:#e8c9a8;}
+.dash-modal .exit-label{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;margin-bottom:0.5rem;}
+.dash-modal .exit-primary .exit-label{color:#27ae60;}.dash-modal .exit-secondary .exit-label{color:#c17f4a;}
+.dash-modal .exit-return{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:500;color:#252525;margin-bottom:0.15rem;}
+.dash-modal .exit-timeline{font-size:0.75rem;color:#888;margin-bottom:1rem;font-weight:300;}
+.dash-modal .exit-row{display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:0.3rem;}
+.dash-modal .exit-key{color:#888;font-weight:300;}.dash-modal .exit-val{font-weight:500;color:#252525;}
+.dash-modal .risk-table{width:100%;border-collapse:collapse;font-size:0.82rem;}
+.dash-modal .risk-table th{border-bottom:2px solid #e0dbd3;padding:0.6rem 0.75rem;text-align:left;color:#888;font-weight:500;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;}
+.dash-modal .risk-table td{padding:0.65rem 0.75rem;border-bottom:1px solid #e0dbd3;color:#555;font-weight:300;vertical-align:top;}
+.dash-modal .risk-table td:first-child{color:#252525;font-weight:500;}
+.dash-modal .risk-high{color:#c0392b;font-weight:600;}.dash-modal .risk-med{color:#b45309;font-weight:600;}.dash-modal .risk-low{color:#27ae60;font-weight:600;}
+.dash-modal .fscore-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;}
+.dash-modal .fscore-group{border-radius:10px;padding:1.25rem;border:1px solid #e0dbd3;background:#fff;}
+.dash-modal .fg-title{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#252525;margin-bottom:1rem;}
+.dash-modal .signal-row{display:flex;justify-content:space-between;align-items:center;padding:0.45rem 0;border-bottom:1px solid #e0dbd3;font-size:0.8rem;}
+.dash-modal .signal-row:last-child{border-bottom:none;}
+.dash-modal .signal-name{color:#555;font-weight:300;}
+.dash-modal .sig-pass{background:#27ae60;color:#fff;font-size:0.65rem;font-weight:600;padding:0.15rem 0.5rem;border-radius:100px;}
+.dash-modal .sig-fail{background:#c0392b;color:#fff;font-size:0.65rem;font-weight:600;padding:0.15rem 0.5rem;border-radius:100px;}
+.dash-modal .peer-table{width:100%;border-collapse:collapse;font-size:0.82rem;}
+.dash-modal .peer-table th{border-bottom:2px solid #e0dbd3;padding:0.6rem 0.75rem;text-align:center;color:#888;font-weight:500;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;}
+.dash-modal .peer-table th:first-child{text-align:left;}
+.dash-modal .peer-table td{padding:0.6rem 0.75rem;text-align:center;border-bottom:1px solid #e0dbd3;color:#555;font-weight:300;}
+.dash-modal .peer-table td:first-child{text-align:left;color:#252525;font-weight:400;}
+.dash-modal .peer-table .cvs-row td{background:#f3ede4;font-weight:500;color:#252525;}
+.dash-modal .score-high{color:#27ae60;font-weight:600;}.dash-modal .score-mid{color:#b45309;font-weight:600;}.dash-modal .score-low{color:#c0392b;font-weight:600;}
+.dash-modal .solution-card{border-radius:10px;padding:1.5rem;background:#f0f7f1;border:1px solid #b8dbbf;margin-bottom:1rem;}
+.dash-modal .sol-label{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#27ae60;margin-bottom:0.4rem;}
+.dash-modal .sol-title{font-size:1rem;font-weight:500;color:#252525;margin-bottom:0.5rem;}
+.dash-modal .sol-desc{font-size:0.82rem;color:#555;font-weight:300;line-height:1.7;}
+.dash-modal .prod-bar-wrap{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;}
+.dash-modal .prod-name{font-size:0.78rem;color:#555;width:200px;flex-shrink:0;font-weight:300;}
+.dash-modal .prod-bar-bg{flex:1;background:#f3ede4;border-radius:100px;height:7px;}
+.dash-modal .prod-bar{height:7px;border-radius:100px;}
+.dash-modal .seg-list{display:flex;flex-direction:column;gap:0.6rem;}
+.dash-modal .seg-row{display:flex;align-items:center;gap:0.75rem;}
+.dash-modal .seg-name{font-size:0.8rem;color:#555;width:160px;flex-shrink:0;font-weight:300;}
+.dash-modal .seg-bar-wrap{flex:1;background:#f3ede4;border-radius:100px;height:8px;}
+.dash-modal .seg-bar{height:8px;border-radius:100px;}
+.dash-modal .seg-pct{font-size:0.78rem;font-weight:500;color:#252525;width:42px;text-align:right;}
+@media(max-width:768px){
+.dash-modal .kpi-strip,.dash-modal .moat-grid{grid-template-columns:repeat(2,1fr);}
+.dash-modal .grid-2,.dash-modal .grid-3,.dash-modal .scenario-grid,.dash-modal .exit-grid,.dash-modal .fscore-grid{grid-template-columns:1fr;}
+.dash-modal .panel{padding:1.5rem 4%;}
+.dash-modal .tabs{padding:0 4%;}
+.dash-modal .page-header{flex-direction:column;gap:1rem;padding:2rem 4%;}}
+</style>
+
 </style>
 </head>
 <body>
@@ -261,9 +379,9 @@
   <p class="sec-sub">Available for internship and full-time roles globally — open to relocation.</p>
   <div class="about-grid">
     <div class="about-text">
-      <p>I am a Finance-track MSc student at Singapore Management University with experience across accounting, audit, and taxation — spanning professional services firms in India. My analytical foundation was built in practice: managing GST compliance for 20+ clients, contributing to audit engagements across multiple sectors, and maintaining AR/AP operations across hundreds of transactions.</p>
-      <p>Across five independent finance projects, I have applied DCF valuation, CAPM, Piotrowski F-Score, capital budgeting, FX risk quantification, and investment memo writing — using Capital IQ and Damodaran datasets as primary data sources. Every model I build is grounded in the audit mindset that every number needs to be defensible.</p>
-      <p>I approach financial analysis the way a business operator would — always asking what the numbers mean for decision-making, not just what they are. I am ready to contribute to budgeting cycles, performance reviews, valuation work, and management discussions from day one.</p>
+      <p>I am a Finance-track MSc student at Singapore Management University with experience across accounting, audit, and taxation spanning professional services firms in India. My analytical foundation was built in practice: managing GST compliance for 20+ clients, contributing to audit engagements across multiple sectors, and maintaining AR/AP operations across hundreds of transactions.</p>
+      <p>Across five independent finance projects, I have applied DCF valuation, CAPM, Piotrowski F-Score, capital budgeting, FX risk quantification, and investment memo writing using Capital IQ and Damodaran datasets as primary data sources. Every model I build is grounded in the audit mindset that every number needs to be defensible.</p>
+      <p>I approach financial analysis the way a business operator would always asking what the numbers mean for decision-making, not just what they are. I am ready to contribute to budgeting cycles, performance reviews, valuation work, and management discussions from day one.</p>
     </div>
     <div class="skills-col">
       <div>
@@ -294,7 +412,7 @@
 <section class="proj-sec" id="projects">
   <div class="sec-label">02 — Finance Projects</div>
   <h2 class="sec-title">Five engagements. Rigorous analysis.</h2>
-  <p class="sec-sub">Each project reflects real analytical work — sourced independently, built from primary data, structured around a business decision.</p>
+  <p class="sec-sub">Each project reflects real analytical work sourced independently, built from primary data, structured around a business decision.</p>
 
   <div class="proj-card">
     <div class="proj-header" onclick="toggleProj(this)">
@@ -303,10 +421,10 @@
     </div>
     <div class="proj-body">
       <div class="proj-body-grid">
-        <div><div class="pbl">Objective</div><div class="pbc">Full-scope corporate finance and equity valuation of Pfizer Inc. (NYSE: PFE) to assess intrinsic value and strategic positioning following its $43B Seagen acquisition — using institutional-grade data from Capital IQ.</div></div>
+        <div><div class="pbl">Objective</div><div class="pbc">Full-scope corporate finance and equity valuation of Pfizer Inc. (NYSE: PFE) to assess intrinsic value and strategic positioning following its $43B Seagen acquisition using institutional-grade data from Capital IQ.</div></div>
         <div><div class="pbl">Methodology</div><div class="pbc">Built an integrated 3-statement financial model (FY2022A–FY2027E) with segmented revenue across COVID products, oncology, and established medicines. Conducted DCF with WACC derivation, CAPM cost of equity, and Damodaran ERP inputs. Layered DuPont, EVA, and TSR across 1-, 3-, and 5-year horizons.</div></div>
-        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>Cost of Equity 7.26% via CAPM (β=0.62, Rf=4.3%, ERP=5.5% Damodaran); WACC at 8.8%</li><li>Non-COVID revenue projected 10–12% growth through FY2027E driven by Vyndaqel and Seagen ADC portfolio</li><li>DuPont revealed FY2023 margin compression was COVID-volume driven, not structural — supporting recovery thesis</li><li>Bear/base/bull scenarios produced price range of $22–$38/share</li></ul></div>
-        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">End-to-end valuation from raw Capital IQ data to a defensible DCF. Multi-scenario structure, WACC build, and segment-level revenue model replicate healthcare IB or equity research workflows.</div><div class="chip-row"><span class="chip">Excel</span><span class="chip">Capital IQ</span><span class="chip">DCF</span><span class="chip">CAPM</span><span class="chip">DuPont</span><span class="chip">EVA</span><span class="chip">Damodaran ERP</span></div></div>
+        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>Cost of Equity 7.26% via CAPM (β=0.62, Rf=4.3%, ERP=5.5% Damodaran); WACC at 8.8%</li><li>Non-COVID revenue projected 10–12% growth through FY2027E driven by Vyndaqel and Seagen ADC portfolio</li><li>DuPont revealed FY2023 margin compression was COVID-volume driven, not structural supporting recovery thesis</li><li>Bear/base/bull scenarios produced price range of $22–$38/share</li></ul></div>
+        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">End-to-end valuation from raw Capital IQ data to a defensible DCF. Multi-scenario structure, WACC build, and segment-level revenue model replicate healthcare IB or equity research workflows.</div><div class="chip-row"><span class="chip">Excel</span><span class="chip">Capital IQ</span><span class="chip">DCF</span><span class="chip">CAPM</span><span class="chip">DuPont</span><span class="chip">EVA</span><span class="chip">Damodaran ERP</span></div></div><a href="#" onclick="openDash('pfizer');return false;" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.1rem;font-size:0.75rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--accent-light);padding:0.5rem 1.1rem;border-radius:100px;background:var(--warm);transition:all 0.2s;">📊 View Interactive Dashboard →</a></div>
       </div>
     </div>
   </div>
@@ -318,10 +436,10 @@
     </div>
     <div class="proj-body">
       <div class="proj-body-grid">
-        <div><div class="pbl">Objective</div><div class="pbc">Professional-grade, multi-segment financial model for Reliance Industries — India's largest company by market cap — covering O2C, Retail, Jio Digital Services, and Oil &amp; Gas, with full DCF and scenario stress-test.</div></div>
+        <div><div class="pbl">Objective</div><div class="pbc">Professional-grade, multi-segment financial model for Reliance Industries. India's largest company by market cap covering O2C, Retail, Jio Digital Services, and Oil &amp; Gas, with full DCF and scenario stress-test.</div></div>
         <div><div class="pbl">Methodology</div><div class="pbc">Consolidated 3-statement model (FY2018A–FY2029E) in INR crores from Capital IQ actuals. Revenue decomposed by five segments with individual YoY growth drivers. WACC built from first principles (β=0.24, Rf=7.0%, ERP=6.5%) with 4.0% terminal growth rate aligned to India's long-run GDP outlook.</div></div>
         <div><div class="pbl">Key Findings</div><ul class="find-list"><li>WACC at 8.37% (Re=8.56%; Rd post-tax=7.48%; Equity weight=82.3%)</li><li>Jio Digital Services projected to reach 34% revenue mix by FY2029E at ~16% YoY CAGR</li><li>O2C FCF negative through FY2021 on 20%+ capex intensity; recovered by FY2025A as spend normalised to ~12%</li><li>Net income projected INR ~1.16 trillion by FY2029E — 12% CAGR from FY2025A</li></ul></div>
-        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">Conglomerate modelling is among the most technically demanding valuation exercises — five distinct business units with different margin profiles, growth trajectories, and capex requirements.</div><div class="chip-row"><span class="chip">Excel</span><span class="chip">Capital IQ</span><span class="chip">3-Statement</span><span class="chip">DCF</span><span class="chip">WACC</span><span class="chip">Segment Analysis</span></div></div>
+        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">Conglomerate modelling is among the most technically demanding valuation exercises five distinct business units with different margin profiles, growth trajectories, and capex requirements.</div><div class="chip-row"><span class="chip">Excel</span><span class="chip">Capital IQ</span><span class="chip">3-Statement</span><span class="chip">DCF</span><span class="chip">WACC</span><span class="chip">Segment Analysis</span></div></div><a href="#" onclick="openDash('reliance');return false;" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.1rem;font-size:0.75rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--accent-light);padding:0.5rem 1.1rem;border-radius:100px;background:var(--warm);transition:all 0.2s;">📊 View Interactive Dashboard →</a></div>
       </div>
     </div>
   </div>
@@ -333,10 +451,10 @@
     </div>
     <div class="proj-body">
       <div class="proj-body-grid">
-        <div><div class="pbl">Objective</div><div class="pbc">Recommend an equity investment decision (Series C or secondary participation) in HALA Holding — a Saudi fintech serving 142,000+ SMEs at ~$900M Series B valuation — for an institutional investor with a 3–5 year return horizon.</div></div>
+        <div><div class="pbl">Objective</div><div class="pbc">Recommend an equity investment decision (Series C or secondary participation) in HALA Holding a Saudi fintech serving 142,000+ SMEs at ~$900M Series B valuation for an institutional investor with a 3–5 year return horizon.</div></div>
         <div><div class="pbl">Methodology</div><div class="pbc">Bottom-up market sizing: TAM ($6.4B Saudi fintech by 2030), SAM ($2–3B micro/small business segment), SOM anchored to HALA's 142,000-customer base. Assessed moat across five dimensions. Stress-tested take rate sensitivity, lending conversion, and NPL scenarios.</div></div>
-        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>Primary exit: Tadawul IPO at 2–3x return (2028–2029), PIF-backed and Vision 2030-aligned</li><li>Revenue-based lending as value creation catalyst — 7-year transaction data enables collateral-free underwriting</li><li>$8B annual transactions implies ~10% payments market penetration at Series B</li><li>Critical risk: lending NPL rate — only assumption where thesis weakens materially</li></ul></div>
-        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">Replicates the structure of a growth equity or M&amp;A deal memo: market sizing, competitive positioning, revenue model analysis, risk stress-test, and explicit investment recommendation.</div><div class="chip-row"><span class="chip">Market Sizing</span><span class="chip">Investment Memo</span><span class="chip">Blue Ocean</span><span class="chip">Exit Analysis</span><span class="chip">Competitive Analysis</span></div></div>
+        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>Primary exit: Tadawul IPO at 2–3x return (2028–2029), PIF-backed and Vision 2030-aligned</li><li>Revenue-based lending as value creation catalyst 7-year transaction data enables collateral-free underwriting</li><li>$8B annual transactions implies ~10% payments market penetration at Series B</li><li>Critical risk: lending NPL rate only assumption where thesis weakens materially</li></ul></div>
+        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">Replicates the structure of a growth equity or M&amp;A deal memo: market sizing, competitive positioning, revenue model analysis, risk stress-test, and explicit investment recommendation.</div><div class="chip-row"><span class="chip">Market Sizing</span><span class="chip">Investment Memo</span><span class="chip">Blue Ocean</span><span class="chip">Exit Analysis</span><span class="chip">Competitive Analysis</span></div></div><a href="#" onclick="openDash('hala');return false;" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.1rem;font-size:0.75rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--accent-light);padding:0.5rem 1.1rem;border-radius:100px;background:var(--warm);transition:all 0.2s;">📊 View Interactive Dashboard →</a></div>
       </div>
     </div>
   </div>
@@ -348,10 +466,10 @@
     </div>
     <div class="proj-body">
       <div class="proj-body-grid">
-        <div><div class="pbl">Objective</div><div class="pbc">Systematic financial health assessment of CVS Health using the Piotrowski F-Score — 9-signal diagnostic covering profitability, liquidity, and operating efficiency — with a documented investment recommendation and peer benchmarking.</div></div>
+        <div><div class="pbl">Objective</div><div class="pbc">Systematic financial health assessment of CVS Health using the Piotrowski F-Score 9-signal diagnostic covering profitability, liquidity, and operating efficiency with a documented investment recommendation and peer benchmarking.</div></div>
         <div><div class="pbl">Methodology</div><div class="pbc">Independently sourced FY2024 Form 10-K from SEC EDGAR. Manually computed all 9 signals across three categories. Benchmarked against 5 peers across healthcare, consumer, and industrial sectors. Evaluated Medicare Advantage utilisation trends and FTC regulatory overhang.</div></div>
-        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>CVS F-Score: 5/9 — moderate financial health; ranked above Ring Energy and ACCO in peer cohort</li><li>CFO of $9.1B exceeded reported net income of $4.6B — signals high earnings quality</li><li>Margin compression traced to Aetna MLR expansion (89% vs. 86% prior year), not structural deterioration</li><li>Recommendation: moderate long at &lt;$60/share with 8–10% annualised return potential by 2027</li></ul></div>
-        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">Demonstrates earnings quality and KPI decomposition skills central to FP&amp;A performance reviews and equity research — the ability to distinguish structural from transient margin compression.</div><div class="chip-row"><span class="chip">Excel</span><span class="chip">SEC EDGAR</span><span class="chip">Piotrowski F-Score</span><span class="chip">Ratio Analysis</span><span class="chip">Peer Benchmarking</span></div></div>
+        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>CVS F-Score: 5/9 moderate financial health; ranked above Ring Energy and ACCO in peer cohort</li><li>CFO of $9.1B exceeded reported net income of $4.6B signals high earnings quality</li><li>Margin compression traced to Aetna MLR expansion (89% vs. 86% prior year), not structural deterioration</li><li>Recommendation: moderate long at &lt;$60/share with 8–10% annualised return potential by 2027</li></ul></div>
+        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">Demonstrates earnings quality and KPI decomposition skills central to FP&amp;A performance reviews and equity research. The ability to distinguish structural from transient margin compression.</div><div class="chip-row"><span class="chip">Excel</span><span class="chip">SEC EDGAR</span><span class="chip">Piotrowski F-Score</span><span class="chip">Ratio Analysis</span><span class="chip">Peer Benchmarking</span></div></div><a href="#" onclick="openDash('cvs');return false;" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.1rem;font-size:0.75rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--accent-light);padding:0.5rem 1.1rem;border-radius:100px;background:var(--warm);transition:all 0.2s;">📊 View Interactive Dashboard →</a></div>
       </div>
     </div>
   </div>
@@ -363,10 +481,10 @@
     </div>
     <div class="proj-body">
       <div class="proj-body-grid">
-        <div><div class="pbl">Objective</div><div class="pbc">Isolate and quantify structural cost risks behind On Holding AG's CHF 40.9M net loss in Q2 2025 — despite 32% top-line growth — and design margin-recovery strategies executable without incremental debt.</div></div>
+        <div><div class="pbl">Objective</div><div class="pbc">Isolate and quantify structural cost risks behind On Holding AG's CHF 40.9M net loss in Q2 2025 — despite 32% top-line growth and design margin-recovery strategies executable without incremental debt.</div></div>
         <div><div class="pbl">Methodology</div><div class="pbc">Modelled CHF/USD deterioration (USD 1 = CHF 0.91 to CHF 0.79 over H1 2025). Assessed 90% Vietnam production concentration against US tariff exposure of 20–40% on 1M+ pairs annually. Applied Porter's Five Forces, PESTEL, BCG Matrix, and Value Chain Analysis.</div></div>
-        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>Annual tariff exposure estimated CHF 40–60M — threatening On's 28% constant-currency growth guidance</li><li>US R&amp;D hub recommended as natural FX hedge: matching USD cost base to USD revenue stream</li><li>Vietnam-to-Portugal/Slovenia diversification modelled to eliminate tariff drag via EU free trade access</li><li>Both solutions modelled as cost-neutral against On's CHF 2.86B 2025 revenue target</li></ul></div>
-        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">FX risk quantification, supply chain cost modelling, and tariff scenario analysis are core FP&amp;A and corporate treasury skill sets — translating macro risks into quantified financial impact and strategic recommendations.</div><div class="chip-row"><span class="chip">FX Modelling</span><span class="chip">Tariff Analysis</span><span class="chip">Supply Chain Finance</span><span class="chip">Porter's Five Forces</span><span class="chip">PESTEL</span></div></div>
+        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>Annual tariff exposure estimated CHF 40–60M threatening On's 28% constant-currency growth guidance</li><li>US R&amp;D hub recommended as natural FX hedge: matching USD cost base to USD revenue stream</li><li>Vietnam-to-Portugal/Slovenia diversification modelled to eliminate tariff drag via EU free trade access</li><li>Both solutions modelled as cost-neutral against On's CHF 2.86B 2025 revenue target</li></ul></div>
+        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">FX risk quantification, supply chain cost modelling, and tariff scenario analysis are core FP&amp;A and corporate treasury skill sets translating macro risks into quantified financial impact and strategic recommendations.</div><div class="chip-row"><span class="chip">FX Modelling</span><span class="chip">Tariff Analysis</span><span class="chip">Supply Chain Finance</span><span class="chip">Porter's Five Forces</span><span class="chip">PESTEL</span></div></div><a href="#" onclick="openDash('onholding');return false;" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.1rem;font-size:0.75rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--accent-light);padding:0.5rem 1.1rem;border-radius:100px;background:var(--warm);transition:all 0.2s;">📊 View Interactive Dashboard →</a></div>
       </div>
     </div>
   </div>
@@ -399,7 +517,7 @@
   <div>
     <div class="exp-item"><div class="exp-date">Jul 2024 – Jun 2025</div><div><div class="exp-role">Finance &amp; Operations Intern</div><div class="exp-firm">Bansal Cloth Store — Jalesar, India · Retail Apparel</div><ul class="exp-bullets"><li>Managed end-to-end AR/AP reconciliation in QuickBooks, reducing matching discrepancies by 15%</li><li>Optimised vendor payment cycle by 10%, improving cash flow visibility for management</li><li>Maintained monthly closing entries across 500+ transaction records</li></ul></div></div>
     <div class="exp-item"><div class="exp-date">Aug 2023 – Jan 2024</div><div><div class="exp-role">Audit Intern</div><div class="exp-firm">Agarwal Manoj Nidhi &amp; Associates — Delhi, India · Audit &amp; Valuation</div><ul class="exp-bullets"><li>Improved audit efficiency by 20% and financial reporting accuracy by 40% across food, product, and service sector clients</li><li>Documented SOP compliance and audit evidence in accordance with Indian Auditing Standards</li></ul></div></div>
-    <div class="exp-item"><div class="exp-date">Sep 2022 – Mar 2023</div><div><div class="exp-role">Taxation &amp; Compliance Intern</div><div class="exp-firm">ACHS &amp; Co. — Delhi, India · Tax, Valuation &amp; Investment Advisory</div><ul class="exp-bullets"><li>Managed GST compliance for 20+ clients, filing 100+ quarterly returns — zero ITC denials or penalties</li><li>Optimised client tax outcomes through LTCG/STCG planning, minimising liabilities and improving after-tax returns</li></ul></div></div>
+    <div class="exp-item"><div class="exp-date">Sep 2022 – Mar 2023</div><div><div class="exp-role">Taxation &amp; Compliance Intern</div><div class="exp-firm">ACHS &amp; Co. — Delhi, India · Tax, Valuation &amp; Investment Advisory</div><ul class="exp-bullets"><li>Managed GST compliance for 20+ clients, filing 100+ quarterly returns zero ITC denials or penalties</li><li>Optimised client tax outcomes through LTCG/STCG planning, minimising liabilities and improving after-tax returns</li></ul></div></div>
     <div class="exp-item"><div class="exp-date">Jan – Feb 2025</div><div><div class="exp-role">Team Leader — Finalist</div><div class="exp-firm">E-Summit Case Competition · IIT Roorkee</div><ul class="exp-bullets"><li>Led team to the finals among 100+ competing teams, presenting research-driven strategic solutions</li><li>Designed a Carbon Offset Loyalty Platform with LTV:CAC of ~10x and a four-phase GTM roadmap</li></ul></div></div>
   </div>
 </section>
@@ -460,5 +578,1419 @@ function toggleProj(header) {
   toggle.classList.toggle('open');
 }
 </script>
+
+<div class="dash-modal" id="dash_pfizer" style="display:none;position:fixed;inset:0;z-index:9999;background:#faf8f5;overflow-y:auto;">
+  <div style="position:sticky;top:0;z-index:10000;background:#252525;padding:0.75rem 5%;display:flex;justify-content:space-between;align-items:center;">
+    <span style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-family:'Outfit',sans-serif;">← Back to Portfolio</span>
+    <button onclick="closeDash('pfizer')" style="background:none;border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);padding:0.4rem 1.1rem;font-size:0.75rem;cursor:pointer;border-radius:100px;font-family:'Outfit',sans-serif;">✕ Close</button>
+  </div>
+  <div class="page-header">
+  <div>
+    <div class="ph-tag">Equity Valuation · Corporate Finance</div>
+    <div class="ph-title">Pfizer Inc. <span>(PFE)</span></div>
+    <div class="ph-sub">Integrated 3-Statement Model · DCF · CAPM · DuPont · EVA · Scenario Analysis · FY2022A–FY2027E · USD Millions</div>
+  </div>
+  <div style="text-align:right;">
+    <div class="ph-verdict">Analyst: Udeesha Bansal</div>
+    <div class="ph-analyst">Data sourced from Capital IQ · SMU Finance Project · 2026</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="dashTab('pfizer','pfizer_overview')">Overview</div>
+  <div class="tab" onclick="dashTab('pfizer','pfizer_revenue')">Revenue & Products</div>
+  <div class="tab" onclick="dashTab('pfizer','pfizer_pnl')">P&L</div>
+  <div class="tab" onclick="dashTab('pfizer','pfizer_dcf')">DCF Valuation</div>
+  <div class="tab" onclick="dashTab('pfizer','pfizer_scenario')">Scenarios</div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="panel active" id="pfizer_panel-overview">
+  <div class="kpi-strip">
+    <div class="kpi"><div class="kpi-label">FY2024A Revenue</div><div class="kpi-val">$63.6B</div><div class="kpi-sub kpi-up">↑ 7% vs FY2023A</div></div>
+    <div class="kpi"><div class="kpi-label">Non-COVID Growth</div><div class="kpi-val">+12%</div><div class="kpi-sub">FY2024A core business</div></div>
+    <div class="kpi"><div class="kpi-label">WACC</div><div class="kpi-val">8.80%</div><div class="kpi-sub">β = 0.62 · Ke = 7.70%</div></div>
+    <div class="kpi"><div class="kpi-label">Implied Share Price</div><div class="kpi-val">$26.71</div><div class="kpi-sub kpi-dn">vs $27 CMP · -1% downside</div></div>
+    <div class="kpi"><div class="kpi-label">Adj. EPS FY2027E</div><div class="kpi-val">$3.68</div><div class="kpi-sub">vs $3.11 FY2024A</div></div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Revenue Trajectory (USD Millions)</div>
+      <div class="chart-wrap"><canvas id="pfizer_revChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">COVID vs Non-COVID Revenue Split</div>
+      <div class="chart-wrap"><canvas id="pfizer_covidChart"></canvas></div>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Net Income & Gross Margin %</div>
+      <div class="chart-wrap"><canvas id="pfizer_niChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Free Cash Flow (USD Millions)</div>
+      <div class="chart-wrap"><canvas id="pfizer_fcfChart"></canvas></div>
+      <div class="insight-box">FCF collapsed in FY2023 as COVID revenues evaporated (revenue -41% YoY). Recovery to $11.7B in FY2024 driven by Seagen integration and non-COVID portfolio growth. Projected to reach $11.3B by FY2027E.</div>
+    </div>
+  </div>
+</div>
+
+<!-- REVENUE -->
+<div class="panel" id="pfizer_panel-revenue">
+  <div class="card grid-full">
+    <div class="card-title">Product Revenue Breakdown — FY2024A (USD Millions)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+      <div>
+        <div style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;font-weight:500;">COVID Products</div>
+        <div class="prod-bar-wrap"><div class="prod-name">Comirnaty (COVID Vaccine)</div><div class="prod-bar-bg"><div class="prod-bar" style="width:55%;background:#c0392b99;"></div></div><div class="prod-val">$6,362M</div></div>
+        <div class="prod-bar-wrap"><div class="prod-name">Paxlovid (COVID Antiviral)</div><div class="prod-bar-bg"><div class="prod-bar" style="width:18%;background:#c0392b66;"></div></div><div class="prod-val">$2,070M</div></div>
+        <div style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin:1.25rem 0 1rem;font-weight:500;">Established Medicines</div>
+        <div class="prod-bar-wrap"><div class="prod-name">Eliquis (anticoagulant)</div><div class="prod-bar-bg"><div class="prod-bar" style="width:60%;background:#4a615099;"></div></div><div class="prod-val">$6,960M</div></div>
+        <div class="prod-bar-wrap"><div class="prod-name">Vyndaqel (ATTR cardio)</div><div class="prod-bar-bg"><div class="prod-bar" style="width:43%;background:#4a6150cc;"></div></div><div class="prod-val">$4,960M</div></div>
+        <div class="prod-bar-wrap"><div class="prod-name">Prevnar Family (vaccines)</div><div class="prod-bar-bg"><div class="prod-bar" style="width:62%;background:#7a8c7e99;"></div></div><div class="prod-val">$7,218M</div></div>
+        <div class="prod-bar-wrap"><div class="prod-name">Ibrance (breast cancer)</div><div class="prod-bar-bg"><div class="prod-bar" style="width:40%;background:#7a8c7e66;"></div></div><div class="prod-val">$4,677M</div></div>
+      </div>
+      <div>
+        <div style="font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;font-weight:500;">Oncology (incl. Seagen)</div>
+        <div class="prod-bar-wrap"><div class="prod-name">Seagen ADCs (Padcev etc.)</div><div class="prod-bar-bg"><div class="prod-bar" style="width:30%;background:#c17f4acc;"></div></div><div class="prod-val">$3,400M</div></div>
+        <div class="prod-bar-wrap"><div class="prod-name">Xtandi (prostate cancer)</div><div class="prod-bar-bg"><div class="prod-bar" style="width:15%;background:#c17f4a99;"></div></div><div class="prod-val">$1,757M</div></div>
+        <div class="prod-bar-wrap"><div class="prod-name">Nurtec ODT (migraine)</div><div class="prod-bar-bg"><div class="prod-bar" style="width:11%;background:#c17f4a66;"></div></div><div class="prod-val">$1,280M</div></div>
+        <div style="margin-top:1.5rem;">
+          <div class="chart-wrap" style="height:200px;"><canvas id="pfizer_segPieChart"></canvas></div>
+        </div>
+      </div>
+    </div>
+    <div class="insight-box" style="margin-top:1.25rem;"><strong>Key growth driver:</strong> Vyndaqel (ATTR cardiomyopathy) grew from $2.1B (FY2022) to $5.0B (FY2024) — a 134% increase — and is projected to reach $9.5B by FY2027E, making it Pfizer's single most important non-COVID growth engine post-Seagen.</div>
+  </div>
+  <div class="card grid-full">
+    <div class="card-title">Product Revenue Trajectory — Key Growth Drivers FY2022–FY2027E</div>
+    <div class="chart-wrap-tall"><canvas id="pfizer_prodChart"></canvas></div>
+  </div>
+</div>
+
+<!-- P&L -->
+<div class="panel" id="pfizer_panel-pnl">
+  <div class="card grid-full">
+    <div class="card-title">Consolidated Income Statement (USD Millions)</div>
+    <table class="data-table">
+      <thead><tr><th>Metric</th><th>FY2022A</th><th>FY2023A</th><th>FY2024A</th><th class="est">FY2025E</th><th class="est">FY2026E</th><th class="est">FY2027E</th></tr></thead>
+      <tbody>
+        <tr><td>Total Revenue</td><td>100,330</td><td>59,553</td><td>63,627</td><td class="est">62,000</td><td class="est">66,000</td><td class="est">70,000</td></tr>
+        <tr><td>Gross Profit</td><td>70,538</td><td>34,599</td><td>45,776</td><td class="est">44,640</td><td class="est">48,180</td><td class="est">51,800</td></tr>
+        <tr><td>Gross Margin %</td><td>70.3%</td><td>58.1%</td><td>71.9%</td><td class="est">72.0%</td><td class="est">73.0%</td><td class="est">74.0%</td></tr>
+        <tr><td>R&D Expenses</td><td>14,525</td><td>10,679</td><td>10,822</td><td class="est">10,850</td><td class="est">11,352</td><td class="est">11,900</td></tr>
+        <tr><td>EBIT</td><td>33,002</td><td>3,762</td><td>15,728</td><td class="est">20,190</td><td class="est">22,658</td><td class="est">25,200</td></tr>
+        <tr><td>EBIT Margin %</td><td>32.9%</td><td>6.3%</td><td>24.7%</td><td class="est">32.6%</td><td class="est">34.3%</td><td class="est">36.0%</td></tr>
+        <tr><td>Net Income (GAAP)</td><td>9,906</td><td>2,119</td><td>8,031</td><td class="est">18,692</td><td class="est">20,619</td><td class="est">22,610</td></tr>
+        <tr><td>Adj. EPS</td><td>$5.47</td><td>$1.84</td><td>$3.11</td><td class="est">$2.94</td><td class="est">$3.30</td><td class="est">$3.68</td></tr>
+        <tr><td>Dividends per Share</td><td>$1.60</td><td>$1.64</td><td>$1.68</td><td class="est">$1.68</td><td class="est">$1.72</td><td class="est">$1.76</td></tr>
+      </tbody>
+    </table>
+    <div class="insight-box" style="margin-top:1rem;"><strong>DuPont insight:</strong> FY2023 gross margin collapsed from 70% to 58% as COVID products declined -50% YoY — a volume-driven compression, not an operational failure. The recovery to 71.9% in FY2024 confirms structural margin integrity. This distinction is central to the investment thesis.</div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Margin Recovery Story</div>
+      <div class="chart-wrap"><canvas id="pfizer_marginChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Cash Flow Summary (USD Millions)</div>
+      <table class="data-table">
+        <thead><tr><th>Metric</th><th>FY2022A</th><th>FY2023A</th><th>FY2024A</th></tr></thead>
+        <tbody>
+          <tr><td>Operating CF</td><td class="pos">12,657</td><td class="pos">6,967</td><td class="pos">13,781</td></tr>
+          <tr><td>Capex</td><td class="neg">-3,812</td><td class="neg">-2,093</td><td class="neg">-2,100</td></tr>
+          <tr><td>Free Cash Flow</td><td class="pos">8,845</td><td class="pos">4,874</td><td class="pos">11,681</td></tr>
+          <tr><td>FCF Margin</td><td>8.8%</td><td>8.2%</td><td>18.4%</td></tr>
+          <tr><td>Dividends Paid</td><td class="neg">-8,925</td><td class="neg">-9,244</td><td class="neg">-9,500</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- DCF -->
+<div class="panel" id="pfizer_panel-dcf">
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">WACC Build</div>
+      <div class="wacc-item"><span class="wacc-key">Beta (β) — 5yr Monthly</span><span class="wacc-val">0.62</span></div>
+      <div class="wacc-item"><span class="wacc-key">Risk-Free Rate (10yr Treasury)</span><span class="wacc-val">4.30%</span></div>
+      <div class="wacc-item"><span class="wacc-key">Equity Risk Premium (Damodaran)</span><span class="wacc-val">5.50%</span></div>
+      <div class="wacc-item"><span class="wacc-key">Cost of Equity (Ke)</span><span class="wacc-val">7.70%</span></div>
+      <div class="wacc-item"><span class="wacc-key">After-Tax Cost of Debt</span><span class="wacc-val">3.80%</span></div>
+      <div class="wacc-item"><span class="wacc-key">Equity Weight</span><span class="wacc-val">70%</span></div>
+      <div class="wacc-item"><span class="wacc-key">Debt Weight</span><span class="wacc-val">30%</span></div>
+      <div class="wacc-highlight"><span class="wacc-key">WACC</span><span class="wacc-val">8.80%</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Equity Value Bridge (USD Millions)</div>
+      <div class="chart-wrap"><canvas id="pfizer_bridgeChart"></canvas></div>
+      <div class="insight-box" style="margin-top:1rem;"><strong>Implied Price: $26.71</strong> vs ~$27 CMP — model suggests Pfizer is fairly valued at current market price. The base case barely shows upside, making scenario selection and terminal growth assumption critical.</div>
+    </div>
+  </div>
+  <div class="card grid-full">
+    <div class="card-title">Sensitivity Table — Implied Share Price ($) by WACC × Terminal Growth Rate</div>
+    <table class="sensitivity-table">
+      <thead><tr><th>WACC ↓ / TGR →</th><th>1.5%</th><th>2.0%</th><th>2.5%</th><th>3.0%</th><th>3.5%</th></tr></thead>
+      <tbody>
+        <tr><td>7.00%</td><td class="cell-high">$32.6</td><td class="cell-high">$35.7</td><td class="cell-high">$39.4</td><td class="cell-high">$44.1</td><td class="cell-high">$50.1</td></tr>
+        <tr><td>7.50%</td><td class="cell-mid">$29.4</td><td class="cell-mid">$31.9</td><td class="cell-high">$35.0</td><td class="cell-high">$38.6</td><td class="cell-high">$43.2</td></tr>
+        <tr><td>8.00%</td><td class="cell-low">$26.8</td><td class="cell-mid">$28.9</td><td class="cell-mid">$31.3</td><td class="cell-high">$34.3</td><td class="cell-high">$37.9</td></tr>
+        <tr><td>8.80% ★</td><td class="cell-low">$23.3</td><td class="cell-low">$24.9</td><td class="cell-base">$26.7</td><td class="cell-mid">$28.9</td><td class="cell-mid">$31.4</td></tr>
+        <tr><td>9.50%</td><td class="cell-low">$20.8</td><td class="cell-low">$22.1</td><td class="cell-low">$23.5</td><td class="cell-low">$25.2</td><td class="cell-mid">$27.2</td></tr>
+        <tr><td>10.00%</td><td class="cell-low">$19.3</td><td class="cell-low">$20.4</td><td class="cell-low">$21.6</td><td class="cell-low">$23.1</td><td class="cell-low">$24.7</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:0.75rem;font-size:0.72rem;color:var(--muted);">★ = Base case (WACC 8.80%, TGR 2.5%) → $26.71 · Current ~$27 · <span style="color:var(--muted);">Fairly valued at base case</span> · Green = above $35 · Yellow = $25–35 · Red = below $25</div>
+  </div>
+</div>
+
+<!-- SCENARIO -->
+<div class="panel" id="pfizer_panel-scenario">
+  <div class="scenario-grid">
+    <div class="scenario-card sc-bear">
+      <div class="sc-label">🐻 Bear Case</div>
+      <div class="sc-price">$16–$18</div>
+      <div class="sc-note">FY2027E implied range</div>
+      <div class="sc-metrics">
+        <div class="sc-row"><span class="sc-row-key">Revenue FY2027E</span><span class="sc-row-val">$60B</span></div>
+        <div class="sc-row"><span class="sc-row-key">Gross Margin</span><span class="sc-row-val">68–69%</span></div>
+        <div class="sc-row"><span class="sc-row-key">EBITDA Margin</span><span class="sc-row-val">17.9–19.2%</span></div>
+        <div class="sc-row"><span class="sc-row-key">FCF FY2027E</span><span class="sc-row-val">$7.2B</span></div>
+        <div class="sc-row"><span class="sc-row-key">Adj. EPS</span><span class="sc-row-val">$2.20</span></div>
+        <div class="sc-row"><span class="sc-row-key">Key Risk</span><span class="sc-row-val">COVID collapse + pipeline fail</span></div>
+      </div>
+    </div>
+    <div class="scenario-card sc-base">
+      <div class="sc-label">📊 Base Case</div>
+      <div class="sc-price">$32–$38</div>
+      <div class="sc-note">FY2027E implied range</div>
+      <div class="sc-metrics">
+        <div class="sc-row"><span class="sc-row-key">Revenue FY2027E</span><span class="sc-row-val">$70B</span></div>
+        <div class="sc-row"><span class="sc-row-key">Gross Margin</span><span class="sc-row-val">72–74%</span></div>
+        <div class="sc-row"><span class="sc-row-key">EBITDA Margin</span><span class="sc-row-val">21.1–21.5%</span></div>
+        <div class="sc-row"><span class="sc-row-key">FCF FY2027E</span><span class="sc-row-val">$11.3B</span></div>
+        <div class="sc-row"><span class="sc-row-key">Adj. EPS</span><span class="sc-row-val">$3.80</span></div>
+        <div class="sc-row"><span class="sc-row-key">Assumption</span><span class="sc-row-val">Seagen delivers, Non-COVID +10%</span></div>
+      </div>
+    </div>
+    <div class="scenario-card sc-bull">
+      <div class="sc-label">🐂 Bull Case</div>
+      <div class="sc-price">$48–$56</div>
+      <div class="sc-note">FY2027E implied range</div>
+      <div class="sc-metrics">
+        <div class="sc-row"><span class="sc-row-key">Revenue FY2027E</span><span class="sc-row-val">$80B</span></div>
+        <div class="sc-row"><span class="sc-row-key">Gross Margin</span><span class="sc-row-val">75–77%</span></div>
+        <div class="sc-row"><span class="sc-row-key">EBITDA Margin</span><span class="sc-row-val">22.8–23.8%</span></div>
+        <div class="sc-row"><span class="sc-row-key">FCF FY2027E</span><span class="sc-row-val">$14.5B</span></div>
+        <div class="sc-row"><span class="sc-row-key">Adj. EPS</span><span class="sc-row-val">$4.80</span></div>
+        <div class="sc-row"><span class="sc-row-key">Assumption</span><span class="sc-row-val">Multiple blockbusters + ADC outperform</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Revenue by Scenario FY2025E–FY2027E</div>
+      <div class="chart-wrap-tall"><canvas id="pfizer_scenRevChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Implied Share Price by Scenario</div>
+      <div class="chart-wrap-tall"><canvas id="pfizer_scenPriceChart"></canvas></div>
+      <div class="insight-box" style="margin-top:1rem;"><strong>Key swing factor:</strong> Seagen ADC portfolio performance is the single biggest differentiator between bear and bull. ADCs are projected at $4.7B by FY2027E in base case — if they deliver $6B+, bull case becomes achievable.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="dash-modal" id="dash_reliance" style="display:none;position:fixed;inset:0;z-index:9999;background:#faf8f5;overflow-y:auto;">
+  <div style="position:sticky;top:0;z-index:10000;background:#252525;padding:0.75rem 5%;display:flex;justify-content:space-between;align-items:center;">
+    <span style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-family:'Outfit',sans-serif;">← Back to Portfolio</span>
+    <button onclick="closeDash('reliance')" style="background:none;border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);padding:0.4rem 1.1rem;font-size:0.75rem;cursor:pointer;border-radius:100px;font-family:'Outfit',sans-serif;">✕ Close</button>
+  </div>
+  <!-- HEADER -->
+<div class="page-header">
+  <div class="ph-left">
+    <div class="ph-tag">Financial Model · Equity Research</div>
+    <div class="ph-title">Reliance Industries <span>Limited</span></div>
+    <div class="ph-sub">Integrated 3-Statement Model · DCF Valuation · Scenario Analysis · FY2018A–FY2029E · Figures in INR Crores</div>
+  </div>
+  <div class="ph-right">
+    <div class="ph-verdict">Analyst: Udeesha Bansal</div>
+    <div class="ph-analyst">Data sourced from Capital IQ · SMU Finance Project · 2026</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="dashTab('reliance','reliance_overview')">Overview</div>
+  <div class="tab" onclick="dashTab('reliance','reliance_revenue')">Revenue & Segments</div>
+  <div class="tab" onclick="dashTab('reliance','reliance_pnl')">P&amp;L</div>
+  <div class="tab" onclick="dashTab('reliance','reliance_dcf')">DCF Valuation</div>
+  <div class="tab" onclick="dashTab('reliance','reliance_scenario')">Scenarios</div>
+</div>
+
+<!-- OVERVIEW PANEL -->
+<div class="panel active" id="reliance_panel-overview">
+  <div class="kpi-strip">
+    <div class="kpi">
+      <div class="kpi-label">FY2025A Revenue</div>
+      <div class="kpi-val">₹9.65L Cr</div>
+      <div class="kpi-sub kpi-up">↑ 7.1% YoY</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">FY2029E Revenue</div>
+      <div class="kpi-val">₹13.5L Cr</div>
+      <div class="kpi-sub">8% CAGR projected</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">WACC</div>
+      <div class="kpi-val">8.37%</div>
+      <div class="kpi-sub">β = 0.24 · Rf = 7%</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Implied Share Price</div>
+      <div class="kpi-val">₹1,164</div>
+      <div class="kpi-sub kpi-dn">↓ 13.8% vs ₹1,350 CMP</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">FY2029E Net Income</div>
+      <div class="kpi-val">₹1.16L Cr</div>
+      <div class="kpi-sub kpi-up">↑ 12% CAGR</div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Revenue Trajectory (INR Crores) <span><span class="badge badge-act">Actual</span> <span class="badge badge-est">Estimated</span></span></div>
+      <div class="chart-wrap"><canvas id="reliance_revChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Net Income & EBIT Margin</div>
+      <div class="chart-wrap"><canvas id="reliance_niChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Free Cash Flow (INR Crores)</div>
+      <div class="chart-wrap"><canvas id="reliance_fcfChart"></canvas></div>
+      <div class="insight-box">FCF turned negative in FY2021 due to peak capex intensity exceeding 22% of revenue primarily driven by Jio infrastructure build-out and O2C expansion. FCF recovered sharply to ₹3.87L Cr by FY2025A as capex normalised to ~12%.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">FY2025A Revenue Mix by Segment</div>
+      <div class="chart-wrap"><canvas id="reliance_segPieChart"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- REVENUE PANEL -->
+<div class="panel" id="reliance_panel-revenue">
+  <div class="card grid-full">
+    <div class="card-title">Segment Revenue — FY2021A to FY2026A (INR Crores)</div>
+    <div class="chart-wrap-tall"><canvas id="reliance_segStackChart"></canvas></div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Segment Revenue Mix — FY2025A</div>
+      <div class="seg-list">
+        <div class="seg-row">
+          <div class="seg-name">Oil to Chemicals (O2C)</div>
+          <div class="seg-bar-wrap"><div class="seg-bar" style="width:62%;background:#4a6150;"></div></div>
+          <div class="seg-pct">62%</div>
+        </div>
+        <div class="seg-row">
+          <div class="seg-name">Retail</div>
+          <div class="seg-bar-wrap"><div class="seg-bar" style="width:30%;background:#c17f4a;"></div></div>
+          <div class="seg-pct">30%</div>
+        </div>
+        <div class="seg-row">
+          <div class="seg-name">Digital Services (Jio)</div>
+          <div class="seg-bar-wrap"><div class="seg-bar" style="width:13%;background:#7a8c7e;"></div></div>
+          <div class="seg-pct">13%</div>
+        </div>
+        <div class="seg-row">
+          <div class="seg-name">Oil &amp; Gas</div>
+          <div class="seg-bar-wrap"><div class="seg-bar" style="width:2.5%;background:#b5c4b8;"></div></div>
+          <div class="seg-pct">2.5%</div>
+        </div>
+        <div class="seg-row">
+          <div class="seg-name">Others</div>
+          <div class="seg-bar-wrap"><div class="seg-bar" style="width:5%;background:#e0dbd3;"></div></div>
+          <div class="seg-pct">5%</div>
+        </div>
+      </div>
+      <div class="insight-box" style="margin-top:1.25rem;"><strong>Key insight:</strong> O2C dominates at 62% but Jio Digital Services is the fastest-growing segment at ~16% YoY CAGR, projected to reach 34% of revenue mix by FY2029E — the segment that will define Reliance's next decade.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">YoY Revenue Growth by Segment</div>
+      <div class="chart-wrap-tall"><canvas id="reliance_growthChart"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- P&L PANEL -->
+<div class="panel" id="reliance_panel-pnl">
+  <div class="card grid-full">
+    <div class="card-title">Consolidated Income Statement Summary (INR Crores)</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>FY2021A</th><th>FY2022A</th><th>FY2023A</th><th>FY2024A</th><th>FY2025A</th>
+          <th class="est">FY2027E</th><th class="est">FY2028E</th><th class="est">FY2029E</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Total Revenue</td><td>4,66,924</td><td>6,95,963</td><td>8,77,835</td><td>9,01,064</td><td>9,64,693</td><td class="est">11,52,369</td><td class="est">12,50,320</td><td class="est">13,50,346</td></tr>
+        <tr><td>Gross Profit</td><td>1,74,223</td><td>2,22,971</td><td>2,89,352</td><td>3,15,721</td><td>3,35,004</td><td class="est">4,03,329</td><td class="est">4,31,360</td><td class="est">4,59,118</td></tr>
+        <tr><td>Gross Margin %</td><td>37.3%</td><td>32.0%</td><td>33.0%</td><td>35.0%</td><td>34.7%</td><td class="est">35.0%</td><td class="est">34.5%</td><td class="est">34.0%</td></tr>
+        <tr><td>EBIT</td><td>53,505</td><td>79,239</td><td>1,02,478</td><td>1,11,775</td><td>1,12,273</td><td class="est">1,34,827</td><td class="est">1,43,787</td><td class="est">1,55,290</td></tr>
+        <tr><td>EBIT Margin %</td><td>11.5%</td><td>11.4%</td><td>11.7%</td><td>12.4%</td><td>11.6%</td><td class="est">11.7%</td><td class="est">11.5%</td><td class="est">11.5%</td></tr>
+        <tr><td>Net Income</td><td>49,128</td><td>59,044</td><td>66,284</td><td>69,621</td><td>69,648</td><td class="est">1,00,891</td><td class="est">1,07,596</td><td class="est">1,16,203</td></tr>
+      </tbody>
+    </table>
+    <div class="insight-box" style="margin-top:1rem;"><strong>Margin story:</strong> Gross margin dipped to 32% in FY2022 due to elevated commodity costs post-pandemic, recovering to 35% in FY2024. Net income grew at a steady ~12% CAGR from FY2021A to FY2025A despite top-line volatility — driven by operating leverage in the O2C and Digital segments.</div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Margin Trends</div>
+      <div class="chart-wrap"><canvas id="reliance_marginChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Cash Flow Summary (INR Crores)</div>
+      <table class="data-table">
+        <thead><tr><th>Metric</th><th>FY2023A</th><th>FY2024A</th><th>FY2025A</th></tr></thead>
+        <tbody>
+          <tr><td>Operating CF</td><td class="pos">1,15,032</td><td class="pos">1,58,788</td><td class="pos">1,78,703</td></tr>
+          <tr><td>Capex</td><td class="neg">-1,40,988</td><td class="neg">-1,52,883</td><td class="neg">-1,39,967</td></tr>
+          <tr><td>Free Cash Flow</td><td class="neg">-25,956</td><td class="pos">5,905</td><td class="pos">38,736</td></tr>
+          <tr><td>FCF Margin</td><td class="neg">-2.96%</td><td class="pos">0.66%</td><td class="pos">4.02%</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- DCF PANEL -->
+<div class="panel" id="reliance_panel-dcf">
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">WACC Build</div>
+      <div class="wacc-grid">
+        <div>
+          <div class="wacc-item"><span class="wacc-key">Beta (β)</span><span class="wacc-val">0.24</span></div>
+          <div class="wacc-item"><span class="wacc-key">Risk-Free Rate (Rf)</span><span class="wacc-val">7.00%</span></div>
+          <div class="wacc-item"><span class="wacc-key">Equity Risk Premium</span><span class="wacc-val">6.50%</span></div>
+          <div class="wacc-item"><span class="wacc-key">Cost of Equity (Re)</span><span class="wacc-val">8.56%</span></div>
+        </div>
+        <div>
+          <div class="wacc-item"><span class="wacc-key">Pre-tax Cost of Debt</span><span class="wacc-val">9.99%</span></div>
+          <div class="wacc-item"><span class="wacc-key">After-tax Cost of Debt</span><span class="wacc-val">7.48%</span></div>
+          <div class="wacc-item"><span class="wacc-key">Equity Weight (E/V)</span><span class="wacc-val">82.3%</span></div>
+          <div class="wacc-item"><span class="wacc-key">Debt Weight (D/V)</span><span class="wacc-val">17.7%</span></div>
+        </div>
+      </div>
+      <div class="wacc-highlight">
+        <span class="wacc-key">WACC</span>
+        <span class="wacc-val">8.37%</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Equity Value Bridge (INR Crores)</div>
+      <div class="chart-wrap"><canvas id="reliance_bridgeChart"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card grid-full">
+    <div class="card-title">Unlevered Free Cash Flow Projection</div>
+    <table class="data-table">
+      <thead>
+        <tr><th>Metric</th><th class="est">FY2026A</th><th class="est">FY2027E</th><th class="est">FY2028E</th><th class="est">FY2029E</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>EBITDA</td><td>1,21,261</td><td class="est">1,34,827</td><td class="est">1,43,787</td><td class="est">1,55,290</td></tr>
+        <tr><td>(–) Capex</td><td class="neg">-1,22,916</td><td class="neg est">-1,08,166</td><td class="neg est">-95,186</td><td class="neg est">-83,764</td></tr>
+        <tr><td>(–) Change in WC</td><td>12,497</td><td class="est">7,903</td><td class="est">8,136</td><td class="est">8,308</td></tr>
+        <tr><td>Unlevered FCF</td><td>8,039</td><td class="est pos">31,761</td><td class="est pos">53,933</td><td class="est pos">77,031</td></tr>
+        <tr><td>PV of FCF</td><td>7,418</td><td class="est">29,308</td><td class="est">49,768</td><td class="est">71,081</td></tr>
+      </tbody>
+    </table>
+    <div class="insight-box" style="margin-top:1rem;">
+      <strong>Terminal Growth Rate: 4.0%</strong> — aligned to India's long-run nominal GDP growth. Terminal value of ₹18.3L Cr discounted to PV of ₹14.3L Cr accounts for ~90% of enterprise value, making the terminal growth assumption the single most sensitive input in this model.
+    </div>
+  </div>
+
+  <div class="card grid-full">
+    <div class="card-title">Sensitivity Table — Implied Share Price (₹) by WACC × Terminal Growth Rate</div>
+    <div style="overflow-x:auto;">
+    <table class="sensitivity-table">
+      <thead>
+        <tr>
+          <th>WACC ↓ / TGR →</th>
+          <th>2.5%</th><th>3.0%</th><th>3.5%</th><th>4.0%</th><th>4.5%</th><th>5.0%</th><th>5.5%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>6.87%</td><td class="cell-high">₹1,114</td><td class="cell-high">₹1,252</td><td class="cell-high">₹1,431</td><td class="cell-high">₹1,672</td><td class="cell-high">₹2,015</td><td class="cell-high">₹2,541</td><td class="cell-high">₹3,451</td></tr>
+        <tr><td>7.37%</td><td class="cell-mid">₹991</td><td class="cell-mid">₹1,099</td><td class="cell-high">₹1,235</td><td class="cell-high">₹1,411</td><td class="cell-high">₹1,649</td><td class="cell-high">₹1,987</td><td class="cell-high">₹2,506</td></tr>
+        <tr><td>7.87%</td><td class="cell-low">₹890</td><td class="cell-mid">₹977</td><td class="cell-mid">₹1,084</td><td class="cell-mid">₹1,218</td><td class="cell-high">₹1,392</td><td class="cell-high">₹1,626</td><td class="cell-high">₹1,959</td></tr>
+        <tr><td>8.37% ★</td><td class="cell-low">₹807</td><td class="cell-low">₹878</td><td class="cell-mid">₹964</td><td class="cell-base">₹1,069</td><td class="cell-mid">₹1,201</td><td class="cell-mid">₹1,372</td><td class="cell-high">₹1,604</td></tr>
+        <tr><td>8.87%</td><td class="cell-low">₹737</td><td class="cell-low">₹796</td><td class="cell-low">₹866</td><td class="cell-mid">₹950</td><td class="cell-mid">₹1,054</td><td class="cell-mid">₹1,185</td><td class="cell-mid">₹1,354</td></tr>
+        <tr><td>9.37%</td><td class="cell-low">₹677</td><td class="cell-low">₹727</td><td class="cell-low">₹785</td><td class="cell-low">₹854</td><td class="cell-mid">₹937</td><td class="cell-mid">₹1,040</td><td class="cell-mid">₹1,168</td></tr>
+        <tr><td>9.87%</td><td class="cell-low">₹626</td><td class="cell-low">₹668</td><td class="cell-low">₹717</td><td class="cell-low">₹775</td><td class="cell-low">₹843</td><td class="cell-mid">₹925</td><td class="cell-mid">₹1,026</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="margin-top:0.75rem;font-size:0.72rem;color:var(--muted);">★ = Base case (WACC 8.37%, TGR 4.0%) → Implied price ₹1,069 · Current market price ₹1,350 · <span style="color:var(--red);font-weight:500;">13.8% downside at base case</span></div>
+  </div>
+</div>
+
+<!-- SCENARIO PANEL -->
+<div class="panel" id="reliance_panel-scenario">
+  <div class="scenario-grid">
+    <div class="scenario-card sc-bear">
+      <div class="sc-label">🐻 Bear Case</div>
+      <div class="sc-price">₹760</div>
+      <div class="sc-note">FY2029E implied price</div>
+      <div class="sc-metrics">
+        <div class="sc-row"><span class="sc-row-key">Revenue Growth</span><span class="sc-row-val">2.8% → 4%</span></div>
+        <div class="sc-row"><span class="sc-row-key">Gross Margin</span><span class="sc-row-val">32–33%</span></div>
+        <div class="sc-row"><span class="sc-row-key">EBITDA Margin</span><span class="sc-row-val">10.5%</span></div>
+        <div class="sc-row"><span class="sc-row-key">FCF (FY2029E)</span><span class="sc-row-val">₹62,609 Cr</span></div>
+        <div class="sc-row"><span class="sc-row-key">Adj. EPS</span><span class="sc-row-val">₹42.2</span></div>
+      </div>
+    </div>
+    <div class="scenario-card sc-base">
+      <div class="sc-label">📊 Base Case</div>
+      <div class="sc-price">₹1,358</div>
+      <div class="sc-note">FY2029E implied price</div>
+      <div class="sc-metrics">
+        <div class="sc-row"><span class="sc-row-key">Revenue Growth</span><span class="sc-row-val">9% → 8%</span></div>
+        <div class="sc-row"><span class="sc-row-key">Gross Margin</span><span class="sc-row-val">34–35%</span></div>
+        <div class="sc-row"><span class="sc-row-key">EBITDA Margin</span><span class="sc-row-val">11.5–11.7%</span></div>
+        <div class="sc-row"><span class="sc-row-key">FCF (FY2029E)</span><span class="sc-row-val">₹71,526 Cr</span></div>
+        <div class="sc-row"><span class="sc-row-key">Adj. EPS</span><span class="sc-row-val">₹85.9</span></div>
+      </div>
+    </div>
+    <div class="scenario-card sc-bull">
+      <div class="sc-label">🐂 Bull Case</div>
+      <div class="sc-price">₹2,330</div>
+      <div class="sc-note">FY2029E implied price</div>
+      <div class="sc-metrics">
+        <div class="sc-row"><span class="sc-row-key">Revenue Growth</span><span class="sc-row-val">15.5% → 12%</span></div>
+        <div class="sc-row"><span class="sc-row-key">Gross Margin</span><span class="sc-row-val">37–39%</span></div>
+        <div class="sc-row"><span class="sc-row-key">EBITDA Margin</span><span class="sc-row-val">13–14%</span></div>
+        <div class="sc-row"><span class="sc-row-key">FCF (FY2029E)</span><span class="sc-row-val">₹1,39,436 Cr</span></div>
+        <div class="sc-row"><span class="sc-row-key">Adj. EPS</span><span class="sc-row-val">₹83.2</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Revenue by Scenario — FY2027E to FY2029E</div>
+      <div class="chart-wrap-tall"><canvas id="reliance_scenRevChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Implied Share Price by Scenario</div>
+      <div class="chart-wrap-tall"><canvas id="reliance_scenPriceChart"></canvas></div>
+      <div class="insight-box" style="margin-top:1rem;"><strong>Key driver:</strong> The spread between bear (₹760) and bull (₹2,330) in FY2029E is driven almost entirely by Jio Digital Services' margin trajectory and O2C capex normalisation speed. The base case assumes capex holds at ~12% of revenue through FY2029E.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="dash-modal" id="dash_hala" style="display:none;position:fixed;inset:0;z-index:9999;background:#faf8f5;overflow-y:auto;">
+  <div style="position:sticky;top:0;z-index:10000;background:#252525;padding:0.75rem 5%;display:flex;justify-content:space-between;align-items:center;">
+    <span style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-family:'Outfit',sans-serif;">← Back to Portfolio</span>
+    <button onclick="closeDash('hala')" style="background:none;border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);padding:0.4rem 1.1rem;font-size:0.75rem;cursor:pointer;border-radius:100px;font-family:'Outfit',sans-serif;">✕ Close</button>
+  </div>
+  <div class="page-header">
+  <div>
+    <div class="ph-tag">Investment Memorandum · Growth Equity · Fintech</div>
+    <div class="ph-title">HALA <span>Holding</span></div>
+    <div class="ph-sub">TAM/SAM/SOM Sizing · Competitive Moat Analysis · Revenue Model · Exit Thesis · Saudi Fintech · Series B+</div>
+  </div>
+  <div style="text-align:right;">
+    <div class="ph-verdict">✓ Strong Yes — Invest</div>
+    <div class="ph-analyst">Analyst: Udeesha Bansal · Finance Assessment · March 2026</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="dashTab('hala','hala_overview')">Overview</div>
+  <div class="tab" onclick="dashTab('hala','hala_market')">Market Sizing</div>
+  <div class="tab" onclick="dashTab('hala','hala_moat')">Competitive Moat</div>
+  <div class="tab" onclick="dashTab('hala','hala_exit')">Exit & Returns</div>
+  <div class="tab" onclick="dashTab('hala','hala_risk')">Risk Assessment</div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="panel active" id="hala_panel-overview">
+  <div class="kpi-strip">
+    <div class="kpi"><div class="kpi-label">Businesses Served</div><div class="kpi-val">142K+</div><div class="kpi-sub">Rare scale for Series B MENA</div></div>
+    <div class="kpi"><div class="kpi-label">Annual Transactions</div><div class="kpi-val">$8B</div><div class="kpi-sub">Platform embedded in daily ops</div></div>
+    <div class="kpi"><div class="kpi-label">Series B Valuation</div><div class="kpi-val">~$900M</div><div class="kpi-sub">TPG + PIF/Sanabil + QED backed</div></div>
+    <div class="kpi"><div class="kpi-label">Target Return</div><div class="kpi-val">2–3x</div><div class="kpi-sub">Tadawul IPO 2028–2029</div></div>
+    <div class="kpi"><div class="kpi-label">TAM by 2030</div><div class="kpi-val">$6.4B</div><div class="kpi-sub">Saudi fintech payments + lending</div></div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Revenue Model: Today vs Tomorrow</div>
+      <div class="chart-wrap"><canvas id="hala_revModelChart"></canvas></div>
+      <div class="insight-box"><strong>The flywheel:</strong> Payments business (thin margin, high volume) has spent 7 years building a proprietary credit dataset on 142,000 businesses. The lending product launching now converts that data into high-margin revenue — the compounding moment investors want to be in before.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Saudi SME Financing Gap ($B)</div>
+      <div class="chart-wrap"><canvas id="hala_gapChart"></canvas></div>
+      <div class="insight-box"><strong>Blue ocean:</strong> Saudi Arabia has 1.3–1.8M SMEs contributing 30% of a $1.09T economy. Banks had decades to serve them and didn't. HALA walked into an empty space and now owns it.</div>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Key Traction Metrics</div>
+      <div class="chart-wrap"><canvas id="hala_tractionChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Markets & Geographic Presence</div>
+      <div style="display:flex;flex-direction:column;gap:1rem;margin-top:0.5rem;">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1rem;background:var(--warm);border-radius:8px;">
+          <div><div style="font-size:0.8rem;font-weight:500;color:var(--charcoal);">🇸🇦 Saudi Arabia</div><div style="font-size:0.75rem;color:var(--muted);font-weight:300;">Primary market · SAMA licensed · PIF-backed</div></div>
+          <div style="font-size:0.72rem;color:var(--green);font-weight:600;">CORE</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1rem;background:var(--off);border:1px solid var(--rule);border-radius:8px;">
+          <div><div style="font-size:0.8rem;font-weight:500;color:var(--charcoal);">🇦🇪 UAE</div><div style="font-size:0.75rem;color:var(--muted);font-weight:300;">Paymennt.com acquisition (2023) · FSRA licensed</div></div>
+          <div style="font-size:0.72rem;color:var(--accent);font-weight:600;">LIVE</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:0.75rem 1rem;background:var(--off);border:1px solid var(--rule);border-radius:8px;">
+          <div><div style="font-size:0.8rem;font-weight:500;color:var(--charcoal);">🇪🇬 Egypt</div><div style="font-size:0.75rem;color:var(--muted);font-weight:300;">Operational · Same product stack</div></div>
+          <div style="font-size:0.72rem;color:var(--accent);font-weight:600;">LIVE</div>
+        </div>
+        <div style="padding:0.75rem 1rem;background:var(--off);border:1px solid var(--rule);border-radius:8px;opacity:0.6;">
+          <div style="font-size:0.8rem;font-weight:500;color:var(--charcoal);">Further GCC Expansion</div>
+          <div style="font-size:0.75rem;color:var(--muted);font-weight:300;">Architecture carries · Local licensing path defined</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MARKET SIZING -->
+<div class="panel" id="hala_panel-market">
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">TAM → SAM → SOM Framework</div>
+      <div class="chart-wrap"><canvas id="hala_tamChart"></canvas></div>
+      <div class="insight-box"><strong>SOM reframed:</strong> HALA already has 142,000 customers. SOM is not about reaching new customers — it is about how deeply HALA can sell lending, insurance, and payroll to businesses already on the platform. This is a depth problem, not an access problem.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Fintech SME Lending Market Growth ($B)</div>
+      <div class="chart-wrap"><canvas id="hala_lendingGrowthChart"></canvas></div>
+      <div class="insight-box"><strong>Vision 2030 tailwind:</strong> Saudi government mandates SME GDP contribution grow from 30% to 35% by 2030. The government is legislating HALA's market expansion. The $250B regional SME financing gap is not closing through banks — it closes through platforms.</div>
+    </div>
+  </div>
+  <div class="card grid-full">
+    <div class="card-title">Market Layer Breakdown</div>
+    <table class="risk-table">
+      <thead><tr><th>Market Layer</th><th>Size</th><th>Definition</th><th>HALA Status</th></tr></thead>
+      <tbody>
+        <tr><td>TAM — Total Addressable Market</td><td>~$6.4B by 2030</td><td>Total Saudi fintech market — payments + lending combined at 18% CAGR</td><td style="color:var(--green);font-weight:500;">Full addressable universe</td></tr>
+        <tr><td>SAM — Serviceable Addressable Market</td><td>~$2–3B</td><td>Micro & small business segment: businesses with 1–50 employees, annual revenue under SAR 30M, excluded by traditional banks</td><td style="color:var(--accent);font-weight:500;">HALA's core target</td></tr>
+        <tr><td>SOM — Serviceable Obtainable Market</td><td>Execution-driven</td><td>HALA already has 142K customers processing $8B annually (~10% SAM penetration). SOM = converting existing customers into full financial platform users</td><td style="color:var(--sage-dark);font-weight:500;">Already inside</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- MOAT -->
+<div class="panel" id="hala_panel-moat">
+  <div class="moat-grid" style="margin-bottom:1.5rem;">
+    <div class="moat-cell"><div class="moat-icon">🏗️</div><div class="moat-title">Full Stack</div><div class="moat-desc">POS → accounts → cards → lending. One roof. Switching cost = operational disruption.</div></div>
+    <div class="moat-cell"><div class="moat-icon">📊</div><div class="moat-title">Data Moat</div><div class="moat-desc">7 years of daily transaction data on 142K businesses. No amount of funding replicates this.</div></div>
+    <div class="moat-cell"><div class="moat-icon">🏛️</div><div class="moat-title">Regulatory</div><div class="moat-desc">SAMA + FSRA licensed. Competitors face 3–4 year regulatory queue to catch up.</div></div>
+    <div class="moat-cell"><div class="moat-icon">🤝</div><div class="moat-title">PIF Backing</div><div class="moat-desc">Aligns HALA with the regulator. Opens institutional distribution no startup can access.</div></div>
+    <div class="moat-cell"><div class="moat-icon">⚡</div><div class="moat-title">Speed</div><div class="moat-desc">Neoleap needs board sign-off for every product. HALA is founder-speed. Banks are decades behind.</div></div>
+  </div>
+  <div class="card grid-full">
+    <div class="card-title">Competitive Positioning vs Peers</div>
+    <div class="chart-wrap" style="height:280px;"><canvas id="hala_radarChart"></canvas></div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Peer Comparison</div>
+      <table class="risk-table">
+        <thead><tr><th>Company</th><th>Full Stack</th><th>Data Moat</th><th>Lending</th><th>SME Trust</th></tr></thead>
+        <tbody>
+          <tr><td><strong>HALA ✓</strong></td><td style="color:var(--green);">✓ Only one</td><td style="color:var(--green);">7 years</td><td style="color:var(--green);">Launching</td><td style="color:var(--green);">Built for them</td></tr>
+          <tr><td>Neoleap</td><td style="color:var(--accent);">Partial</td><td style="color:var(--muted);">Shallow</td><td style="color:var(--muted);">Partial</td><td style="color:var(--accent);">Bank in disguise</td></tr>
+          <tr><td>Tap Payments</td><td style="color:var(--red);">Payments only</td><td style="color:var(--red);">None</td><td style="color:var(--red);">✗</td><td style="color:var(--muted);">Utility</td></tr>
+          <tr><td>Traditional Banks</td><td style="color:var(--muted);">Full but rigid</td><td style="color:var(--muted);">Siloed</td><td style="color:var(--red);">Collateral-based</td><td style="color:var(--red);">Low trust</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">Revenue-Based Lending Advantage</div>
+      <div style="display:flex;flex-direction:column;gap:0.85rem;margin-top:0.5rem;">
+        <div style="padding:0.85rem;background:var(--warm);border-radius:8px;font-size:0.82rem;color:var(--mid);font-weight:300;"><strong style="color:var(--charcoal);">Traditional Bank Loan:</strong> Fixed monthly repayment. Requires collateral + credit history. A restaurant that earns more in Ramadan and less in summer cannot service a fixed loan.</div>
+        <div style="padding:0.85rem;background:#f0f7f1;border:1px solid #b8dbbf;border-radius:8px;font-size:0.82rem;color:var(--mid);font-weight:300;"><strong style="color:var(--charcoal);">HALA Revenue-Based Loan:</strong> Repayments flex automatically with daily sales. No collateral. Underwritten by 7 years of live transaction data — not a credit check, but a reading of yesterday's sales.</div>
+        <div style="padding:0.85rem;background:var(--off);border:1px solid var(--rule);border-radius:8px;font-size:0.82rem;color:var(--mid);font-weight:300;"><strong style="color:var(--charcoal);">Why this matters for returns:</strong> Structurally lower NPLs → higher margins → better unit economics → compounding moat. This product-market fit is 7 years of data in action, not a feature.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXIT -->
+<div class="panel" id="hala_panel-exit">
+  <div class="exit-grid">
+    <div class="exit-card exit-primary">
+      <div class="exit-label">★ Primary Exit — Tadawul IPO</div>
+      <div class="exit-return">2–3x Return</div>
+      <div class="exit-timeline">Timeline: 3–5 years (2028–2029 window)</div>
+      <div class="exit-row"><span class="exit-key">Entry Valuation</span><span class="exit-val">~$900M</span></div>
+      <div class="exit-row"><span class="exit-key">Exit Valuation Range</span><span class="exit-val">$1.5–2.5B</span></div>
+      <div class="exit-row"><span class="exit-key">Implied Return</span><span class="exit-val" style="color:var(--green);">2–3x</span></div>
+      <div class="exit-row"><span class="exit-key">Catalyst</span><span class="exit-val">PIF-backed · Vision 2030 · 40+ IPO applications on Tadawul queue</span></div>
+    </div>
+    <div class="exit-card exit-secondary">
+      <div class="exit-label">Alternative — Strategic Acquisition</div>
+      <div class="exit-return">1.5–2.5x</div>
+      <div class="exit-timeline">Timeline: 2–4 years</div>
+      <div class="exit-row"><span class="exit-key">Entry Valuation</span><span class="exit-val">~$900M</span></div>
+      <div class="exit-row"><span class="exit-key">Exit Valuation Range</span><span class="exit-val">$1.2–2B</span></div>
+      <div class="exit-row"><span class="exit-key">Implied Return</span><span class="exit-val" style="color:var(--accent);">1.5–2.5x</span></div>
+      <div class="exit-row"><span class="exit-key">Potential Acquirers</span><span class="exit-val">Saudi banks, STC Bank, Visa, Mastercard</span></div>
+    </div>
+    <div class="exit-card" style="background:var(--off);">
+      <div class="exit-label" style="color:var(--muted);">Fallback — Series C Secondary</div>
+      <div class="exit-return">1.1–1.5x</div>
+      <div class="exit-timeline">Timeline: 1–2 years · Lowest risk</div>
+      <div class="exit-row"><span class="exit-key">Entry Valuation</span><span class="exit-val">~$900M</span></div>
+      <div class="exit-row"><span class="exit-key">Exit Valuation Range</span><span class="exit-val">$1–1.3B</span></div>
+      <div class="exit-row"><span class="exit-key">Implied Return</span><span class="exit-val">1.1–1.5x</span></div>
+      <div class="exit-row"><span class="exit-key">Note</span><span class="exit-val">Natural secondary market as Series C closes</span></div>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Return by Exit Path</div>
+      <div class="chart-wrap"><canvas id="hala_returnChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Why the Exit Gets Better the Longer You Hold</div>
+      <div style="display:flex;flex-direction:column;gap:0.75rem;margin-top:0.5rem;">
+        <div style="display:flex;gap:0.75rem;align-items:flex-start;font-size:0.82rem;">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--warm);display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--accent);flex-shrink:0;font-size:0.8rem;">1</div>
+          <div style="color:var(--mid);font-weight:300;"><strong style="color:var(--charcoal);">Today:</strong> 142K businesses at $900M. Lending product just launching.</div>
+        </div>
+        <div style="display:flex;gap:0.75rem;align-items:flex-start;font-size:0.82rem;">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--warm);display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--accent);flex-shrink:0;font-size:0.8rem;">2</div>
+          <div style="color:var(--mid);font-weight:300;"><strong style="color:var(--charcoal);">Year 2:</strong> 300K businesses. Lending book proven. Every bank that failed to build this faces a choice: build 5 more years and still be behind, or acquire HALA and own it instantly.</div>
+        </div>
+        <div style="display:flex;gap:0.75rem;align-items:flex-start;font-size:0.82rem;">
+          <div style="width:28px;height:28px;border-radius:50%;background:var(--warm);display:flex;align-items:center;justify-content:center;font-weight:600;color:var(--accent);flex-shrink:0;font-size:0.8rem;">3</div>
+          <div style="color:var(--mid);font-weight:300;"><strong style="color:var(--charcoal);">IPO window (2028–29):</strong> Lending at maturity. Not a payments company story anymore — a financial platform with a proven credit business. That re-rating is where the multiple expansion lives.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RISK -->
+<div class="panel" id="hala_panel-risk">
+  <div class="card grid-full">
+    <div class="card-title">Stress Test — Key Assumptions</div>
+    <table class="risk-table">
+      <thead><tr><th>Assumption</th><th>Base Case</th><th>Sensitivity</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td>Payments take rate (1–1.5%)</td><td>$80–120M gross revenue implied at current volume</td><td>0.3pp compression = -$24M/year. Needs 15% volume growth to offset</td><td><span class="risk-low">Manageable</span> — only dangerous if take rate AND growth stall simultaneously</td></tr>
+        <tr><td>Lending conversion — 20% of existing base</td><td>Pre-qualified via 7yr transaction data. Conservative estimate</td><td>Drop to 10% = income halves. NPL above 8% = model weakens</td><td><span class="risk-high">Critical</span> — single most important post-investment metric to track</td></tr>
+        <tr><td>Vision 2030 trajectory continues</td><td>PIF ($941B assets) is also HALA's investor. Structural, not discretionary</td><td>Execution delay shifts timing, not direction</td><td><span class="risk-low">Lowest risk</span> assumption in this memo</td></tr>
+        <tr><td>Regional conflict remains contained</td><td>Retailer segment serves domestic demand, not tourists</td><td>Full Hormuz disruption: -40–50% revenue. $157M capital = 18–24mo runway</td><td><span class="risk-med">Moderate</span> — thesis holds across all three conflict scenarios modelled</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card grid-full">
+    <div class="card-title">Risk Radar</div>
+    <div class="chart-wrap" style="height:280px;"><canvas id="hala_riskRadarChart"></canvas></div>
+    <div class="insight-box"><strong>The one assumption that matters most:</strong> The NPL rate on HALA's lending book. The entire competitive advantage of real-time transaction underwriting is that default rates should be structurally lower than traditional bank SME lending. If that advantage fails to materialise in practice, the lending thesis weakens significantly. This is not a reason not to invest — it is the metric to watch from day one.</div>
+  </div>
+</div>
+</div>
+
+<div class="dash-modal" id="dash_cvs" style="display:none;position:fixed;inset:0;z-index:9999;background:#faf8f5;overflow-y:auto;">
+  <div style="position:sticky;top:0;z-index:10000;background:#252525;padding:0.75rem 5%;display:flex;justify-content:space-between;align-items:center;">
+    <span style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-family:'Outfit',sans-serif;">← Back to Portfolio</span>
+    <button onclick="closeDash('cvs')" style="background:none;border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);padding:0.4rem 1.1rem;font-size:0.75rem;cursor:pointer;border-radius:100px;font-family:'Outfit',sans-serif;">✕ Close</button>
+  </div>
+  <div class="page-header">
+  <div>
+    <div class="ph-tag">Financial Health Assessment · FP&A · Equity Research</div>
+    <div class="ph-title">CVS Health <span>Corporation</span></div>
+    <div class="ph-sub">Piotrowski F-Score · 9-Signal Diagnostic · Peer Benchmarking · SEC 10-K FY2024 · Investment Recommendation</div>
+  </div>
+  <div style="text-align:right;">
+    <div class="ph-verdict">Moderate Long · &lt;$60/share</div>
+    <div class="ph-analyst">Analyst: Udeesha Bansal · SMU Finance Project · 2026</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="dashTab('cvs','cvs_overview')">Overview</div>
+  <div class="tab" onclick="dashTab('cvs','cvs_fscore')">F-Score Breakdown</div>
+  <div class="tab" onclick="dashTab('cvs','cvs_peers')">Peer Benchmarking</div>
+  <div class="tab" onclick="dashTab('cvs','cvs_thesis')">Investment Thesis</div>
+</div>
+
+<div class="panel active" id="cvs_panel-overview">
+  <div class="kpi-strip">
+    <div class="kpi"><div class="kpi-label">Piotrowski F-Score</div><div class="kpi-val">5 / 9</div><div class="kpi-sub">Moderate financial health</div></div>
+    <div class="kpi"><div class="kpi-label">CFO vs Net Income</div><div class="kpi-val">$9.1B</div><div class="kpi-sub kpi-up">vs $4.6B net income — high earnings quality</div></div>
+    <div class="kpi"><div class="kpi-label">Aetna MLR (FY2024)</div><div class="kpi-val">89%</div><div class="kpi-sub kpi-dn">vs 86% prior year — key margin driver</div></div>
+    <div class="kpi"><div class="kpi-label">Investment Conclusion</div><div class="kpi-val">Mod. Long</div><div class="kpi-sub">&lt;$60/share entry price</div></div>
+    <div class="kpi"><div class="kpi-label">Target Return</div><div class="kpi-val">8–10%</div><div class="kpi-sub">Annualised by 2027</div></div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">CFO vs Net Income — Earnings Quality Signal</div>
+      <div class="chart-wrap"><canvas id="cvs_qualityChart"></canvas></div>
+      <div class="insight-box"><strong>Key distinction:</strong> CFO of $9.1B exceeding reported net income of $4.6B signals strong earnings quality — cash conversion is intact despite headline weakness. This is a critical finding: the company is generating real cash even when reported profits look compressed.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">F-Score Signal Summary</div>
+      <div class="chart-wrap"><canvas id="cvs_fscoreRadar"></canvas></div>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Margin Compression — Structural vs Transient?</div>
+      <div class="chart-wrap"><canvas id="cvs_marginChart"></canvas></div>
+      <div class="insight-box"><strong>Analyst distinction:</strong> Margin compression traced specifically to Aetna MLR expansion (89% in 2024 vs 86% prior year) — NOT structural operating deterioration. This is a utilization surge in Medicare Advantage, which is cyclical. Distinguishing transient from structural is the core FP&A and equity research skill applied here.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Peer F-Score Comparison</div>
+      <div class="chart-wrap"><canvas id="cvs_peerChart"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="cvs_panel-fscore">
+  <div class="fscore-grid">
+    <div class="fscore-group">
+      <div class="fg-title" style="color:var(--sage-dark);">📈 Profitability (4 signals)</div>
+      <div class="signal-row"><span class="signal-name">ROA positive (net income / assets)</span><span class="sig-pass">PASS</span></div>
+      <div class="signal-row"><span class="signal-name">CFO positive (operating cash flow)</span><span class="sig-pass">PASS</span></div>
+      <div class="signal-row"><span class="signal-name">ROA improving YoY</span><span class="sig-fail">FAIL</span></div>
+      <div class="signal-row"><span class="signal-name">CFO > Net Income (accruals)</span><span class="sig-pass">PASS</span></div>
+      <div style="margin-top:0.75rem;font-size:0.78rem;color:var(--muted);font-weight:300;">Score: 3/4 — Strong cash generation; ROA declined YoY due to Aetna losses</div>
+    </div>
+    <div class="fscore-group">
+      <div class="fg-title" style="color:var(--accent);">💰 Leverage & Liquidity (3 signals)</div>
+      <div class="signal-row"><span class="signal-name">Long-term debt ratio decreased</span><span class="sig-fail">FAIL</span></div>
+      <div class="signal-row"><span class="signal-name">Current ratio improved</span><span class="sig-fail">FAIL</span></div>
+      <div class="signal-row"><span class="signal-name">No new share issuance (dilution)</span><span class="sig-pass">PASS</span></div>
+      <div style="margin-top:0.75rem;font-size:0.78rem;color:var(--muted);font-weight:300;">Score: 1/3 — Elevated debt from Aetna acquisition; liquidity under pressure</div>
+    </div>
+    <div class="fscore-group">
+      <div class="fg-title" style="color:var(--sage);">⚙️ Operating Efficiency (2 signals)</div>
+      <div class="signal-row"><span class="signal-name">Gross margin improvement YoY</span><span class="sig-fail">FAIL</span></div>
+      <div class="signal-row"><span class="signal-name">Asset turnover improvement</span><span class="sig-pass">PASS</span></div>
+      <div style="margin-top:0.75rem;font-size:0.78rem;color:var(--muted);font-weight:300;">Score: 1/2 — Gross margin squeezed by MLR; asset efficiency improving</div>
+    </div>
+  </div>
+  <div class="card grid-full">
+    <div class="card-title">What Each Signal Means — Plain English</div>
+    <table class="peer-table">
+      <thead><tr><th>Signal</th><th>What It Measures</th><th>CVS Result</th><th>Why It Matters</th></tr></thead>
+      <tbody>
+        <tr><td>ROA Positive</td><td>Is the company profitable on assets?</td><td class="score-high">PASS</td><td>CVS is still generating positive returns despite Aetna pressure</td></tr>
+        <tr><td>CFO Positive</td><td>Is real cash coming in from operations?</td><td class="score-high">PASS — $9.1B</td><td>Strong cash engine; revenue quality confirmed</td></tr>
+        <tr><td>ROA Trend</td><td>Is profitability improving vs last year?</td><td class="score-low">FAIL</td><td>Aetna losses dragged ROA down YoY — cyclical, not structural</td></tr>
+        <tr><td>Accruals (CFO > NI)</td><td>Is cash income exceeding reported income?</td><td class="score-high">PASS — $4.5B gap</td><td>Biggest quality signal: real cash > accounting profit</td></tr>
+        <tr><td>Leverage Ratio</td><td>Is debt burden decreasing?</td><td class="score-low">FAIL</td><td>Post-Aetna debt still elevated; requires monitoring</td></tr>
+        <tr><td>Current Ratio</td><td>Can short-term liabilities be covered?</td><td class="score-low">FAIL</td><td>Short-term liquidity tightened; insurance operations = high current liabilities</td></tr>
+        <tr><td>Share Issuance</td><td>Was equity diluted?</td><td class="score-high">PASS</td><td>No new shares issued — management not diluting investors</td></tr>
+        <tr><td>Gross Margin Trend</td><td>Is core profitability improving?</td><td class="score-low">FAIL</td><td>MLR expansion drove margin compression — Aetna-specific</td></tr>
+        <tr><td>Asset Turnover</td><td>Is the company generating more revenue per asset?</td><td class="score-high">PASS</td><td>Revenue efficiency improving — operational execution intact</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="panel" id="cvs_panel-peers">
+  <div class="card grid-full">
+    <div class="card-title">5-Company Peer Benchmarking — Piotrowski F-Score</div>
+    <table class="peer-table">
+      <thead><tr><th>Company</th><th>Sector</th><th>F-Score</th><th>Profitability</th><th>Leverage</th><th>Efficiency</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr class="cvs-row"><td>CVS Health (CVS)</td><td>Healthcare/Insurance</td><td><span class="score-mid">5/9</span></td><td>3/4</td><td>1/3</td><td>1/2</td><td>Moderate Long</td></tr>
+        <tr><td>UnitedHealth Group (UNH)</td><td>Healthcare/Insurance</td><td><span class="score-high">7/9</span></td><td>4/4</td><td>2/3</td><td>1/2</td><td>Strong</td></tr>
+        <tr><td>Ford Motor (F)</td><td>Automotive</td><td><span class="score-mid">5/9</span></td><td>3/4</td><td>1/3</td><td>1/2</td><td>Moderate</td></tr>
+        <tr><td>Kraft Heinz (KHC)</td><td>Consumer Staples</td><td><span class="score-mid">4/9</span></td><td>2/4</td><td>1/3</td><td>1/2</td><td>Caution</td></tr>
+        <tr><td>Ring Energy (REI)</td><td>Oil & Gas E&P</td><td><span class="score-low">3/9</span></td><td>2/4</td><td>0/3</td><td>1/2</td><td>Weak</td></tr>
+        <tr><td>ACCO Brands (ACCO)</td><td>Consumer Products</td><td><span class="score-low">3/9</span></td><td>1/4</td><td>1/3</td><td>1/2</td><td>Weak</td></tr>
+      </tbody>
+    </table>
+    <div class="insight-box" style="margin-top:1rem;"><strong>CVS ranks above Ring Energy and ACCO</strong> in overall financial robustness. Within the healthcare space, UnitedHealth at 7/9 is significantly stronger — but also trades at a significant premium. CVS at 5/9 offers moderate health at a compressed valuation, creating the entry opportunity.</div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">F-Score Comparison — Peer Group</div>
+      <div class="chart-wrap"><canvas id="cvs_peerBarChart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Why the Peer Group Was Selected Cross-Sector</div>
+      <div style="display:flex;flex-direction:column;gap:0.75rem;margin-top:0.5rem;">
+        <div style="padding:0.75rem;background:var(--warm);border-radius:8px;font-size:0.82rem;color:var(--mid);font-weight:300;"><strong style="color:var(--charcoal);">Why cross-sector?</strong> Piotrowski F-Score is a universal financial health framework — it doesn't require sector peers. Cross-sector benchmarking tests whether CVS's financial signals are strong in absolute terms, not just relative to similarly distressed healthcare peers.</div>
+        <div style="padding:0.75rem;background:var(--off);border:1px solid var(--rule);border-radius:8px;font-size:0.82rem;color:var(--mid);font-weight:300;"><strong style="color:var(--charcoal);">The key finding:</strong> CVS at 5/9 in a peer group of 6 ranks 2nd overall — above Ring Energy and ACCO which both score 3/9. The leverage and liquidity signals are the weakness, not profitability.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="cvs_panel-thesis">
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Investment Thesis — Key Pillars</div>
+      <div style="display:flex;flex-direction:column;gap:1rem;margin-top:0.5rem;">
+        <div style="padding:1rem;background:#f0f7f1;border:1px solid #b8dbbf;border-radius:8px;">
+          <div style="font-size:0.75rem;font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.4rem;">✓ Bull Case</div>
+          <div style="font-size:0.82rem;color:var(--mid);font-weight:300;">PBM margin defense holds. Medicare Advantage utilization normalizes in H2 2025. FTC probe resolves without structural remedy. Entry at &lt;$60 gives 8–10% annualised return to 2027.</div>
+        </div>
+        <div style="padding:1rem;background:#fff5f5;border:1px solid #f5c6cb;border-radius:8px;">
+          <div style="font-size:0.75rem;font-weight:600;color:var(--red);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.4rem;">✗ Bear Case</div>
+          <div style="font-size:0.82rem;color:var(--mid);font-weight:300;">FTC forces rebate structure changes. MLR remains elevated above 89% into 2026. Debt servicing crowds out investment. Return erodes to 3–5% at best.</div>
+        </div>
+        <div style="padding:1rem;background:var(--warm);border-radius:8px;">
+          <div style="font-size:0.75rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.4rem;">⚡ Key Monitor</div>
+          <div style="font-size:0.82rem;color:var(--mid);font-weight:300;">FTC rebate probe resolution. Q2/Q3 2025 Aetna MLR trajectory. Medicare Advantage guidance updates. PBM legislative environment.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Return Scenario Modelling</div>
+      <div class="chart-wrap"><canvas id="cvs_returnChart"></canvas></div>
+    </div>
+  </div>
+  <div class="card grid-full">
+    <div class="card-title">Recommendation Summary</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:10px;overflow:hidden;">
+      <div style="background:var(--white);padding:1.5rem;text-align:center;"><div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;">Recommendation</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--green);font-weight:500;">Moderate Long</div></div>
+      <div style="background:var(--white);padding:1.5rem;text-align:center;"><div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;">Entry Price</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--charcoal);font-weight:500;">&lt;$60/share</div></div>
+      <div style="background:var(--white);padding:1.5rem;text-align:center;"><div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;">Target Return</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--accent);font-weight:500;">8–10% p.a.</div></div>
+      <div style="background:var(--white);padding:1.5rem;text-align:center;"><div style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;">Horizon</div><div style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--charcoal);font-weight:500;">By 2027</div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="dash-modal" id="dash_onholding" style="display:none;position:fixed;inset:0;z-index:9999;background:#faf8f5;overflow-y:auto;">
+  <div style="position:sticky;top:0;z-index:10000;background:#252525;padding:0.75rem 5%;display:flex;justify-content:space-between;align-items:center;">
+    <span style="font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);font-family:'Outfit',sans-serif;">← Back to Portfolio</span>
+    <button onclick="closeDash('onholding')" style="background:none;border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.8);padding:0.4rem 1.1rem;font-size:0.75rem;cursor:pointer;border-radius:100px;font-family:'Outfit',sans-serif;">✕ Close</button>
+  </div>
+  <div class="page-header">
+  <div>
+    <div class="ph-tag">FX Risk Analysis · Supply Chain Cost Modelling · FP&A</div>
+    <div class="ph-title">On Holding <span>AG</span></div>
+    <div class="ph-sub">FX Exposure Modelling · Tariff Impact Quantification · Supply Chain Risk · Porter's Five Forces · PESTEL</div>
+  </div>
+  <div style="text-align:right;">
+    <div class="ph-verdict">CHF 40–60M Margin Risk Identified</div>
+    <div class="ph-analyst">Analyst: Udeesha Bansal · SMU Finance Project · 2026</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="dashTab('onholding','onholding_overview')">Overview</div>
+  <div class="tab" onclick="dashTab('onholding','onholding_fx')">FX Risk</div>
+  <div class="tab" onclick="dashTab('onholding','onholding_supply')">Supply Chain</div>
+  <div class="tab" onclick="dashTab('onholding','onholding_solutions')">Solutions</div>
+</div>
+
+<div class="panel active" id="onholding_panel-overview">
+  <div class="kpi-strip">
+    <div class="kpi"><div class="kpi-label">Q2 2025 Net Loss</div><div class="kpi-val">CHF 40.9M</div><div class="kpi-sub kpi-dn">Despite 32% sales growth</div></div>
+    <div class="kpi"><div class="kpi-label">Annual Tariff Exposure</div><div class="kpi-val">CHF 40–60M</div><div class="kpi-sub kpi-dn">On 1M+ pairs from Vietnam</div></div>
+    <div class="kpi"><div class="kpi-label">FX Move (H1 2025)</div><div class="kpi-val">CHF +13%</div><div class="kpi-sub kpi-dn">USD 0.91 → CHF 0.79</div></div>
+    <div class="kpi"><div class="kpi-label">Vietnam Concentration</div><div class="kpi-val">90%</div><div class="kpi-sub kpi-dn">Production at risk from US tariffs</div></div>
+    <div class="kpi"><div class="kpi-label">2025 Revenue Target</div><div class="kpi-val">CHF 2.86B</div><div class="kpi-sub">28% CC growth guidance</div></div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">The Paradox: Strong Growth, Weak Profit</div>
+      <div class="chart-wrap"><canvas id="onholding_paradoxChart"></canvas></div>
+      <div class="insight-box"><strong>The core finding:</strong> On Holding reported 32% top-line growth in Q2 2025 while simultaneously recording a CHF 40.9M net loss. This paradox — strong revenue, weak profit — points directly to FX conversion losses and tariff cost absorption, not operational failure. Revenue is growing; the problem is structural cost and currency mismatch.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Root Cause Attribution</div>
+      <div class="chart-wrap"><canvas id="onholding_rootCauseChart"></canvas></div>
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Revenue Channel Mix — Concentration Risk</div>
+      <div class="chart-wrap"><canvas id="onholding_channelChart"></canvas></div>
+      <div class="insight-box"><strong>Channel risk:</strong> 59.3% wholesale revenue dependency creates significant concentration risk. DTC (Direct-to-Consumer) typically carries 15–20pp higher gross margins. Accelerating DTC is both a strategic and financial imperative.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Cost Risk Summary</div>
+      <div style="display:flex;flex-direction:column;gap:0.75rem;margin-top:0.5rem;">
+        <div style="padding:0.9rem;background:#fff5f5;border:1px solid #f5c6cb;border-radius:8px;"><div style="font-size:0.75rem;font-weight:600;color:var(--red);text-transform:uppercase;margin-bottom:0.3rem;">FX Conversion Loss</div><div style="font-size:0.82rem;color:var(--mid);font-weight:300;">CHF appreciated 13% vs USD in H1 2025. All US revenue (est. 45% of total) converted back at unfavorable rates. Annual drag estimated at CHF 15–25M.</div></div>
+        <div style="padding:0.9rem;background:#fff5f5;border:1px solid #f5c6cb;border-radius:8px;"><div style="font-size:0.75rem;font-weight:600;color:var(--red);text-transform:uppercase;margin-bottom:0.3rem;">Tariff Exposure</div><div style="font-size:0.82rem;color:var(--mid);font-weight:300;">US tariffs of 20–40% on Vietnam-origin footwear applied to 1M+ annual pairs. Cost absorption estimated at CHF 40–60M annually if no supply chain restructuring occurs.</div></div>
+        <div style="padding:0.9rem;background:var(--warm);border-color:var(--accent-light);border:1px solid;border-radius:8px;"><div style="font-size:0.75rem;font-weight:600;color:var(--accent);text-transform:uppercase;margin-bottom:0.3rem;">DTC Fulfillment Delays</div><div style="font-size:0.82rem;color:var(--mid);font-weight:300;">2–3 week delays post-Atlanta warehouse automation created stockout risk on hero SKUs during peak season — direct revenue leakage.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="onholding_panel-fx">
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">CHF/USD Exchange Rate — H1 2025</div>
+      <div class="chart-wrap"><canvas id="onholding_fxChart"></canvas></div>
+      <div class="insight-box"><strong>FX impact mechanics:</strong> On reports in CHF but earns ~45% of revenue in USD. When CHF strengthens (USD weakens), every dollar of US sales converts into fewer Swiss francs. A 13% CHF appreciation = 13% revenue haircut on US sales when reported in CHF — with zero operational change.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Revenue Impact of FX Move (CHF Millions)</div>
+      <div class="chart-wrap"><canvas id="onholding_fxImpactChart"></canvas></div>
+    </div>
+  </div>
+  <div class="card grid-full">
+    <div class="card-title">FX Risk Breakdown by Currency Exposure</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:0.5rem;">
+      <div style="padding:1rem;background:#fff5f5;border:1px solid #f5c6cb;border-radius:8px;"><div style="font-size:0.75rem;font-weight:600;color:var(--red);margin-bottom:0.5rem;">USD Exposure (High Risk)</div><div style="font-size:0.82rem;color:var(--mid);font-weight:300;line-height:1.7;">~45% of revenue. CHF +13% in H1 2025. Each 1% CHF appreciation = ~CHF 13M annual revenue erosion at current scale.</div></div>
+      <div style="padding:1rem;background:var(--warm);border:1px solid var(--accent-light);border-radius:8px;"><div style="font-size:0.75rem;font-weight:600;color:var(--accent);margin-bottom:0.5rem;">EUR Exposure (Medium Risk)</div><div style="font-size:0.82rem;color:var(--mid);font-weight:300;line-height:1.7;">~30% of revenue. EUR/CHF more stable but CHF remains stronger. Portugal production creates natural EUR cost offset.</div></div>
+      <div style="padding:1rem;background:#f0f7f1;border:1px solid #b8dbbf;border-radius:8px;"><div style="font-size:0.75rem;font-weight:600;color:var(--green);margin-bottom:0.5rem;">CHF Revenue (Natural Hedge)</div><div style="font-size:0.82rem;color:var(--mid);font-weight:300;line-height:1.7;">~25% Swiss + European CHF revenue. Recommended solution: US R&D hub creates USD cost base matching USD revenue — natural hedge without derivatives.</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="onholding_panel-supply">
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Production Concentration — Vietnam Dependency</div>
+      <div class="chart-wrap"><canvas id="onholding_supplyChart"></canvas></div>
+      <div class="insight-box"><strong>Single point of failure:</strong> 90% Vietnam production concentration is a critical operational risk. US tariffs of 20–40% on Vietnamese footwear apply directly to On's cost structure. At 1M+ pairs annually, the annual tariff absorption runs CHF 40–60M — nearly the entire Q2 net loss.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Tariff Impact Scenario Modelling</div>
+      <div class="chart-wrap"><canvas id="onholding_tariffChart"></canvas></div>
+    </div>
+  </div>
+  <div class="card grid-full">
+    <div class="card-title">Porter's Five Forces — On Holding AG (Summarised)</div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:10px;overflow:hidden;margin-top:0.5rem;">
+      <div style="background:var(--white);padding:1.25rem 1rem;text-align:center;"><div style="font-size:1.2rem;margin-bottom:0.4rem;">🏭</div><div style="font-size:0.72rem;font-weight:600;color:var(--charcoal);margin-bottom:0.3rem;">Supplier Power</div><div style="font-size:0.72rem;color:var(--red);font-weight:500;">HIGH</div><div style="font-size:0.72rem;color:var(--muted);font-weight:300;margin-top:0.3rem;">90% Vietnam dependency; limited alternatives at scale</div></div>
+      <div style="background:var(--white);padding:1.25rem 1rem;text-align:center;"><div style="font-size:1.2rem;margin-bottom:0.4rem;">🛒</div><div style="font-size:0.72rem;font-weight:600;color:var(--charcoal);margin-bottom:0.3rem;">Buyer Power</div><div style="font-size:0.72rem;color:var(--accent);font-weight:500;">MEDIUM</div><div style="font-size:0.72rem;color:var(--muted);font-weight:300;margin-top:0.3rem;">Premium segment; brand loyalty reduces switching</div></div>
+      <div style="background:var(--white);padding:1.25rem 1rem;text-align:center;"><div style="font-size:1.2rem;margin-bottom:0.4rem;">⚡</div><div style="font-size:0.72rem;font-weight:600;color:var(--charcoal);margin-bottom:0.3rem;">New Entrants</div><div style="font-size:0.72rem;color:var(--green);font-weight:500;">LOW</div><div style="font-size:0.72rem;color:var(--muted);font-weight:300;margin-top:0.3rem;">High capex; established brand equity creates barriers</div></div>
+      <div style="background:var(--white);padding:1.25rem 1rem;text-align:center;"><div style="font-size:1.2rem;margin-bottom:0.4rem;">🔄</div><div style="font-size:0.72rem;font-weight:600;color:var(--charcoal);margin-bottom:0.3rem;">Substitutes</div><div style="font-size:0.72rem;color:var(--accent);font-weight:500;">MEDIUM</div><div style="font-size:0.72rem;color:var(--muted);font-weight:300;margin-top:0.3rem;">Nike, Adidas, Hoka all compete for premium running segment</div></div>
+      <div style="background:var(--white);padding:1.25rem 1rem;text-align:center;"><div style="font-size:1.2rem;margin-bottom:0.4rem;">🥊</div><div style="font-size:0.72rem;font-weight:600;color:var(--charcoal);margin-bottom:0.3rem;">Rivalry</div><div style="font-size:0.72rem;color:var(--red);font-weight:500;">HIGH</div><div style="font-size:0.72rem;color:var(--muted);font-weight:300;margin-top:0.3rem;">Crowded premium athletic market with deep-pocketed rivals</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="panel" id="onholding_panel-solutions">
+  <div class="grid-2">
+    <div>
+      <div class="solution-card">
+        <div class="sol-label">✓ Solution 1 — FX Hedge</div>
+        <div class="sol-title">Establish US R&D Hub</div>
+        <div class="sol-desc">By creating a US-based R&D and innovation centre, On creates a USD cost base (salaries, infrastructure, operations) that naturally offsets its USD revenue exposure. Every dollar spent in the US is a dollar of FX hedge no derivatives required. Estimated drag reduction: CHF 15–25M annually. Modelled as cost-neutral against CHF 2.86B revenue target.</div>
+      </div>
+      <div class="solution-card">
+        <div class="sol-label">✓ Solution 2 — Supply Chain Diversification</div>
+        <div class="sol-title">Vietnam → Portugal / Slovenia Production Shift</div>
+        <div class="sol-desc">Diversifying 30–40% of production to Portugal and Slovenia eliminates US tariff exposure on that volume (EU-origin footwear faces 0% US import duty under existing trade frameworks). Additional benefit: EU Free Trade Agreement access reduces logistics costs for European distribution. Estimated annual tariff drag elimination: CHF 15–25M on redirected volume.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Combined Impact of Both Solutions (CHF Millions)</div>
+      <div class="chart-wrap"><canvas id="onholding_solutionChart"></canvas></div>
+      <div class="insight-box"><strong>Combined margin recovery:</strong> Both solutions together recover an estimated CHF 40–60M in annual margin drag roughly equivalent to On's entire Q2 2025 net loss. Both are modelled as cost-neutral against the 2025 revenue plan, meaning they do not require incremental debt or equity.</div>
+    </div>
+  </div>
+  <div class="card grid-full">
+    <div class="card-title">DTC Acceleration — Strategic & Financial Case</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-top:0.5rem;">
+      <div style="padding:1rem;background:var(--off);border:1px solid var(--rule);border-radius:8px;"><div style="font-size:0.75rem;font-weight:600;color:var(--charcoal);margin-bottom:0.5rem;">Current State</div><div style="font-size:0.82rem;color:var(--mid);font-weight:300;line-height:1.7;">59.3% wholesale revenue. Wholesale margin ~35%. DTC margin ~50–55%. Every 1pp shift from wholesale to DTC = ~CHF 6–8M additional gross profit at current scale.</div></div>
+      <div style="padding:1rem;background:var(--warm);border:1px solid var(--accent-light);border-radius:8px;"><div style="font-size:0.75rem;font-weight:600;color:var(--accent);margin-bottom:0.5rem;">The Problem</div><div style="font-size:0.82rem;color:var(--mid);font-weight:300;line-height:1.7;">Atlanta warehouse automation created 2–3 week DTC fulfillment delays. Hero SKU stockouts during peak season directly reduce DTC revenue — the highest-margin channel.</div></div>
+      <div style="padding:1rem;background:#f0f7f1;border:1px solid #b8dbbf;border-radius:8px;"><div style="font-size:0.75rem;font-weight:600;color:var(--green);margin-bottom:0.5rem;">The Opportunity</div><div style="font-size:0.82rem;color:var(--mid);font-weight:300;line-height:1.7;">Resolving fulfillment delays and targeting 45% DTC mix by 2026 could add CHF 30–50M in incremental gross profit while simultaneously reducing wholesale dependence.</div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+function openDash(key) {
+  var el = document.getElementById('dash_' + key);
+  if (!el) return;
+  el.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+  el.scrollTop = 0;
+  // Init charts for this dashboard
+  var fn = window['initDash_' + key];
+  if (fn) fn();
+}
+function closeDash(key) {
+  var el = document.getElementById('dash_' + key);
+  if (el) el.style.display = 'none';
+  document.body.style.overflow = '';
+}
+function dashTab(key, panelId) {
+  var modal = document.getElementById('dash_' + key);
+  if (!modal) return;
+  modal.querySelectorAll('.panel').forEach(function(p) { p.style.display = 'none'; p.classList.remove('active'); });
+  modal.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+  var panel = document.getElementById(panelId);
+  if (panel) { panel.style.display = 'block'; panel.classList.add('active'); }
+  event.target.classList.add('active');
+}
+function toggleProj(header) {
+  var card = header.closest('.proj-card');
+  var body = card.querySelector('.proj-body');
+  var toggle = header.querySelector('.proj-toggle');
+  body.classList.toggle('open');
+  if(toggle) toggle.classList.toggle('open');
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.dash-modal').forEach(function(m) {
+      m.style.display = 'none';
+    });
+    document.body.style.overflow = '';
+  }
+});
+
+// Dashboard chart scripts (deferred - only run when modal opens)
+
+var _dash_pfizer_inited = false;
+function initDash_pfizer() {
+  if (_dash_pfizer_inited) return;
+  _dash_pfizer_inited = true;
+  try {
+    
+Chart.defaults.font.family="'Outfit',sans-serif";Chart.defaults.font.size=11;Chart.defaults.color='#888';Chart.defaults.plugins.legend.labels.boxWidth=10;Chart.defaults.plugins.legend.labels.padding=12;
+const sage='#4a6150',accent='#c17f4a',muted='#888',rule='#e0dbd3',green='#27ae60',red='#c0392b';
+function showPanel(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('panel-'+id).classList.add('active');event.target.classList.add('active');if(id==='revenue'&&!window._r){initRev();window._r=1;}if(id==='pnl'&&!window._p){initPnl();window._p=1;}if(id==='dcf'&&!window._d){initDcf();window._d=1;}if(id==='scenario'&&!window._s){initSc();window._s=1;}}
+
+const years=['FY22A','FY23A','FY24A','FY25E','FY26E','FY27E'];
+new Chart(document.getElementById('pfizer_revChart'),{type:'bar',data:{labels:years,datasets:[{label:'Revenue ($M)',data:[100330,59553,63627,62000,66000,70000],backgroundColor:years.map((y,i)=>i>=3?accent+'99':sage+'cc'),borderColor:years.map((y,i)=>i>=3?accent:sage),borderWidth:1,borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:rule},ticks:{callback:v=>'$'+(v/1000).toFixed(0)+'B'}},x:{grid:{display:false}}}}});
+new Chart(document.getElementById('pfizer_covidChart'),{type:'bar',data:{labels:years,datasets:[{label:'COVID Products',data:[22000,11000,8400,7000,5500,4000],backgroundColor:red+'88',stack:'s'},{label:'Non-COVID',data:[78330,48553,55227,55000,60500,66000],backgroundColor:sage+'88',stack:'s'}]},options:{responsive:true,maintainAspectRatio:false,scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,grid:{color:rule},ticks:{callback:v=>'$'+(v/1000).toFixed(0)+'B'}}}}});
+new Chart(document.getElementById('pfizer_niChart'),{type:'bar',data:{labels:years,datasets:[{label:'Net Income',data:[9906,2119,8031,18692,20619,22610],backgroundColor:sage+'99',borderColor:sage,borderWidth:1,borderRadius:3,yAxisID:'y'},{label:'Gross Margin %',data:[70.3,58.1,71.9,72,73,74],type:'line',borderColor:accent,backgroundColor:'transparent',pointBackgroundColor:accent,pointRadius:3,tension:0.3,yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{grid:{color:rule},ticks:{callback:v=>'$'+(v/1000).toFixed(0)+'B'}},y1:{position:'right',grid:{display:false},ticks:{callback:v=>v+'%'},min:50,max:80}}}});
+new Chart(document.getElementById('pfizer_fcfChart'),{type:'bar',data:{labels:years,datasets:[{label:'FCF ($M)',data:[8845,4874,11681,8570,9944,11273],backgroundColor:[green+'99',green+'66',green+'cc',accent+'88',accent+'99',accent+'cc'],borderColor:[green,green,green,accent,accent,accent],borderWidth:1,borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:rule},ticks:{callback:v=>'$'+(v/1000).toFixed(1)+'B'}},x:{grid:{display:false}}}}});
+
+function initRev(){
+new Chart(document.getElementById('pfizer_segPieChart'),{type:'doughnut',data:{labels:['Established Medicines','Oncology+Seagen','COVID Products','CDMO+Other'],datasets:[{data:[38,15,30,17],backgroundColor:[sage,accent,red+'99','#b5c4b8'],borderColor:'#fff',borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right'}},cutout:'60%'}});
+new Chart(document.getElementById('pfizer_prodChart'),{type:'line',data:{labels:years,datasets:[{label:'Vyndaqel (key growth)',data:[2120,3289,4960,6500,8000,9500],borderColor:accent,backgroundColor:accent+'11',tension:0.3,pointRadius:4,fill:true},{label:'Eliquis',data:[6480,6440,6960,7400,7800,8000],borderColor:sage,backgroundColor:'transparent',tension:0.3,pointRadius:3},{label:'Seagen ADCs',data:[0,132,3400,3700,4200,4700],borderColor:'#7a8c7e',backgroundColor:'transparent',tension:0.3,pointRadius:3,borderDash:[4,3]},{label:'Ibrance (declining)',data:[5346,4979,4677,4400,4100,3800],borderColor:red,backgroundColor:'transparent',tension:0.3,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{grid:{color:rule},ticks:{callback:v=>'$'+(v/1000).toFixed(1)+'B'}},x:{grid:{display:false}}}}});
+}
+function initPnl(){
+new Chart(document.getElementById('pfizer_marginChart'),{type:'line',data:{labels:years,datasets:[{label:'Gross Margin %',data:[70.3,58.1,71.9,72,73,74],borderColor:sage,backgroundColor:sage+'22',tension:0.3,fill:true,pointRadius:4},{label:'EBIT Margin %',data:[32.9,6.3,24.7,32.6,34.3,36],borderColor:accent,backgroundColor:'transparent',tension:0.3,borderDash:[4,3],pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{grid:{color:rule},ticks:{callback:v=>v+'%'},min:0,max:80},x:{grid:{display:false}}}}});
+}
+function initDcf(){
+new Chart(document.getElementById('pfizer_bridgeChart'),{type:'bar',data:{labels:['PV of FCFs','PV Terminal Value','Enterprise Value','(–) Net Debt','Equity Value'],datasets:[{data:[41786,134465,176251,-24000,152251],backgroundColor:[sage+'cc',accent+'cc','#7a8c7e99',red+'99',green+'99'],borderColor:[sage,accent,'#7a8c7e',red,green],borderWidth:1,borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:rule},ticks:{callback:v=>'$'+(v/1000).toFixed(0)+'B'}},x:{grid:{display:false}}}}});
+}
+function initSc(){
+new Chart(document.getElementById('pfizer_scenRevChart'),{type:'line',data:{labels:['FY25E','FY26E','FY27E'],datasets:[{label:'Bear',data:[56000,58000,60000],borderColor:red,backgroundColor:red+'11',tension:0.3,fill:true},{label:'Base',data:[62000,66000,70000],borderColor:sage,backgroundColor:sage+'11',tension:0.3,fill:true},{label:'Bull',data:[68000,75000,80000],borderColor:accent,backgroundColor:accent+'11',tension:0.3,fill:true}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{grid:{color:rule},ticks:{callback:v=>'$'+(v/1000).toFixed(0)+'B'}},x:{grid:{display:false}}}}});
+new Chart(document.getElementById('pfizer_scenPriceChart'),{type:'bar',data:{labels:['FY25E','FY27E'],datasets:[{label:'Bear',data:[16,18],backgroundColor:red+'88',borderColor:red,borderWidth:1,borderRadius:4},{label:'Base',data:[32,38],backgroundColor:sage+'88',borderColor:sage,borderWidth:1,borderRadius:4},{label:'Bull',data:[48,56],backgroundColor:accent+'88',borderColor:accent,borderWidth:1,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,scales:{x:{grid:{display:false}},y:{grid:{color:rule},ticks:{callback:v=>'$'+v}}}}});
+}
+
+  } catch(e) { console.log('Dashboard pfizer init:', e.message); }
+}
+
+var _dash_reliance_inited = false;
+function initDash_reliance() {
+  if (_dash_reliance_inited) return;
+  _dash_reliance_inited = true;
+  try {
+    
+// Color palette
+const sage = '#4a6150', accent = '#c17f4a', muted = '#888', rule = '#e0dbd3';
+const green = '#27ae60', red = '#c0392b', blue = '#2980b9';
+const years = ['FY19A','FY20A','FY21A','FY22A','FY23A','FY24A','FY25A','FY26A','FY27E','FY28E','FY29E'];
+const yearsShort = ['FY21A','FY22A','FY23A','FY24A','FY25A','FY27E','FY28E','FY29E'];
+
+Chart.defaults.font.family = "'Outfit', sans-serif";
+Chart.defaults.font.size = 11;
+Chart.defaults.color = muted;
+Chart.defaults.plugins.legend.labels.boxWidth = 10;
+Chart.defaults.plugins.legend.labels.padding = 12;
+
+function showPanel(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  event.target.classList.add('active');
+  // Lazy init charts when tab shown
+  if (id === 'revenue' && !window._revInited) { initRevenueCharts(); window._revInited = true; }
+  if (id === 'pnl' && !window._pnlInited) { initPnlCharts(); window._pnlInited = true; }
+  if (id === 'dcf' && !window._dcfInited) { initDcfCharts(); window._dcfInited = true; }
+  if (id === 'scenario' && !window._scInited) { initScenarioCharts(); window._scInited = true; }
+}
+
+// OVERVIEW CHARTS
+const revData = [569209,597535,466924,695963,877835,901064,964693,1057219,1152369,1250320,1350346];
+new Chart(document.getElementById('reliance_revChart'), {
+  type:'bar',
+  data:{
+    labels: years,
+    datasets:[{
+      label:'Revenue (Cr)',
+      data: revData,
+      backgroundColor: years.map((y,i) => i >= 8 ? accent+'99' : sage+'cc'),
+      borderColor: years.map((y,i) => i >= 8 ? accent : sage),
+      borderWidth:1, borderRadius:3
+    }]
+  },
+  options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{ y:{ grid:{color:rule}, ticks:{callback:v=>'₹'+(v/100000).toFixed(1)+'L'} }, x:{grid:{display:false}} } }
+});
+
+const niData = [39588,39354,49128,59044,66284,69621,69648,null,100891,107596,116203];
+const ebitMargin = [11.3,11.3,11.5,11.4,11.7,12.4,11.6,11.5,11.7,11.5,11.5];
+new Chart(document.getElementById('reliance_niChart'), {
+  type:'bar',
+  data:{
+    labels: years,
+    datasets:[
+      { label:'Net Income (Cr)', data:niData, backgroundColor:sage+'99', borderColor:sage, borderWidth:1, borderRadius:3, yAxisID:'y' },
+      { label:'EBIT Margin %', data:ebitMargin, type:'line', borderColor:accent, backgroundColor:'transparent', pointBackgroundColor:accent, pointRadius:3, tension:0.3, yAxisID:'y1' }
+    ]
+  },
+  options:{ responsive:true, maintainAspectRatio:false,
+    scales:{
+      y:{ grid:{color:rule}, ticks:{callback:v=>'₹'+(v/1000).toFixed(0)+'K'} },
+      y1:{ position:'right', grid:{display:false}, ticks:{callback:v=>v+'%'}, min:10, max:14 }
+    }
+  }
+});
+
+const fcfData = [-51280,18360,-78879,10509,-25956,5905,38736,69197,31761,53933,77031];
+new Chart(document.getElementById('reliance_fcfChart'), {
+  type:'bar',
+  data:{
+    labels: years,
+    datasets:[{ label:'Free Cash Flow', data:fcfData,
+      backgroundColor: fcfData.map(v => v>=0 ? green+'99' : red+'99'),
+      borderColor: fcfData.map(v => v>=0 ? green : red),
+      borderWidth:1, borderRadius:3
+    }]
+  },
+  options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+    scales:{ y:{ grid:{color:rule}, ticks:{callback:v=>'₹'+(v/1000).toFixed(0)+'K'} }, x:{grid:{display:false}} }
+  }
+});
+
+new Chart(document.getElementById('reliance_segPieChart'), {
+  type:'doughnut',
+  data:{
+    labels:['O2C (62%)','Retail (30%)','Jio Digital (13%)','Oil & Gas (2.5%)','Others (5%)'],
+    datasets:[{ data:[62,30,13,2.5,5],
+      backgroundColor:[sage,accent,'#7a8c7e','#b5c4b8','#e0dbd3'],
+      borderColor:'#fff', borderWidth:2
+    }]
+  },
+  options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'right' } }, cutout:'60%' }
+});
+
+function initRevenueCharts() {
+  // Stacked segment chart
+  new Chart(document.getElementById('reliance_segStackChart'), {
+    type:'bar',
+    data:{
+      labels:['FY21A','FY22A','FY23A','FY24A','FY25A','FY26A'],
+      datasets:[
+        { label:'O2C', data:[306490,480319,571225,543907,605006,662401], backgroundColor:sage+'dd', stack:'s' },
+        { label:'Retail', data:[139136,174993,230951,273131,291043,371085], backgroundColor:accent+'dd', stack:'s' },
+        { label:'Jio Digital', data:[76642,85122,101961,113175,131336,176164], backgroundColor:'#7a8c7e'+'dd', stack:'s' },
+        { label:'Oil & Gas', data:[2128,7482,16494,24331,24881,23861], backgroundColor:'#b5c4b8'+'dd', stack:'s' },
+        { label:'Others', data:[41054,57386,75614,69296,49749,80522], backgroundColor:'#d4cfc5'+'dd', stack:'s' },
+      ]
+    },
+    options:{ responsive:true, maintainAspectRatio:false,
+      scales:{ x:{stacked:true,grid:{display:false}}, y:{stacked:true,grid:{color:rule},ticks:{callback:v=>'₹'+(v/1000).toFixed(0)+'K'}} }
+    }
+  });
+
+  new Chart(document.getElementById('reliance_growthChart'), {
+    type:'bar',
+    data:{
+      labels:['FY22A','FY23A','FY24A','FY25A','FY26A'],
+      datasets:[
+        { label:'O2C', data:[56.7,18.9,-4.8,11.2,9.5], backgroundColor:sage+'cc', borderRadius:3 },
+        { label:'Retail', data:[25.8,32.0,18.3,6.6,27.5], backgroundColor:accent+'cc', borderRadius:3 },
+        { label:'Jio Digital', data:[11.1,19.8,11.0,16.0,34.1], backgroundColor:'#7a8c7e'+'cc', borderRadius:3 },
+      ]
+    },
+    options:{ responsive:true, maintainAspectRatio:false,
+      scales:{ x:{grid:{display:false}}, y:{grid:{color:rule},ticks:{callback:v=>v+'%'}} }
+    }
+  });
+}
+
+function initPnlCharts() {
+  new Chart(document.getElementById('reliance_marginChart'), {
+    type:'line',
+    data:{
+      labels:['FY19A','FY20A','FY21A','FY22A','FY23A','FY24A','FY25A'],
+      datasets:[
+        { label:'Gross Margin %', data:[30.2,31.5,37.3,32.0,33.0,35.0,34.7], borderColor:sage, backgroundColor:sage+'22', tension:0.3, fill:true },
+        { label:'EBIT Margin %', data:[11.3,11.3,11.5,11.4,11.7,12.4,11.6], borderColor:accent, backgroundColor:'transparent', tension:0.3, borderDash:[4,3] }
+      ]
+    },
+    options:{ responsive:true, maintainAspectRatio:false,
+      scales:{ y:{grid:{color:rule},ticks:{callback:v=>v+'%'},min:8,max:42}, x:{grid:{display:false}} }
+    }
+  });
+}
+
+function initDcfCharts() {
+  // Waterfall-style bridge
+  new Chart(document.getElementById('reliance_bridgeChart'), {
+    type:'bar',
+    data:{
+      labels:['PV of FCFs','PV Terminal Value','Enterprise Value','(–) Net Debt','Equity Value'],
+      datasets:[{
+        data:[157575,1433322,1590897,-15459,1575438],
+        backgroundColor:[sage+'cc',accent+'cc','#7a8c7e'+'cc',red+'cc',green+'cc'],
+        borderColor:[sage,accent,'#7a8c7e',red,green],
+        borderWidth:1, borderRadius:3
+      }]
+    },
+    options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+      scales:{ y:{grid:{color:rule},ticks:{callback:v=>'₹'+(v/100000).toFixed(1)+'L'}}, x:{grid:{display:false}} }
+    }
+  });
+}
+
+function initScenarioCharts() {
+  new Chart(document.getElementById('reliance_scenRevChart'), {
+    type:'line',
+    data:{
+      labels:['FY27E','FY28E','FY29E'],
+      datasets:[
+        { label:'Bear', data:[1060179,1102586,1146690], borderColor:red, backgroundColor:red+'11', tension:0.3, fill:true },
+        { label:'Base', data:[1152369,1250320,1350346], borderColor:sage, backgroundColor:sage+'11', tension:0.3, fill:true },
+        { label:'Bull', data:[1221511,1368092,1532263], borderColor:accent, backgroundColor:accent+'11', tension:0.3, fill:true }
+      ]
+    },
+    options:{ responsive:true, maintainAspectRatio:false,
+      scales:{ y:{grid:{color:rule},ticks:{callback:v=>'₹'+(v/100000).toFixed(1)+'L'}}, x:{grid:{display:false}} }
+    }
+  });
+
+  new Chart(document.getElementById('reliance_scenPriceChart'), {
+    type:'bar',
+    data:{
+      labels:['FY27E','FY28E','FY29E'],
+      datasets:[
+        { label:'Bear', data:[585,690,760], backgroundColor:red+'99', borderColor:red, borderWidth:1, borderRadius:4 },
+        { label:'Base', data:[1164,1257,1358], backgroundColor:sage+'99', borderColor:sage, borderWidth:1, borderRadius:4 },
+        { label:'Bull', data:[1355,1791,2330], backgroundColor:accent+'99', borderColor:accent, borderWidth:1, borderRadius:4 }
+      ]
+    },
+    options:{ responsive:true, maintainAspectRatio:false,
+      scales:{ x:{grid:{display:false}}, y:{grid:{color:rule},ticks:{callback:v=>'₹'+v.toLocaleString()}} }
+    }
+  });
+}
+
+  } catch(e) { console.log('Dashboard reliance init:', e.message); }
+}
+
+var _dash_hala_inited = false;
+function initDash_hala() {
+  if (_dash_hala_inited) return;
+  _dash_hala_inited = true;
+  try {
+    
+Chart.defaults.font.family="'Outfit',sans-serif";Chart.defaults.font.size=11;Chart.defaults.color='#888';Chart.defaults.plugins.legend.labels.boxWidth=10;Chart.defaults.plugins.legend.labels.padding=12;
+const sage='#4a6150',accent='#c17f4a',muted='#888',rule='#e0dbd3',green='#27ae60',red='#c0392b';
+function showPanel(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('panel-'+id).classList.add('active');event.target.classList.add('active');if(id==='market'&&!window._m){initMarket();window._m=1;}if(id==='moat'&&!window._mo){initMoat();window._mo=1;}if(id==='exit'&&!window._e){initExit();window._e=1;}if(id==='risk'&&!window._r){initRisk();window._r=1;}}
+
+new Chart(document.getElementById('hala_revModelChart'),{type:'bar',data:{labels:['Today (Payments)','Tomorrow (Lending)'],datasets:[{label:'Revenue Volume',data:[100,0],backgroundColor:sage+'88',stack:'s',label:'Payments (thin margin)'},{label:'Lending Revenue',data:[0,100],backgroundColor:accent+'88',stack:'s2'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false}},y:{grid:{color:rule},ticks:{callback:v=>v+'%'},max:110}},animation:{duration:1000}}});
+
+new Chart(document.getElementById('hala_gapChart'),{type:'bar',data:{labels:['SME Credit\nGap (MENA)','Saudi\nFintech TAM','HALA\nTransactions','Neoleap','Tap\nPayments'],datasets:[{data:[250,6.4,8,2,1.5],backgroundColor:[red+'88',sage+'88',accent+'88','#7a8c7e88','#b5c4b888'],borderColor:[red,sage,accent,'#7a8c7e','#b5c4b8'],borderWidth:1,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:rule},ticks:{callback:v=>'$'+v+'B'}},x:{grid:{display:false}}}}});
+
+new Chart(document.getElementById('hala_tractionChart'),{type:'bar',data:{labels:['Businesses\nServed (K)','Annual Trans\n($B)','Series B Val\n($100M)','Markets\nLive'],datasets:[{data:[142,8,9,3],backgroundColor:[sage+'cc',accent+'cc',green+'88','#7a8c7ecc'],borderColor:[sage,accent,green,'#7a8c7e'],borderWidth:1,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:rule}},x:{grid:{display:false}}}}});
+
+function initMarket(){
+new Chart(document.getElementById('hala_tamChart'),{type:'doughnut',data:{labels:['SAM: HALA target ($2–3B)','Rest of TAM ($3–4B)'],datasets:[{data:[40,60],backgroundColor:[accent,sage+'44'],borderColor:'#fff',borderWidth:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right'}},cutout:'55%'}});
+new Chart(document.getElementById('hala_lendingGrowthChart'),{type:'line',data:{labels:['2022','2023','2024','2025','2026','2027','2028','2029','2030'],datasets:[{label:'Saudi Fintech SME Lending ($B)',data:[1.2,1.5,1.9,2.3,2.7,3.3,3.9,4.5,5.0],borderColor:accent,backgroundColor:accent+'22',tension:0.4,fill:true,pointRadius:4},{label:'HALA Transactions ($B)',data:[3,4.5,6,8,null,null,null,null,null],borderColor:sage,backgroundColor:'transparent',tension:0.4,pointRadius:4,borderDash:[4,3]}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{grid:{color:rule},ticks:{callback:v=>'$'+v+'B'}},x:{grid:{display:false}}}}});
+}
+function initMoat(){
+new Chart(document.getElementById('hala_radarChart'),{type:'radar',data:{labels:['Full Stack','Data Moat','Lending Capability','SME Trust','Regulatory Speed','Geographic Reach'],datasets:[{label:'HALA',data:[95,90,80,90,85,70],borderColor:green,backgroundColor:green+'22',pointBackgroundColor:green},{label:'Neoleap',data:[60,40,50,55,40,30],borderColor:accent,backgroundColor:accent+'11',pointBackgroundColor:accent},{label:'Tap Payments',data:[35,10,5,40,60,65],borderColor:muted,backgroundColor:muted+'11',pointBackgroundColor:muted}]},options:{responsive:true,maintainAspectRatio:false,scales:{r:{grid:{color:rule},ticks:{display:false},min:0,max:100}}}});
+}
+function initExit(){
+new Chart(document.getElementById('hala_returnChart'),{type:'bar',data:{labels:['Series C Secondary\n(1–2 yr)','Strategic Acquisition\n(2–4 yr)','Tadawul IPO\n(3–5 yr)'],datasets:[{label:'Min Return',data:[1.1,1.5,2],backgroundColor:[muted+'44',accent+'44',green+'44'],borderColor:[muted,accent,green],borderWidth:1,borderRadius:4},{label:'Max Return',data:[1.5,2.5,3],backgroundColor:[muted+'88',accent+'88',green+'88'],borderColor:[muted,accent,green],borderWidth:1,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{grid:{color:rule},ticks:{callback:v=>v+'x'},min:0,max:3.5},x:{grid:{display:false}}}}});
+}
+function initRisk(){
+new Chart(document.getElementById('hala_riskRadarChart'),{type:'radar',data:{labels:['Lending NPL Risk','Take Rate Compression','Vision 2030 Risk','Regional Conflict','Regulatory Risk','Competition Risk'],datasets:[{label:'Risk Severity',data:[85,45,10,40,25,50],borderColor:red,backgroundColor:red+'22',pointBackgroundColor:red},{label:'Mitigation Strength',data:[60,75,95,70,80,85],borderColor:green,backgroundColor:green+'11',pointBackgroundColor:green}]},options:{responsive:true,maintainAspectRatio:false,scales:{r:{grid:{color:rule},ticks:{display:false},min:0,max:100}}}});
+}
+
+  } catch(e) { console.log('Dashboard hala init:', e.message); }
+}
+
+var _dash_cvs_inited = false;
+function initDash_cvs() {
+  if (_dash_cvs_inited) return;
+  _dash_cvs_inited = true;
+  try {
+    
+Chart.defaults.font.family="'Outfit',sans-serif";Chart.defaults.font.size=11;Chart.defaults.color='#888';
+const sage='#4a6150',accent='#c17f4a',muted='#888',rule='#e0dbd3',green='#27ae60',red='#c0392b';
+function showPanel(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('panel-'+id).classList.add('active');event.target.classList.add('active');if(id==='peers'&&!window._p){initPeers();window._p=1;}if(id==='thesis'&&!window._t){initThesis();window._t=1;}}
+
+new Chart(document.getElementById('cvs_qualityChart'),{type:'bar',data:{labels:['Net Income (GAAP)','Cash from Operations'],datasets:[{data:[4600,9100],backgroundColor:[red+'88',green+'88'],borderColor:[red,green],borderWidth:1,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:rule},ticks:{callback:v=>'$'+(v/1000).toFixed(1)+'B'}},x:{grid:{display:false}}}}});
+
+new Chart(document.getElementById('cvs_fscoreRadar'),{type:'radar',data:{labels:['ROA Positive','CFO Positive','ROA Trend','Accruals','Leverage','Liquidity','No Dilution','Gross Margin','Asset Turnover'],datasets:[{label:'CVS (5/9)',data:[1,1,0,1,0,0,1,0,1],borderColor:accent,backgroundColor:accent+'33',pointBackgroundColor:accent},{label:'Max Score',data:[1,1,1,1,1,1,1,1,1],borderColor:muted,backgroundColor:'transparent',borderDash:[4,3],pointRadius:0}]},options:{responsive:true,maintainAspectRatio:false,scales:{r:{grid:{color:rule},ticks:{display:false},min:0,max:1}}}});
+
+new Chart(document.getElementById('cvs_marginChart'),{type:'line',data:{labels:['FY2021','FY2022','FY2023','FY2024'],datasets:[{label:'Aetna MLR %',data:[85,85.5,86,89],borderColor:red,backgroundColor:red+'11',tension:0.3,fill:true,pointRadius:4},{label:'Gross Margin %',data:[15.2,15.8,15.5,14.2],borderColor:sage,backgroundColor:'transparent',tension:0.3,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{grid:{color:rule},ticks:{callback:v=>v+'%'},min:12,max:92},x:{grid:{display:false}}}}});
+
+new Chart(document.getElementById('cvs_peerChart'),{type:'bar',data:{labels:['CVS','UNH','Ford','Kraft\nHeinz','Ring\nEnergy','ACCO'],datasets:[{data:[5,7,5,4,3,3],backgroundColor:[accent+'cc',green+'88',sage+'88',muted+'88',red+'88',red+'66'],borderColor:[accent,green,sage,muted,red,red],borderWidth:1,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:rule},max:9,ticks:{stepSize:1}},x:{grid:{display:false}}}}});
+
+function initPeers(){
+new Chart(document.getElementById('cvs_peerBarChart'),{type:'bar',data:{labels:['UNH','CVS','Ford','Kraft Heinz','Ring Energy','ACCO'],datasets:[{label:'F-Score',data:[7,5,5,4,3,3],backgroundColor:[green+'88',accent+'cc',sage+'88',muted+'88',red+'88',red+'66'],borderColor:[green,accent,sage,muted,red,red],borderWidth:1,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:rule},max:9,ticks:{stepSize:1}},x:{grid:{display:false}}}}});
+}
+function initThesis(){
+new Chart(document.getElementById('cvs_returnChart'),{type:'bar',data:{labels:['Bear (FTC+MLR worst case)','Base (moderate long)','Bull (MLR normalises)'],datasets:[{label:'Annualised Return %',data:[3,9,15],backgroundColor:[red+'88',accent+'88',green+'88'],borderColor:[red,accent,green],borderWidth:1,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:rule},ticks:{callback:v=>v+'%'},max:20},x:{grid:{display:false}}}}});
+}
+
+  } catch(e) { console.log('Dashboard cvs init:', e.message); }
+}
+
+var _dash_onholding_inited = false;
+function initDash_onholding() {
+  if (_dash_onholding_inited) return;
+  _dash_onholding_inited = true;
+  try {
+    
+Chart.defaults.font.family="'Outfit',sans-serif";Chart.defaults.font.size=11;Chart.defaults.color='#888';
+const sage='#4a6150',accent='#c17f4a',muted='#888',rule='#e0dbd3',green='#27ae60',red='#c0392b';
+function showPanel(id){document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('panel-'+id).classList.add('active');event.target.classList.add('active');if(id==='fx'&&!window._f){initFx();window._f=1;}if(id==='supply'&&!window._s){initSupply();window._s=1;}if(id==='solutions'&&!window._so){initSolutions();window._so=1;}}
+
+new Chart(document.getElementById('onholding_paradoxChart'),{type:'bar',data:{labels:['Q2 2024','Q2 2025'],datasets:[{label:'Revenue Growth %',data:[28,32],backgroundColor:green+'88',borderColor:green,borderWidth:1,borderRadius:4,yAxisID:'y'},{label:'Net Income (CHF M)',data:[45,-40.9],backgroundColor:[green+'66',red+'88'],borderColor:[green,red],borderWidth:1,borderRadius:4,yAxisID:'y1'}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{grid:{color:rule},ticks:{callback:v=>v+'%'},position:'left'},y1:{grid:{display:false},ticks:{callback:v=>'CHF '+v+'M'},position:'right'}}}});
+new Chart(document.getElementById('onholding_rootCauseChart'),{type:'doughnut',data:{labels:['Tariff Cost Absorption','FX Conversion Loss','DTC Fulfillment Delays','Aetna MLR (not applicable)'],datasets:[{data:[55,25,10,10],backgroundColor:[red+'cc',accent+'cc',sage+'88',muted+'44'],borderColor:'#fff',borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right'}},cutout:'60%'}});
+new Chart(document.getElementById('onholding_channelChart'),{type:'doughnut',data:{labels:['Wholesale (59.3%)','DTC (40.7%)'],datasets:[{data:[59.3,40.7],backgroundColor:[accent+'88',sage+'cc'],borderColor:'#fff',borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right'}},cutout:'60%'}});
+
+function initFx(){
+new Chart(document.getElementById('onholding_fxChart'),{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul'],datasets:[{label:'USD per CHF',data:[0.91,0.89,0.87,0.84,0.82,0.80,0.79],borderColor:red,backgroundColor:red+'11',tension:0.4,fill:true,pointRadius:4}]},options:{responsive:true,maintainAspectRatio:false,scales:{y:{grid:{color:rule},ticks:{callback:v=>'$'+v},min:0.75,max:0.95},x:{grid:{display:false}}}}});
+new Chart(document.getElementById('onholding_fxImpactChart'),{type:'bar',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul'],datasets:[{label:'FX Revenue Drag (CHF M)',data:[-5,-8,-12,-16,-19,-22,-25],backgroundColor:red+'88',borderColor:red,borderWidth:1,borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:rule},ticks:{callback:v=>'CHF '+v+'M'}},x:{grid:{display:false}}}}});
+}
+function initSupply(){
+new Chart(document.getElementById('onholding_supplyChart'),{type:'doughnut',data:{labels:['Vietnam (90%)','Other (10%)'],datasets:[{data:[90,10],backgroundColor:[red+'88',sage+'88'],borderColor:'#fff',borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right'}},cutout:'60%'}});
+new Chart(document.getElementById('onholding_tariffChart'),{type:'bar',data:{labels:['No Tariff\n(Pre-2025)','20% Tariff\n(Base)','30% Tariff\n(Mid)','40% Tariff\n(High)'],datasets:[{label:'Annual Tariff Cost (CHF M)',data:[0,25,40,60],backgroundColor:[green+'88',accent+'88',red+'66',red+'cc'],borderColor:[green,accent,red,red],borderWidth:1,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:rule},ticks:{callback:v=>'CHF '+v+'M'}},x:{grid:{display:false}}}}});
+}
+function initSolutions(){
+new Chart(document.getElementById('onholding_solutionChart'),{type:'bar',data:{labels:['Current Margin Drag','FX Hedge (US R&D Hub)','Tariff Elimination\n(Production Diversification)','Combined Recovery'],datasets:[{data:[-55,20,25,50],backgroundColor:[red+'88',green+'66',green+'88',green+'cc'],borderColor:[red,green,green,green],borderWidth:1,borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:rule},ticks:{callback:v=>'CHF '+v+'M'}},x:{grid:{display:false}}}}});
+}
+
+  } catch(e) { console.log('Dashboard onholding init:', e.message); }
+}
+
+</script>
+
 </body>
 </html>
