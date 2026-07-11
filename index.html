@@ -354,9 +354,9 @@
       <div class="hc-role">MSc Management (Finance) &middot; SMU Singapore</div>
       <div class="hc-divider"></div>
       <div class="hc-contacts">
-        <a class="hc-link" href="mailto:udeesha.b.2025@mm.smu.edu.sg">
+        <a class="hc-link" href="mailto:udeesha.v.bansal@gmail.com">
           <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-          udeesha.b.2025@mm.smu.edu.sg
+          udeesha.v.bansal@gmail.com
         </a>
         <a class="hc-link" href="tel:+6585356368">
           <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
@@ -418,12 +418,28 @@
   <a href="#" onclick="openDash('hala');return false;" style="font-size:0.75rem;color:#e8c9a8;text-decoration:none;padding:0.3rem 0.85rem;border:1px solid rgba(232,201,168,0.3);border-radius:100px;font-family:'Outfit',sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(193,127,74,0.15)'" onmouseout="this.style.background='transparent'">📊 HALA Holding</a>
   <a href="#" onclick="openDash('cvs');return false;" style="font-size:0.75rem;color:#e8c9a8;text-decoration:none;padding:0.3rem 0.85rem;border:1px solid rgba(232,201,168,0.3);border-radius:100px;font-family:'Outfit',sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(193,127,74,0.15)'" onmouseout="this.style.background='transparent'">📊 CVS Health</a>
   <a href="#" onclick="openDash('onholding');return false;" style="font-size:0.75rem;color:#e8c9a8;text-decoration:none;padding:0.3rem 0.85rem;border:1px solid rgba(232,201,168,0.3);border-radius:100px;font-family:'Outfit',sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(193,127,74,0.15)'" onmouseout="this.style.background='transparent'">📊 On Holding AG</a>
+  <a href="https://sbux-simulator.vercel.app" target="_blank" rel="noopener" style="font-size:0.75rem;color:#0f1f17;background:#2E9E76;text-decoration:none;padding:0.3rem 0.85rem;border:1px solid #2E9E76;border-radius:100px;font-family:'Outfit',sans-serif;font-weight:600;transition:all 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">⚡ Starbucks Monte Carlo — LIVE</a>
 </div>
 
 <section class="proj-sec" id="projects">
   <div class="sec-label">02 — Finance Projects</div>
-  <h2 class="sec-title">Five engagements. Rigorous analysis.</h2>
+  <h2 class="sec-title">Six engagements. Rigorous analysis.</h2>
   <p class="sec-sub">Each project reflects real analytical work, sourced independently, built from primary data, structured around a business decision.</p>
+
+  <div class="proj-card" style="border-left:3px solid #2E9E76;">
+    <div class="proj-header" onclick="toggleProj(this)">
+      <div><div class="proj-meta"><span class="proj-type">Probabilistic Valuation · Generative AI</span><span class="proj-badge" style="background:#2E9E76;color:#0f1f17;">Live Tool · AI-Powered</span></div><div class="proj-title">Starbucks Corp. — Monte Carlo DCF Simulator with AI Assumption Calibration</div><div class="proj-subtitle">Correlated Monte Carlo · 1,500 Trials · Generative AI Calibration · Probability-Weighted Valuation · SBUX (NASDAQ)</div></div>
+      <div class="proj-toggle">▾</div>
+    </div>
+    <div class="proj-body">
+      <div class="proj-body-grid">
+        <div><div class="pbl">Objective</div><div class="pbc">Move beyond the single point-estimate DCF. Rather than producing one fair value for Starbucks (NASDAQ: SBUX), build a valuation engine that outputs a full <em>probability distribution</em> of intrinsic values — answering the question a committee actually asks: not "what is it worth," but "what is the probability this is undervalued at today's price?"</div></div>
+        <div><div class="pbl">Methodology</div><div class="pbc">Constructed a segment-level base DCF (North America, International, Channel Development) from FY2025 10-K and Q2 FY2026 10-Q primary filings. Extended it into a 1,500-trial Monte Carlo engine using triangular and normal distributions matched to each driver's behaviour, linked through a shared macro factor so that draws are <em>correlated</em> — preventing every bull-case assumption from firing simultaneously, the flaw that renders most naive simulations meaningless. Layered a generative AI calibration engine that parses earnings-call transcripts and translates qualitative management guidance into quantitative input ranges, with a traceable rationale per driver.</div></div>
+        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>Median fair value $54/share; 90% confidence interval of $35–$76 with a right-skewed distribution reflecting terminal-value optionality</li><li>China retail deconsolidation (Boyu Capital JV, closed March 2026) modelled explicitly as a ~$1.5B/yr revenue step-down — not a naive growth extrapolation, which is why FY26 guidance reads flat despite a +9% Q2</li><li>Terminal operating margin recovery (11% → 16%) is the single largest driver of distribution spread; WACC is the dominant inverse lever</li><li>AI layer converts language such as "high single-digit comp growth" into a bounded triangular distribution with a citation back to the source transcript</li></ul></div>
+        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">Institutional desks reason in distributions, not three static scenarios. This project demonstrates probabilistic valuation, correlation structure, and deconsolidation mechanics — while automating the most judgment-intensive step in DCF work: converting management guidance into defensible numeric assumptions.</div><div class="chip-row"><span class="chip">Monte Carlo Simulation</span><span class="chip">Correlated Draws</span><span class="chip">DCF</span><span class="chip">Generative AI</span><span class="chip">Deconsolidation</span><span class="chip">SEC 10-K / 10-Q</span><span class="chip">React</span></div></div><a href="https://sbux-simulator.vercel.app" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.1rem;font-size:0.75rem;font-weight:600;color:#0f1f17;text-decoration:none;border:1px solid #2E9E76;padding:0.5rem 1.1rem;border-radius:100px;background:#2E9E76;transition:all 0.2s;">⚡ Launch Live Simulator →</a></div>
+      </div>
+    </div>
+  </div>
 
   <div class="proj-card">
     <div class="proj-header" onclick="toggleProj(this)">
