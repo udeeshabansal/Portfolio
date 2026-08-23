@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Udeesha Bansal — Finance Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -28,20 +27,20 @@
 
   nav {
     position:fixed; top:0; left:0; right:0; z-index:100;
-    background:rgba(250,248,245,0.95); backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--rule);
+    background:rgba(37,37,37,0.92); backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
     padding:0 6%; display:flex; align-items:center; justify-content:space-between; height:60px;
   }
-  .nav-name { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:500; color:var(--charcoal); text-decoration:none; letter-spacing:0.02em; }
+  .nav-name { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:500; color:#ffffff; text-decoration:none; letter-spacing:0.02em; }
   .nav-links { display:flex; gap:2rem; list-style:none; }
-  .nav-links a { font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); text-decoration:none; transition:color 0.2s; font-weight:400; }
-  .nav-links a:hover { color:var(--sage-dark); }
+  .nav-links a { font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.55); text-decoration:none; transition:color 0.2s; font-weight:400; }
+  .nav-links a:hover { color: var(--accent-light); }
 
   /* HERO */
   .hero { min-height:100vh; background:var(--white); display:grid; grid-template-columns:1.1fr 0.9fr; padding-top:60px; }
 
   .hero-left {
-    background: #1a1a2e;
+    background: var(--charcoal);
     display:flex; flex-direction:column;
     justify-content:center; padding:5rem 4% 5rem 8%;
     position:relative; overflow:hidden;
@@ -49,60 +48,70 @@
   .hero-left::after {
     content:'';
     position:absolute; inset:0;
-    background:radial-gradient(ellipse at 30% 40%, rgba(193,127,74,0.12) 0%, transparent 55%), linear-gradient(135deg, #1a1a2e 0%, #232338 100%);
+    background:radial-gradient(ellipse at 25% 30%, rgba(193,127,74,0.15) 0%, transparent 55%);
+    z-index:0;
+  }
+  .hero-left::before {
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.02) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.02) 40px);
     z-index:0;
   }
   .hero-left > * { position:relative; z-index:1; }
+
   .hero-tag {
     font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase;
-    color:var(--accent-light); font-weight:500; margin-bottom:1.5rem;
+    color:rgba(232,201,168,0.9); font-weight:500; margin-bottom:1.5rem;
     display:flex; align-items:center; gap:0.6rem;
   }
   .hero-tag::before { content:''; display:inline-block; width:20px; height:1px; background:var(--accent-light); }
-  .hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(3rem,4.5vw,5rem); font-weight:300; line-height:1.05; color:var(--charcoal); margin-bottom:0.25rem; letter-spacing:-0.01em; }
-  .hero h1 strong { font-weight:600; display:block; color:var(--sage-dark); }
-  .hero-desc { font-size:0.97rem; color:var(--mid); margin:1.4rem 0 2.2rem; max-width:400px; line-height:1.8; font-weight:300; }
+  .hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.6rem,4vw,4.2rem); font-weight:400; line-height:1.05; color:#ffffff; margin-bottom:0.25rem; letter-spacing:-0.01em; }
+  .hero h1 strong { font-weight:600; display:block; color:var(--accent-light); }
+  .hero-desc { font-size:0.97rem; color:rgba(255,255,255,0.72); margin:1.4rem 0 2.2rem; max-width:400px; line-height:1.8; font-weight:300; }
   .hero-pills { display:flex; flex-wrap:wrap; gap:0.45rem; margin-bottom:2.2rem; }
-  .pill { font-size:0.71rem; letter-spacing:0.06em; padding:0.3rem 0.8rem; border:1px solid var(--rule); color:var(--mid); border-radius:100px; font-weight:400; background:var(--white); }
+  .pill { font-size:0.71rem; letter-spacing:0.06em; padding:0.3rem 0.8rem; border:1px solid rgba(255,255,255,0.2); color:rgba(255,255,255,0.75); border-radius:100px; font-weight:400; background:rgba(255,255,255,0.07); }
   .hero-btns { display:flex; gap:1rem; align-items:center; }
-  .btn-dark { background:var(--charcoal); color:var(--white); padding:0.65rem 1.5rem; font-size:0.76rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; border-radius:100px; transition:background 0.2s; }
-  .btn-dark:hover { background:var(--sage-dark); }
-  .btn-outline { border:1px solid var(--rule); color:var(--mid); padding:0.65rem 1.3rem; font-size:0.76rem; font-weight:400; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; border-radius:100px; transition:all 0.2s; }
-  .btn-outline:hover { border-color:var(--sage-dark); color:var(--sage-dark); }
+  .btn-dark { background:var(--accent); color:var(--charcoal); padding:0.65rem 1.5rem; font-size:0.76rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; border-radius:100px; transition:background 0.2s; }
+  .btn-dark:hover { background:var(--accent-light); }
+  .btn-outline { border:1px solid rgba(255,255,255,0.3); color:rgba(255,255,255,0.75); padding:0.65rem 1.3rem; font-size:0.76rem; font-weight:400; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; border-radius:100px; transition:all 0.2s; }
+  .btn-outline:hover { border-color:var(--accent-light); color:var(--accent-light); }
 
-  /* PHOTO SIDE — full bleed like v2 */
+  /* PHOTO/SHOWCASE SIDE */
   .hero-right {
     position:relative; overflow:hidden; background:var(--charcoal);
+    display:flex; align-items:center; justify-content:center; padding:2rem;
   }
-  .hero-photo {
-    width:100%; height:100%; object-fit:cover; object-position:center 12%;
-    display:block;
+  .hero-right::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 30%, rgba(193,127,74,0.08) 0%, transparent 60%);
+    pointer-events: none;
   }
-  /* gradient overlay — darker at bottom for text legibility */
-  .hero-right::after {
-    content:''; position:absolute; inset:0;
-    background:linear-gradient(to top, rgba(20,20,20,0.82) 0%, rgba(20,20,20,0.15) 55%, transparent 100%);
-    pointer-events:none;
-  }
-  /* caption sits above the overlay */
-  .hero-caption {
-    position:absolute; bottom:0; right:0; z-index:2;
-    padding:1.75rem 2rem 2rem;
-    width: 55%;
-    text-align: right;
-  }
-  .hc-name { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:#fff; margin-bottom:0.15rem; letter-spacing:0.01em; }
-  .hc-role { font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.45); font-weight:300; margin-bottom:0.9rem; }
-  .hc-divider { width:32px; height:1px; background:rgba(255,255,255,0.2); margin-bottom:0.9rem; margin-left:auto; }
-  .hc-contacts { display:flex; flex-direction:column; gap:0.45rem; align-items:flex-end; }
-  .hc-link {
-    display:flex; align-items:center; gap:0.55rem;
-    font-size:0.77rem; color:rgba(255,255,255,0.6);
-    text-decoration:none; font-weight:300; letter-spacing:0.01em;
-    transition:color 0.2s;
-  }
-  .hc-link:hover { color:var(--accent-light); }
-  .hc-link svg { flex-shrink:0; opacity:0.7; }
+  .showcase-wrap { width:100%; max-width:460px; position:relative; z-index:1; }
+  .showcase-label { font-size:0.68rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:1.25rem; font-family:'Outfit',sans-serif; }
+  .showcase-cards { position:relative; min-height:320px; }
+  .showcase-card { display:none; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:16px; padding:1.75rem; animation:cardIn 0.4s ease; }
+  .showcase-card.active { display:block; }
+  @keyframes cardIn { from{opacity:0;transform:translateY(12px);} to{opacity:1;transform:translateY(0);} }
+  .sc-cat { font-size:0.68rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent-light); margin-bottom:0.6rem; font-family:'Outfit',sans-serif; font-weight:500; }
+  .sc-title { font-family:'Cormorant Garamond',serif; font-size:1.7rem; font-weight:400; color:#fff; line-height:1.15; margin-bottom:0.3rem; }
+  .sc-sub { font-size:0.78rem; color:rgba(255,255,255,0.45); font-weight:300; margin-bottom:1.25rem; font-family:'Outfit',sans-serif; line-height:1.5; }
+  .sc-stat-row { display:flex; gap:1rem; margin-bottom:1.25rem; padding:0.9rem 1rem; background:rgba(255,255,255,0.04); border-radius:10px; border:1px solid rgba(255,255,255,0.06); }
+  .sc-stat { text-align:center; flex:1; }
+  .sc-stat-num { font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:500; color:var(--accent-light); line-height:1; margin-bottom:0.2rem; }
+  .sc-stat-label { font-size:0.62rem; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.3); font-family:'Outfit',sans-serif; }
+  .sc-verdict { display:inline-block; font-size:0.65rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); border:1px solid rgba(193,127,74,0.35); padding:0.25rem 0.7rem; border-radius:100px; margin-bottom:1.1rem; font-family:'Outfit',sans-serif; font-weight:500; }
+  .sc-verdict-green { color:#6fcf97; border-color:rgba(111,207,151,0.35); }
+  .sc-cta { background:var(--accent); color:var(--charcoal); border:none; padding:0.6rem 1.3rem; font-size:0.76rem; font-weight:600; letter-spacing:0.06em; border-radius:100px; cursor:pointer; font-family:'Outfit',sans-serif; transition:background 0.2s; }
+  .sc-cta:hover { background:var(--accent-light); }
+  .showcase-dots { display:flex; gap:0.4rem; margin-top:1.25rem; justify-content:center; }
+  .dot { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.2); cursor:pointer; transition:all 0.2s; }
+  .dot.active { background:var(--accent); width:18px; border-radius:3px; }
+  .showcase-nav { display:flex; gap:0.5rem; justify-content:center; margin-top:0.75rem; }
+  .sc-nav-btn { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:rgba(255,255,255,0.6); width:32px; height:32px; border-radius:50%; cursor:pointer; font-size:0.9rem; transition:all 0.2s; font-family:'Outfit',sans-serif; }
+  .sc-nav-btn:hover { background:rgba(193,127,74,0.2); color:var(--accent-light); border-color:rgba(193,127,74,0.3); }
 
   /* SECTIONS */
   section { padding:6rem 8%; }
@@ -111,6 +120,12 @@
   .sec-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,3.5vw,2.8rem); font-weight:400; color:var(--charcoal); line-height:1.15; margin-bottom:0.5rem; }
   .sec-sub { color:var(--muted); font-size:0.9rem; max-width:500px; margin-bottom:3.5rem; font-weight:300; }
   hr.div { border:none; border-top:1px solid var(--rule); margin:0; }
+
+  /* DASHBOARD LINKS BAR */
+  .dash-links-bar { background:#252525; padding:1.25rem 8%; display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+  .dash-links-bar span.label { font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:rgba(255,255,255,0.4); font-family:'Outfit',sans-serif; font-weight:500; }
+  .dash-links-bar a { font-size:0.75rem; color:var(--accent-light); text-decoration:none; padding:0.3rem 0.85rem; border:1px solid rgba(232,201,168,0.3); border-radius:100px; font-family:'Outfit',sans-serif; transition:all 0.2s; }
+  .dash-links-bar a:hover { background:rgba(193,127,74,0.15); }
 
   /* ABOUT */
   .about-sec { background:var(--off); }
@@ -163,7 +178,7 @@
   .exp-item { display:grid; grid-template-columns:160px 1fr; gap:2rem; padding:2rem 0; border-bottom:1px solid rgba(255,255,255,0.06); }
   .exp-item:last-child { border-bottom:none; }
   .exp-date { font-size:0.78rem; color:rgba(255,255,255,0.3); padding-top:0.1rem; font-weight:300; }
-  .exp-role { font-family:'Outfit',sans-serif; font-size:1.2rem; color:var(--white); font-weight:400; margin-bottom:0.1rem; }
+  .exp-role { font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--white); font-weight:400; margin-bottom:0.1rem; }
   .exp-firm { font-size:0.78rem; color:var(--accent-light); letter-spacing:0.04em; margin-bottom:0.9rem; font-weight:400; }
   .exp-bullets { list-style:none; display:flex; flex-direction:column; gap:0.4rem; }
   .exp-bullets li { font-size:0.85rem; color:rgba(255,255,255,0.5); padding-left:1.1rem; position:relative; line-height:1.65; font-weight:300; }
@@ -196,7 +211,6 @@
 
   @media(max-width:900px){
     .hero { grid-template-columns:1fr; }
-    .hero-right { min-height:420px; }
     .about-grid,.edu-grid,.proj-body-grid { grid-template-columns:1fr; gap:2rem; }
     .comp-grid { grid-template-columns:1fr 1fr; }
     .exp-item { grid-template-columns:1fr; gap:0.4rem; }
@@ -204,287 +218,6 @@
     nav { padding:0 4%; }
     .nav-links { display:none; }
   }
-
-<style>
-.dash-modal .page-header{background:#252525 !important;padding:2rem 5%;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem;} .dash-modal .ph-title{font-family:'Cormorant Garamond',serif !important;font-size:2rem !important;font-weight:400 !important;color:#ffffff !important;line-height:1.1 !important;} .dash-modal .ph-title span{color:#e8c9a8 !important;font-style:italic !important;} .dash-modal .ph-sub{color:rgba(255,255,255,0.5) !important;} .dash-modal .ph-tag{color:#e8c9a8 !important;}
-.dash-modal .ph-tag{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:#e8c9a8;margin-bottom:0.5rem;font-family:'Outfit',sans-serif;}
-.dash-modal .ph-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:#fff;line-height:1.1;}
-.dash-modal .ph-title span{color:#e8c9a8;font-style:italic;}
-.dash-modal .ph-sub{font-size:0.8rem;color:rgba(255,255,255,0.4);margin-top:0.4rem;font-weight:300;font-family:'Outfit',sans-serif;}
-.dash-modal .ph-verdict{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:#c17f4a;border:1px solid rgba(193,127,74,0.4);padding:0.4rem 0.9rem;border-radius:100px;margin-bottom:0.5rem;display:inline-block;font-family:'Outfit',sans-serif;}
-.dash-modal .ph-analyst{font-size:0.75rem;color:rgba(255,255,255,0.3);font-weight:300;font-family:'Outfit',sans-serif;}
-.dash-modal .tabs{background:#fff;border-bottom:1px solid #e0dbd3;padding:0 5%;display:flex;overflow-x:auto;}
-.dash-modal .tab{padding:1rem 1.5rem;font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;color:#888;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;font-weight:400;font-family:'Outfit',sans-serif;}
-.dash-modal .tab.active{color:#c17f4a;border-bottom-color:#c17f4a;font-weight:500;}
-.dash-modal .panel{display:none;padding:2.5rem 5%;background:#faf8f5;}
-.dash-modal .panel.active{display:block;}
-.dash-modal .kpi-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#e0dbd3;border:1px solid #e0dbd3;border-radius:10px;overflow:hidden;margin-bottom:2rem;}
-.dash-modal .kpi{background:#fff;padding:1.25rem 1.5rem;}
-.dash-modal .kpi-label{font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;color:#888;margin-bottom:0.3rem;font-weight:500;font-family:'Outfit',sans-serif;}
-.dash-modal .kpi-val{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:500;color:#252525;line-height:1;}
-.dash-modal .kpi-sub{font-size:0.72rem;color:#888;margin-top:0.2rem;font-weight:300;font-family:'Outfit',sans-serif;}
-.dash-modal .kpi-up{color:#27ae60;}.dash-modal .kpi-dn{color:#c0392b;}
-.dash-modal .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;}
-.dash-modal .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;}
-.dash-modal .grid-full{margin-bottom:1.5rem;}
-.dash-modal .card{background:#fff;border:1px solid #e0dbd3;border-radius:10px;padding:1.5rem;}
-.dash-modal .card-title{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:#888;margin-bottom:1.25rem;font-weight:500;font-family:'Outfit',sans-serif;}
-.dash-modal .chart-wrap{position:relative;height:240px;}
-.dash-modal .chart-wrap-tall{position:relative;height:300px;}
-.dash-modal .insight-box{background:#f3ede4;border-left:3px solid #c17f4a;border-radius:0 8px 8px 0;padding:1rem 1.25rem;margin-top:1rem;font-size:0.82rem;color:#555;line-height:1.7;font-weight:300;font-family:'Outfit',sans-serif;}
-.dash-modal .insight-box strong{color:#252525;font-weight:500;}
-.dash-modal .scenario-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;}
-.dash-modal .scenario-card{border-radius:10px;padding:1.5rem;border:1px solid #e0dbd3;}
-.dash-modal .sc-bear{background:#fff5f5;border-color:#f5c6cb;}.dash-modal .sc-base{background:#f0f7f1;border-color:#b8dbbf;}.dash-modal .sc-bull{background:#fffbf0;border-color:#fde68a;}
-.dash-modal .sc-label{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;margin-bottom:0.75rem;font-family:'Outfit',sans-serif;}
-.dash-modal .sc-bear .sc-label{color:#c0392b;}.dash-modal .sc-base .sc-label{color:#27ae60;}.dash-modal .sc-bull .sc-label{color:#b45309;}
-.dash-modal .sc-price{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:500;color:#252525;margin-bottom:0.2rem;}
-.dash-modal .sc-note{font-size:0.75rem;color:#888;font-weight:300;}
-.dash-modal .sc-metrics{margin-top:1rem;display:flex;flex-direction:column;gap:0.4rem;}
-.dash-modal .sc-row{display:flex;justify-content:space-between;font-size:0.78rem;}
-.dash-modal .sc-row-key{color:#888;font-weight:300;}.dash-modal .sc-row-val{font-weight:500;color:#252525;}
-.dash-modal .wacc-item{display:flex;justify-content:space-between;align-items:center;padding:0.6rem 0;border-bottom:1px solid #e0dbd3;}
-.dash-modal .wacc-item:last-child{border-bottom:none;}
-.dash-modal .wacc-key{font-size:0.82rem;color:#555;font-weight:300;}.dash-modal .wacc-val{font-size:0.88rem;font-weight:500;color:#252525;}
-.dash-modal .wacc-highlight{background:#f3ede4;border-radius:8px;padding:1rem 1.25rem;margin-top:1rem;display:flex;justify-content:space-between;align-items:center;}
-.dash-modal .wacc-highlight .wacc-key{font-weight:500;color:#252525;font-size:0.85rem;}
-.dash-modal .wacc-highlight .wacc-val{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#c17f4a;}
-.dash-modal .sensitivity-table{width:100%;border-collapse:collapse;font-size:0.78rem;}
-.dash-modal .sensitivity-table th{background:#252525;color:#fff;padding:0.6rem 0.8rem;text-align:center;font-weight:400;font-size:0.7rem;}
-.dash-modal .sensitivity-table th:first-child{text-align:left;}
-.dash-modal .sensitivity-table td{padding:0.55rem 0.8rem;text-align:center;border:1px solid #e0dbd3;}
-.dash-modal .sensitivity-table td:first-child{text-align:left;background:#f3ede4;font-weight:500;}
-.dash-modal .cell-high{background:#d4edda;color:#155724;font-weight:500;}
-.dash-modal .cell-mid{background:#fff3cd;color:#856404;font-weight:500;}
-.dash-modal .cell-low{background:#f8d7da;color:#721c24;font-weight:500;}
-.dash-modal .cell-base{background:#cce5ff;color:#004085;font-weight:600;border:2px solid #004085!important;}
-.dash-modal .data-table{width:100%;border-collapse:collapse;font-size:0.8rem;}
-.dash-modal .data-table th{border-bottom:2px solid #e0dbd3;padding:0.6rem 0.75rem;text-align:right;color:#888;font-weight:500;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;}
-.dash-modal .data-table th:first-child{text-align:left;}
-.dash-modal .data-table td{padding:0.55rem 0.75rem;text-align:right;border-bottom:1px solid #e0dbd3;color:#555;font-weight:300;}
-.dash-modal .data-table td:first-child{text-align:left;color:#252525;font-weight:400;}
-.dash-modal .data-table tr:last-child td{border-bottom:none;font-weight:600;color:#252525;}
-.dash-modal .neg{color:#c0392b;}.dash-modal .pos{color:#27ae60;}.dash-modal .est{color:#c17f4a;}
-.dash-modal .moat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:#e0dbd3;border:1px solid #e0dbd3;border-radius:10px;overflow:hidden;margin-bottom:1.5rem;}
-.dash-modal .moat-cell{background:#fff;padding:1.25rem 1rem;text-align:center;}
-.dash-modal .moat-icon{font-size:1.5rem;margin-bottom:0.5rem;}
-.dash-modal .moat-title{font-size:0.72rem;font-weight:600;color:#252525;margin-bottom:0.3rem;}
-.dash-modal .moat-desc{font-size:0.72rem;color:#888;font-weight:300;line-height:1.5;}
-.dash-modal .exit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;}
-.dash-modal .exit-card{border-radius:10px;padding:1.5rem;border:1px solid #e0dbd3;}
-.dash-modal .exit-primary{background:linear-gradient(135deg,#f0f7f1,#e8f5ea);border-color:#b8dbbf;}
-.dash-modal .exit-secondary{background:#f3ede4;border-color:#e8c9a8;}
-.dash-modal .exit-label{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;margin-bottom:0.5rem;}
-.dash-modal .exit-primary .exit-label{color:#27ae60;}.dash-modal .exit-secondary .exit-label{color:#c17f4a;}
-.dash-modal .exit-return{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:500;color:#252525;margin-bottom:0.15rem;}
-.dash-modal .exit-timeline{font-size:0.75rem;color:#888;margin-bottom:1rem;font-weight:300;}
-.dash-modal .exit-row{display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:0.3rem;}
-.dash-modal .exit-key{color:#888;font-weight:300;}.dash-modal .exit-val{font-weight:500;color:#252525;}
-.dash-modal .risk-table{width:100%;border-collapse:collapse;font-size:0.82rem;}
-.dash-modal .risk-table th{border-bottom:2px solid #e0dbd3;padding:0.6rem 0.75rem;text-align:left;color:#888;font-weight:500;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;}
-.dash-modal .risk-table td{padding:0.65rem 0.75rem;border-bottom:1px solid #e0dbd3;color:#555;font-weight:300;vertical-align:top;}
-.dash-modal .risk-table td:first-child{color:#252525;font-weight:500;}
-.dash-modal .risk-high{color:#c0392b;font-weight:600;}.dash-modal .risk-med{color:#b45309;font-weight:600;}.dash-modal .risk-low{color:#27ae60;font-weight:600;}
-.dash-modal .fscore-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem;}
-.dash-modal .fscore-group{border-radius:10px;padding:1.25rem;border:1px solid #e0dbd3;background:#fff;}
-.dash-modal .fg-title{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;color:#252525;margin-bottom:1rem;}
-.dash-modal .signal-row{display:flex;justify-content:space-between;align-items:center;padding:0.45rem 0;border-bottom:1px solid #e0dbd3;font-size:0.8rem;}
-.dash-modal .signal-row:last-child{border-bottom:none;}
-.dash-modal .signal-name{color:#555;font-weight:300;}
-.dash-modal .sig-pass{background:#27ae60;color:#fff;font-size:0.65rem;font-weight:600;padding:0.15rem 0.5rem;border-radius:100px;}
-.dash-modal .sig-fail{background:#c0392b;color:#fff;font-size:0.65rem;font-weight:600;padding:0.15rem 0.5rem;border-radius:100px;}
-.dash-modal .peer-table{width:100%;border-collapse:collapse;font-size:0.82rem;}
-.dash-modal .peer-table th{border-bottom:2px solid #e0dbd3;padding:0.6rem 0.75rem;text-align:center;color:#888;font-weight:500;font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;}
-.dash-modal .peer-table th:first-child{text-align:left;}
-.dash-modal .peer-table td{padding:0.6rem 0.75rem;text-align:center;border-bottom:1px solid #e0dbd3;color:#555;font-weight:300;}
-.dash-modal .peer-table td:first-child{text-align:left;color:#252525;font-weight:400;}
-.dash-modal .peer-table .cvs-row td{background:#f3ede4;font-weight:500;color:#252525;}
-.dash-modal .score-high{color:#27ae60;font-weight:600;}.dash-modal .score-mid{color:#b45309;font-weight:600;}.dash-modal .score-low{color:#c0392b;font-weight:600;}
-.dash-modal .solution-card{border-radius:10px;padding:1.5rem;background:#f0f7f1;border:1px solid #b8dbbf;margin-bottom:1rem;}
-.dash-modal .sol-label{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;color:#27ae60;margin-bottom:0.4rem;}
-.dash-modal .sol-title{font-size:1rem;font-weight:500;color:#252525;margin-bottom:0.5rem;}
-.dash-modal .sol-desc{font-size:0.82rem;color:#555;font-weight:300;line-height:1.7;}
-.dash-modal .prod-bar-wrap{display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;}
-.dash-modal .prod-name{font-size:0.78rem;color:#555;width:200px;flex-shrink:0;font-weight:300;}
-.dash-modal .prod-bar-bg{flex:1;background:#f3ede4;border-radius:100px;height:7px;}
-.dash-modal .prod-bar{height:7px;border-radius:100px;}
-.dash-modal .seg-list{display:flex;flex-direction:column;gap:0.6rem;}
-.dash-modal .seg-row{display:flex;align-items:center;gap:0.75rem;}
-.dash-modal .seg-name{font-size:0.8rem;color:#555;width:160px;flex-shrink:0;font-weight:300;}
-.dash-modal .seg-bar-wrap{flex:1;background:#f3ede4;border-radius:100px;height:8px;}
-.dash-modal .seg-bar{height:8px;border-radius:100px;}
-.dash-modal .seg-pct{font-size:0.78rem;font-weight:500;color:#252525;width:42px;text-align:right;}
-@media(max-width:768px){
-.dash-modal .kpi-strip,.dash-modal .moat-grid{grid-template-columns:repeat(2,1fr);}
-.dash-modal .grid-2,.dash-modal .grid-3,.dash-modal .scenario-grid,.dash-modal .exit-grid,.dash-modal .fscore-grid{grid-template-columns:1fr;}
-.dash-modal .panel{padding:1.5rem 4%;}
-.dash-modal .tabs{padding:0 4%;}
-.dash-modal .page-header{flex-direction:column;gap:1rem;padding:2rem 4%;}}
-
-/* SHOWCASE */
-.hero-right {
-  background: var(--charcoal);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  position: relative;
-  overflow: hidden;
-}
-.hero-right::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 70% 30%, rgba(193,127,74,0.08) 0%, transparent 60%);
-  pointer-events: none;
-}
-.showcase-wrap {
-  width: 100%;
-  max-width: 460px;
-  position: relative;
-  z-index: 1;
-}
-.showcase-label {
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
-  margin-bottom: 1.25rem;
-  font-family: 'Outfit', sans-serif;
-}
-.showcase-cards {
-  position: relative;
-  min-height: 320px;
-}
-.showcase-card {
-  display: none;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 16px;
-  padding: 1.75rem;
-  animation: cardIn 0.4s ease;
-}
-.showcase-card.active { display: block; }
-@keyframes cardIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.sc-cat {
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent-light);
-  margin-bottom: 0.6rem;
-  font-family: 'Outfit', sans-serif;
-  font-weight: 500;
-}
-.sc-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #fff;
-  line-height: 1.15;
-  margin-bottom: 0.3rem;
-}
-.sc-sub {
-  font-size: 0.78rem;
-  color: rgba(255,255,255,0.45);
-  font-weight: 300;
-  margin-bottom: 1.25rem;
-  font-family: 'Outfit', sans-serif;
-  line-height: 1.5;
-}
-.sc-stat-row {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 1.25rem;
-  padding: 0.9rem 1rem;
-  background: rgba(255,255,255,0.04);
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.06);
-}
-.sc-stat { text-align: center; flex: 1; }
-.sc-stat-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: var(--accent-light);
-  line-height: 1;
-  margin-bottom: 0.2rem;
-}
-.sc-stat-label {
-  font-size: 0.62rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.3);
-  font-family: 'Outfit', sans-serif;
-}
-.sc-verdict {
-  display: inline-block;
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-  border: 1px solid rgba(193,127,74,0.35);
-  padding: 0.25rem 0.7rem;
-  border-radius: 100px;
-  margin-bottom: 1.1rem;
-  font-family: 'Outfit', sans-serif;
-  font-weight: 500;
-}
-.sc-verdict-green {
-  color: #6fcf97;
-  border-color: rgba(111,207,151,0.35);
-}
-.sc-cta {
-  background: var(--accent);
-  color: var(--charcoal);
-  border: none;
-  padding: 0.6rem 1.3rem;
-  font-size: 0.76rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  border-radius: 100px;
-  cursor: pointer;
-  font-family: 'Outfit', sans-serif;
-  transition: background 0.2s;
-}
-.sc-cta:hover { background: var(--accent-light); }
-.showcase-dots {
-  display: flex;
-  gap: 0.4rem;
-  margin-top: 1.25rem;
-  justify-content: center;
-}
-.dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.2);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.dot.active { background: var(--accent); width: 18px; border-radius: 3px; }
-.showcase-nav {
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  margin-top: 0.75rem;
-}
-.sc-nav-btn {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: rgba(255,255,255,0.6);
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: all 0.2s;
-  font-family: 'Outfit', sans-serif;
-}
-.sc-nav-btn:hover { background: rgba(193,127,74,0.2); color: var(--accent-light); border-color: rgba(193,127,74,0.3); }
-
-</style>
-
 </style>
 </head>
 <body>
@@ -503,14 +236,14 @@
 <!-- HERO -->
 <div class="hero" id="hero">
   <div class="hero-left">
-    <div class="hero-tag" style="color:rgba(255,255,255,0.7) !important;">Finance Portfolio</div>
-    <h1 style="color:#ffffff !important;"><span style="color:#ffffff !important;">Udeesha</span><br><strong style="color:#ffffff !important; display:block;">Bansal</strong></h1>
+    <div class="hero-tag">Global Finance Portfolio</div>
+    <h1>Udeesha<br><strong>Bansal</strong></h1>
     <p class="hero-desc">MSc Management (Finance) candidate at Singapore Management University, building financial models that connect numbers to business decisions.</p>
     <div class="hero-pills">
       <span class="pill">Investment Banking</span>
       <span class="pill">FP&amp;A</span>
       <span class="pill">Equity Valuation</span>
-      <span class="pill">DCF Modelling</span>
+      <span class="pill">NLP Signal Detection</span>
       <span class="pill">Corporate Finance</span>
     </div>
     <div class="hero-btns">
@@ -519,8 +252,7 @@
     </div>
   </div>
 
-  
-  <div class="hero-right" id="hero-showcase">
+  <div class="hero-right">
     <div class="showcase-wrap">
       <div class="showcase-label">Featured Projects</div>
       <div class="showcase-cards" id="showcaseCards">
@@ -536,9 +268,9 @@
           </div>
           <div class="sc-verdict">System-Generated Signal</div>
           <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-          <button class="sc-cta" onclick="openDash('earnings')">View Dashboard ↗</button>
-          <a href="https://github.com/udeeshabansal/earnings-signal-engine" target="_blank" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.15);padding:0.6rem 1rem;font-size:0.74rem;font-weight:500;border-radius:100px;cursor:pointer;font-family:'Outfit',sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem;">💻 GitHub</a>
-        </div>
+            <button class="sc-cta" onclick="openDash('earnings')">View Dashboard ↗</button>
+            <a href="https://github.com/udeeshabansal/earnings-signal-engine" target="_blank" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.15);padding:0.6rem 1rem;font-size:0.74rem;font-weight:500;border-radius:100px;cursor:pointer;font-family:'Outfit',sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:0.3rem;">💻 GitHub</a>
+          </div>
         </div>
 
         <div class="showcase-card">
@@ -608,7 +340,6 @@
 
       </div>
 
-      <!-- Dots -->
       <div class="showcase-dots" id="showcaseDots">
         <span class="dot active" onclick="goTo(0)"></span>
         <span class="dot" onclick="goTo(1)"></span>
@@ -624,8 +355,6 @@
       </div>
     </div>
   </div>
-
-  </div>
 </div>
 
 <hr class="div">
@@ -637,8 +366,8 @@
   <p class="sec-sub">Available for internship and full-time roles globally, open to relocation.</p>
   <div class="about-grid">
     <div class="about-text">
-      <p>I am a Finance-track MSc student at Singapore Management University with experience across accounting, audit, and taxation — spanning professional services firms in India. My analytical foundation was built in practice: managing GST compliance for 20+ clients, contributing to audit engagements across multiple sectors, and maintaining AR/AP operations across hundreds of transactions.</p>
-      <p>Across five independent finance projects, I have applied DCF valuation, CAPM, Piotrowski F-Score, capital budgeting, FX risk quantification, and investment memo writing — using Capital IQ and Damodaran datasets as primary data sources. Every model I build is grounded in the audit mindset that every number needs to be defensible.</p>
+      <p>I am a Finance-track MSc student at Singapore Management University with experience across accounting, audit, and taxation spanning professional services firms in India, and now philanthropic finance operations in Singapore. My analytical foundation was built in practice: managing GST compliance for 20+ clients, tracking a 27-grant disbursement portfolio, and maintaining AR/AP operations across hundreds of transactions.</p>
+      <p>Across six independent finance projects, I have applied DCF valuation, CAPM, Monte Carlo simulation, NLP signal detection, Piotrowski F-Score, capital budgeting, and FX risk quantification, using Capital IQ, Python, and Damodaran datasets as primary data sources. Every model I build is grounded in the audit mindset that every number needs to be defensible.</p>
       <p>I approach financial analysis the way a business operator would, always asking what the numbers mean for decision-making, not just what they are. I am ready to contribute to budgeting cycles, performance reviews, valuation work, and management discussions from day one.</p>
     </div>
     <div class="skills-col">
@@ -697,27 +426,41 @@
         </div>
       </div>
     </div>
-
+  </div>
 </section>
 
 <hr class="div">
 
-<!-- PROJECTS -->
-
-<div style="background:#252525;padding:1.25rem 8%;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
-  <span style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.4);font-family:'Outfit',sans-serif;font-weight:500;">Interactive Dashboards:</span>
-  <a href="#" onclick="openDash('earnings');return false;" style="font-size:0.75rem;color:#e8c9a8;text-decoration:none;padding:0.3rem 0.85rem;border:1px solid rgba(232,201,168,0.3);border-radius:100px;font-family:'Outfit',sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(193,127,74,0.15)'" onmouseout="this.style.background='transparent'">📊 Earnings Signal Engine</a>
-  <a href="#" onclick="openDash('pfizer');return false;" style="font-size:0.75rem;color:#e8c9a8;text-decoration:none;padding:0.3rem 0.85rem;border:1px solid rgba(232,201,168,0.3);border-radius:100px;font-family:'Outfit',sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(193,127,74,0.15)'" onmouseout="this.style.background='transparent'">📊 Pfizer</a>
-  <a href="#" onclick="openDash('reliance');return false;" style="font-size:0.75rem;color:#e8c9a8;text-decoration:none;padding:0.3rem 0.85rem;border:1px solid rgba(232,201,168,0.3);border-radius:100px;font-family:'Outfit',sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(193,127,74,0.15)'" onmouseout="this.style.background='transparent'">📊 Reliance Industries</a>
-  <a href="#" onclick="openDash('hala');return false;" style="font-size:0.75rem;color:#e8c9a8;text-decoration:none;padding:0.3rem 0.85rem;border:1px solid rgba(232,201,168,0.3);border-radius:100px;font-family:'Outfit',sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(193,127,74,0.15)'" onmouseout="this.style.background='transparent'">📊 HALA Holding</a>
-  <a href="#" onclick="openDash('cvs');return false;" style="font-size:0.75rem;color:#e8c9a8;text-decoration:none;padding:0.3rem 0.85rem;border:1px solid rgba(232,201,168,0.3);border-radius:100px;font-family:'Outfit',sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(193,127,74,0.15)'" onmouseout="this.style.background='transparent'">📊 CVS Health</a>
-  <a href="#" onclick="openDash('onholding');return false;" style="font-size:0.75rem;color:#e8c9a8;text-decoration:none;padding:0.3rem 0.85rem;border:1px solid rgba(232,201,168,0.3);border-radius:100px;font-family:'Outfit',sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(193,127,74,0.15)'" onmouseout="this.style.background='transparent'">📊 On Holding AG</a>
+<div class="dash-links-bar">
+  <span class="label">Interactive Dashboards:</span>
+  <a href="#" onclick="openDash('earnings');return false;">📊 Earnings Signal Engine</a>
+  <a href="#" onclick="openDash('pfizer');return false;">📊 Pfizer</a>
+  <a href="#" onclick="openDash('reliance');return false;">📊 Reliance Industries</a>
+  <a href="#" onclick="openDash('hala');return false;">📊 HALA Holding</a>
+  <a href="#" onclick="openDash('cvs');return false;">📊 CVS Health</a>
+  <a href="#" onclick="openDash('onholding');return false;">📊 On Holding AG</a>
 </div>
 
+<!-- PROJECTS -->
 <section class="proj-sec" id="projects">
   <div class="sec-label">02 — Finance Projects</div>
-  <h2 class="sec-title">Five engagements. Rigorous analysis.</h2>
+  <h2 class="sec-title">Six engagements. Rigorous analysis.</h2>
   <p class="sec-sub">Each project reflects real analytical work, sourced independently, built from primary data, structured around a business decision.</p>
+
+  <div class="proj-card">
+    <div class="proj-header" onclick="toggleProj(this)">
+      <div><div class="proj-meta"><span class="proj-type">NLP · Equity Research · Signal Detection</span><span class="proj-badge">System-Generated Signal</span></div><div class="proj-title">The Quiet Signal — Earnings-Call Language Forensics Engine</div><div class="proj-subtitle">4-Detector NLP Pipeline · Convergence Engine · Multi-Agent Investment Debate · Novo Nordisk · 13-Quarter Case Study</div></div>
+      <div class="proj-toggle">▾</div>
+    </div>
+    <div class="proj-body">
+      <div class="proj-body-grid">
+        <div><div class="pbl">Objective</div><div class="pbc">Test whether deteriorating management communication in earnings calls precedes reported financial deterioration, building a signal-detection engine on Novo Nordisk's 13 quarters of transcripts (2023Q1–2026Q1) spanning its 2025 guidance cuts, then staging a grounded bull/bear/skeptic investment debate on the output.</div></div>
+        <div><div class="pbl">Methodology</div><div class="pbc">Engineered a 4-factor NLP framework: hedging density (Loughran-McDonald), topic salience by supply vs. demand, question-answer evasion scoring, and guidance specificity decay, normalised via z-scoring, with a convergence layer cross-validating signals. Built a three-agent research desk (bull, bear, skeptic) grounded in the engine's evidence.</div></div>
+        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>Four detectors converged on 2025Q3, Novo's workforce reduction and second guidance narrowing, with the hedging channel confirming one quarter later</li><li>Guidance range compressed across three consecutive 2025 quarters even as its structural form stayed unchanged</li><li>Convergence engine surfaced an unflagged 2023Q3 signal, later confirmed to precede a competitive event by ~12 months</li><li>Corrected 3 silent data-integrity errors in raw filings before any signal was trusted</li></ul></div>
+        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">Applies the analyst discipline underlying credit and equity coverage, distinguishing real signal from noise, stress-testing thresholds, and building an evidentiary standard where every claim traces to a cited source.</div><div class="chip-row"><span class="chip">Python</span><span class="chip">NLP</span><span class="chip">Loughran-McDonald</span><span class="chip">Z-Score Normalization</span><span class="chip">Multi-Agent Debate</span></div><a href="https://github.com/udeeshabansal/earnings-signal-engine" target="_blank" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.1rem;font-size:0.75rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--accent-light);padding:0.5rem 1.1rem;border-radius:100px;background:var(--warm);">💻 View Full Repository &amp; Memo →</a></div>
+      </div>
+    </div>
+  </div>
 
   <div class="proj-card">
     <div class="proj-header" onclick="toggleProj(this)">
@@ -726,11 +469,10 @@
     </div>
     <div class="proj-body">
       <div class="proj-body-grid">
-        <div><div class="pbl">Objective</div><div class="pbc">Full-scope corporate finance and equity valuation of Pfizer Inc. (NYSE: PFE) to assess intrinsic value and strategic positioning following its $43B Seagen acquisition — using institutional-grade data from Capital IQ.</div></div>
+        <div><div class="pbl">Objective</div><div class="pbc">Full-scope corporate finance and equity valuation of Pfizer Inc. (NYSE: PFE) to assess intrinsic value and strategic positioning following its $43B Seagen acquisition, using institutional-grade data from Capital IQ.</div></div>
         <div><div class="pbl">Methodology</div><div class="pbc">Built an integrated 3-statement financial model (FY2022A–FY2027E) with segmented revenue across COVID products, oncology, and established medicines. Conducted DCF with WACC derivation, CAPM cost of equity, and Damodaran ERP inputs. Layered DuPont, EVA, and TSR across 1-, 3-, and 5-year horizons.</div></div>
-        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>Cost of Equity 7.26% via CAPM (β=0.62, Rf=4.3%, ERP=5.5% Damodaran); WACC at 8.8%</li><li>Non-COVID revenue projected 10–12% growth through FY2027E driven by Vyndaqel and Seagen ADC portfolio</li><li>DuPont revealed FY2023 margin compression was COVID-volume driven, not structural — supporting recovery thesis</li><li>Bear/base/bull scenarios produced price range of $22–$38/share</li></ul></div>
-        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">End-to-end valuation from raw Capital IQ data to a defensible DCF. Multi-scenario structure, WACC build, and segment-level revenue model replicate healthcare IB or equity research workflows.</div><div class="chip-row"><span class="chip">Excel</span><span class="chip">Capital IQ</span><span class="chip">DCF</span><span class="chip">CAPM</span><span class="chip">DuPont</span><span class="chip">EVA</span><span class="chip">Damodaran ERP</span></div></div><a href="#" onclick="openDash('earnings');return false;" style="font-size:0.75rem;color:#e8c9a8;text-decoration:none;padding:0.3rem 0.85rem;border:1px solid rgba(232,201,168,0.3);border-radius:100px;font-family:'Outfit',sans-serif;transition:all 0.2s;" onmouseover="this.style.background='rgba(193,127,74,0.15)'" onmouseout="this.style.background='transparent'">📊 Earnings Signal Engine</a>
-  <a href="#" onclick="openDash('pfizer');return false;" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.1rem;font-size:0.75rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--accent-light);padding:0.5rem 1.1rem;border-radius:100px;background:var(--warm);transition:all 0.2s;">📊 View Interactive Dashboard →</a></div>
+        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>Cost of Equity 7.26% via CAPM (β=0.62, Rf=4.3%, ERP=5.5% Damodaran); WACC at 8.8%</li><li>Non-COVID revenue projected 10–12% growth through FY2027E driven by Vyndaqel and Seagen ADC portfolio</li><li>DuPont revealed FY2023 margin compression was COVID-volume driven, not structural, supporting recovery thesis</li><li>Bear/base/bull scenarios produced price range of $22–$38/share</li></ul></div>
+        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">End-to-end valuation from raw Capital IQ data to a defensible DCF. Multi-scenario structure, WACC build, and segment-level revenue model replicate healthcare IB or equity research workflows.</div><div class="chip-row"><span class="chip">Excel</span><span class="chip">Capital IQ</span><span class="chip">DCF</span><span class="chip">CAPM</span><span class="chip">DuPont</span><span class="chip">EVA</span><span class="chip">Damodaran ERP</span></div><a href="#" onclick="openDash('pfizer');return false;" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.1rem;font-size:0.75rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--accent-light);padding:0.5rem 1.1rem;border-radius:100px;background:var(--warm);">📊 View Interactive Dashboard →</a></div>
       </div>
     </div>
   </div>
@@ -742,10 +484,10 @@
     </div>
     <div class="proj-body">
       <div class="proj-body-grid">
-        <div><div class="pbl">Objective</div><div class="pbc">Professional-grade, multi-segment financial model for Reliance Industries — India's largest company by market cap — covering O2C, Retail, Jio Digital Services, and Oil &amp; Gas, with full DCF and scenario stress-test.</div></div>
+        <div><div class="pbl">Objective</div><div class="pbc">Professional-grade, multi-segment financial model for Reliance Industries, India's largest company by market cap, covering O2C, Retail, Jio Digital Services, and Oil &amp; Gas, with full DCF and scenario stress-test.</div></div>
         <div><div class="pbl">Methodology</div><div class="pbc">Consolidated 3-statement model (FY2018A–FY2029E) in INR crores from Capital IQ actuals. Revenue decomposed by five segments with individual YoY growth drivers. WACC built from first principles (β=0.24, Rf=7.0%, ERP=6.5%) with 4.0% terminal growth rate aligned to India's long-run GDP outlook.</div></div>
-        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>WACC at 8.37% (Re=8.56%; Rd post-tax=7.48%; Equity weight=82.3%)</li><li>Jio Digital Services projected to reach 34% revenue mix by FY2029E at ~16% YoY CAGR</li><li>O2C FCF negative through FY2021 on 20%+ capex intensity; recovered by FY2025A as spend normalised to ~12%</li><li>Net income projected INR ~1.16 trillion by FY2029E — 12% CAGR from FY2025A</li></ul></div>
-        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">Conglomerate modelling is among the most technically demanding valuation exercises: five distinct business units with different margin profiles, growth trajectories, and capex requirements.</div><div class="chip-row"><span class="chip">Excel</span><span class="chip">Capital IQ</span><span class="chip">3-Statement</span><span class="chip">DCF</span><span class="chip">WACC</span><span class="chip">Segment Analysis</span></div></div><a href="#" onclick="openDash('reliance');return false;" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.1rem;font-size:0.75rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--accent-light);padding:0.5rem 1.1rem;border-radius:100px;background:var(--warm);transition:all 0.2s;">📊 View Interactive Dashboard →</a></div>
+        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>WACC at 8.37% (Re=8.56%; Rd post-tax=7.48%; Equity weight=82.3%)</li><li>Jio Digital Services projected to reach 34% revenue mix by FY2029E at ~16% YoY CAGR</li><li>O2C FCF negative through FY2021 on 20%+ capex intensity; recovered by FY2025A as spend normalised to ~12%</li><li>Net income projected INR ~1.16 trillion by FY2029E, 12% CAGR from FY2025A</li></ul></div>
+        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">Conglomerate modelling is among the most technically demanding valuation exercises, five distinct business units with different margin profiles, growth trajectories, and capex requirements.</div><div class="chip-row"><span class="chip">Excel</span><span class="chip">Capital IQ</span><span class="chip">3-Statement</span><span class="chip">DCF</span><span class="chip">WACC</span><span class="chip">Segment Analysis</span></div><a href="#" onclick="openDash('reliance');return false;" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.1rem;font-size:0.75rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--accent-light);padding:0.5rem 1.1rem;border-radius:100px;background:var(--warm);">📊 View Interactive Dashboard →</a></div>
       </div>
     </div>
   </div>
@@ -757,10 +499,10 @@
     </div>
     <div class="proj-body">
       <div class="proj-body-grid">
-        <div><div class="pbl">Objective</div><div class="pbc">Recommend an equity investment decision (Series C or secondary participation) in HALA Holding — a Saudi fintech serving 142,000+ SMEs at ~$900M Series B valuation — for an institutional investor with a 3–5 year return horizon.</div></div>
+        <div><div class="pbl">Objective</div><div class="pbc">Recommend an equity investment decision (Series C or secondary participation) in HALA Holding, a Saudi fintech serving 142,000+ SMEs at ~$900M Series B valuation, for an institutional investor with a 3–5 year return horizon.</div></div>
         <div><div class="pbl">Methodology</div><div class="pbc">Bottom-up market sizing: TAM ($6.4B Saudi fintech by 2030), SAM ($2–3B micro/small business segment), SOM anchored to HALA's 142,000-customer base. Assessed moat across five dimensions. Stress-tested take rate sensitivity, lending conversion, and NPL scenarios.</div></div>
-        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>Primary exit: Tadawul IPO at 2–3x return (2028–2029), PIF-backed and Vision 2030-aligned</li><li>Revenue-based lending as value creation catalyst — 7-year transaction data enables collateral-free underwriting</li><li>$8B annual transactions implies ~10% payments market penetration at Series B</li><li>Critical risk: lending NPL rate — only assumption where thesis weakens materially</li></ul></div>
-        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">Replicates the structure of a growth equity or M&amp;A deal memo: market sizing, competitive positioning, revenue model analysis, risk stress-test, and explicit investment recommendation.</div><div class="chip-row"><span class="chip">Market Sizing</span><span class="chip">Investment Memo</span><span class="chip">Blue Ocean</span><span class="chip">Exit Analysis</span><span class="chip">Competitive Analysis</span></div></div><a href="#" onclick="openDash('hala');return false;" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.1rem;font-size:0.75rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--accent-light);padding:0.5rem 1.1rem;border-radius:100px;background:var(--warm);transition:all 0.2s;">📊 View Interactive Dashboard →</a></div>
+        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>Primary exit: Tadawul IPO at 2–3x return (2028–2029), PIF-backed and Vision 2030-aligned</li><li>Revenue-based lending as value creation catalyst, 7-year transaction data enables collateral-free underwriting</li><li>$8B annual transactions implies ~10% payments market penetration at Series B</li><li>Critical risk: lending NPL rate, only assumption where thesis weakens materially</li></ul></div>
+        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">Replicates the structure of a growth equity or M&amp;A deal memo: market sizing, competitive positioning, revenue model analysis, risk stress-test, and explicit investment recommendation.</div><div class="chip-row"><span class="chip">Market Sizing</span><span class="chip">Investment Memo</span><span class="chip">Blue Ocean</span><span class="chip">Exit Analysis</span><span class="chip">Competitive Analysis</span></div><a href="#" onclick="openDash('hala');return false;" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.1rem;font-size:0.75rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--accent-light);padding:0.5rem 1.1rem;border-radius:100px;background:var(--warm);">📊 View Interactive Dashboard →</a></div>
       </div>
     </div>
   </div>
@@ -772,10 +514,10 @@
     </div>
     <div class="proj-body">
       <div class="proj-body-grid">
-        <div><div class="pbl">Objective</div><div class="pbc">Systematic financial health assessment of CVS Health using the Piotrowski F-Score — 9-signal diagnostic covering profitability, liquidity, and operating efficiency — with a documented investment recommendation and peer benchmarking.</div></div>
+        <div><div class="pbl">Objective</div><div class="pbc">Systematic financial health assessment of CVS Health using the Piotrowski F-Score, a 9-signal diagnostic covering profitability, liquidity, and operating efficiency, with a documented investment recommendation and peer benchmarking.</div></div>
         <div><div class="pbl">Methodology</div><div class="pbc">Independently sourced FY2024 Form 10-K from SEC EDGAR. Manually computed all 9 signals across three categories. Benchmarked against 5 peers across healthcare, consumer, and industrial sectors. Evaluated Medicare Advantage utilisation trends and FTC regulatory overhang.</div></div>
-        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>CVS F-Score: 5/9 — moderate financial health; ranked above Ring Energy and ACCO in peer cohort</li><li>CFO of $9.1B exceeded reported net income of $4.6B — signals high earnings quality</li><li>Margin compression traced to Aetna MLR expansion (89% vs. 86% prior year), not structural deterioration</li><li>Recommendation: moderate long at &lt;$60/share with 8–10% annualised return potential by 2027</li></ul></div>
-        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">Demonstrates earnings quality and KPI decomposition skills central to FP&amp;A performance reviews and equity research — the ability to distinguish structural from transient margin compression.</div><div class="chip-row"><span class="chip">Excel</span><span class="chip">SEC EDGAR</span><span class="chip">Piotrowski F-Score</span><span class="chip">Ratio Analysis</span><span class="chip">Peer Benchmarking</span></div></div><a href="#" onclick="openDash('cvs');return false;" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.1rem;font-size:0.75rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--accent-light);padding:0.5rem 1.1rem;border-radius:100px;background:var(--warm);transition:all 0.2s;">📊 View Interactive Dashboard →</a></div>
+        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>CVS F-Score: 5/9, moderate financial health; ranked above Ring Energy and ACCO in peer cohort</li><li>CFO of $9.1B exceeded reported net income of $4.6B, signals high earnings quality</li><li>Margin compression traced to Aetna MLR expansion (89% vs. 86% prior year), not structural deterioration</li><li>Recommendation: moderate long at &lt;$60/share with 8–10% annualised return potential by 2027</li></ul></div>
+        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">Demonstrates earnings quality and KPI decomposition skills central to FP&amp;A performance reviews and equity research, the ability to distinguish structural from transient margin compression.</div><div class="chip-row"><span class="chip">Excel</span><span class="chip">SEC EDGAR</span><span class="chip">Piotrowski F-Score</span><span class="chip">Ratio Analysis</span><span class="chip">Peer Benchmarking</span></div><a href="#" onclick="openDash('cvs');return false;" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.1rem;font-size:0.75rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--accent-light);padding:0.5rem 1.1rem;border-radius:100px;background:var(--warm);">📊 View Interactive Dashboard →</a></div>
       </div>
     </div>
   </div>
@@ -787,10 +529,10 @@
     </div>
     <div class="proj-body">
       <div class="proj-body-grid">
-        <div><div class="pbl">Objective</div><div class="pbc">Isolate and quantify structural cost risks behind On Holding AG's CHF 40.9M net loss in Q2 2025 — despite 32% top-line growth — and design margin-recovery strategies executable without incremental debt.</div></div>
+        <div><div class="pbl">Objective</div><div class="pbc">Isolate and quantify structural cost risks behind On Holding AG's CHF 40.9M net loss in Q2 2025, despite 32% top-line growth, and design margin-recovery strategies executable without incremental debt.</div></div>
         <div><div class="pbl">Methodology</div><div class="pbc">Modelled CHF/USD deterioration (USD 1 = CHF 0.91 to CHF 0.79 over H1 2025). Assessed 90% Vietnam production concentration against US tariff exposure of 20–40% on 1M+ pairs annually. Applied Porter's Five Forces, PESTEL, BCG Matrix, and Value Chain Analysis.</div></div>
-        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>Annual tariff exposure estimated CHF 40–60M — threatening On's 28% constant-currency growth guidance</li><li>US R&amp;D hub recommended as natural FX hedge: matching USD cost base to USD revenue stream</li><li>Vietnam-to-Portugal/Slovenia diversification modelled to eliminate tariff drag via EU free trade access</li><li>Both solutions modelled as cost-neutral against On's CHF 2.86B 2025 revenue target</li></ul></div>
-        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">FX risk quantification, supply chain cost modelling, and tariff scenario analysis are core FP&amp;A and corporate treasury skill sets — translating macro risks into quantified financial impact and strategic recommendations.</div><div class="chip-row"><span class="chip">FX Modelling</span><span class="chip">Tariff Analysis</span><span class="chip">Supply Chain Finance</span><span class="chip">Porter's Five Forces</span><span class="chip">PESTEL</span></div></div><a href="#" onclick="openDash('onholding');return false;" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.1rem;font-size:0.75rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--accent-light);padding:0.5rem 1.1rem;border-radius:100px;background:var(--warm);transition:all 0.2s;">📊 View Interactive Dashboard →</a></div>
+        <div><div class="pbl">Key Findings</div><ul class="find-list"><li>Annual tariff exposure estimated CHF 40–60M, threatening On's 28% constant-currency growth guidance</li><li>US R&amp;D hub recommended as natural FX hedge: matching USD cost base to USD revenue stream</li><li>Vietnam-to-Portugal/Slovenia diversification modelled to eliminate tariff drag via EU free trade access</li><li>Both solutions modelled as cost-neutral against On's CHF 2.86B 2025 revenue target</li></ul></div>
+        <div><div class="pbl">IB/FP&amp;A Relevance</div><div class="pbc">FX risk quantification, supply chain cost modelling, and tariff scenario analysis are core FP&amp;A and corporate treasury skill sets, translating macro risks into quantified financial impact and strategic recommendations.</div><div class="chip-row"><span class="chip">FX Modelling</span><span class="chip">Tariff Analysis</span><span class="chip">Supply Chain Finance</span><span class="chip">Porter's Five Forces</span><span class="chip">PESTEL</span></div><a href="#" onclick="openDash('onholding');return false;" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.1rem;font-size:0.75rem;font-weight:500;color:var(--accent);text-decoration:none;border:1px solid var(--accent-light);padding:0.5rem 1.1rem;border-radius:100px;background:var(--warm);">📊 View Interactive Dashboard →</a></div>
       </div>
     </div>
   </div>
@@ -802,14 +544,14 @@
 <section class="comp-sec" id="competencies">
   <div class="sec-label">03 — Competency Map</div>
   <h2 class="sec-title">What I bring to a finance team.</h2>
-  <p class="sec-sub">Analytical methods mapped to FP&amp;A and IB application areas — built from real project experience.</p>
+  <p class="sec-sub">Analytical methods mapped to FP&amp;A and IB application areas, built from real project experience.</p>
   <div class="comp-grid">
-    <div class="comp-cell"><div class="comp-icon">◈</div><div class="comp-name">DCF &amp; Valuation Modelling</div><div class="comp-desc">3-statement integration, WACC derivation, terminal value, scenario analysis — applied to Pfizer and Reliance Industries across 10-year forecast horizons.</div></div>
-    <div class="comp-cell"><div class="comp-icon">◈</div><div class="comp-name">Investment Memo Writing</div><div class="comp-desc">TAM/SAM/SOM sizing, competitive moat assessment, return thesis construction, and exit analysis — HALA Holding growth equity memo.</div></div>
-    <div class="comp-cell"><div class="comp-icon">◈</div><div class="comp-name">Earnings Quality &amp; KPI Analysis</div><div class="comp-desc">Piotrowski F-Score, earnings quality diagnostics, CFO vs. net income reconciliation, and peer benchmarking across multi-sector cohorts.</div></div>
-    <div class="comp-cell"><div class="comp-icon">◈</div><div class="comp-name">FX &amp; Cost Risk Quantification</div><div class="comp-desc">Exchange rate impact modelling, tariff exposure sizing, supply chain cost analysis, and margin recovery strategies.</div></div>
-    <div class="comp-cell"><div class="comp-icon">◈</div><div class="comp-name">Capital Budgeting &amp; ROI Modelling</div><div class="comp-desc">Breakeven analysis, payback period, ROI projection, and transfer pricing restructuring — Yushan Bicycles phased investment framework.</div></div>
-    <div class="comp-cell"><div class="comp-icon">◈</div><div class="comp-name">Audit &amp; Financial Controls</div><div class="comp-desc">AR/AP reconciliation, audit documentation per AS standards, GST/ITC compliance across 20+ clients — grounding every model in data integrity.</div></div>
+    <div class="comp-cell"><div class="comp-icon">◈</div><div class="comp-name">NLP &amp; Signal Detection</div><div class="comp-desc">4-detector language forensics, convergence validation, multi-agent debate, applied to 13 quarters of earnings-call transcripts.</div></div>
+    <div class="comp-cell"><div class="comp-icon">◈</div><div class="comp-name">DCF &amp; Valuation Modelling</div><div class="comp-desc">3-statement integration, WACC derivation, terminal value, Monte Carlo simulation across 10-year forecast horizons.</div></div>
+    <div class="comp-cell"><div class="comp-icon">◈</div><div class="comp-name">Investment Memo Writing</div><div class="comp-desc">TAM/SAM/SOM sizing, competitive moat assessment, return thesis construction, and exit analysis.</div></div>
+    <div class="comp-cell"><div class="comp-icon">◈</div><div class="comp-name">Earnings Quality &amp; KPI Analysis</div><div class="comp-desc">Piotrowski F-Score, earnings quality diagnostics, CFO vs. net income reconciliation, peer benchmarking.</div></div>
+    <div class="comp-cell"><div class="comp-icon">◈</div><div class="comp-name">FX &amp; Cost Risk Quantification</div><div class="comp-desc">Exchange rate impact modelling, tariff exposure sizing, supply chain cost analysis, margin recovery strategies.</div></div>
+    <div class="comp-cell"><div class="comp-icon">◈</div><div class="comp-name">Grant &amp; Portfolio Operations</div><div class="comp-desc">Disbursement lifecycle tracking, CRM/GRM implementation, compliance monitoring across 27 active grants.</div></div>
   </div>
 </section>
 
@@ -819,13 +561,12 @@
 <section class="exp-sec" id="experience">
   <div class="sec-label">04 — Professional Experience</div>
   <h2 class="sec-title">Built on real-world finance.</h2>
-  <p class="sec-sub">Accounting, audit, and tax compliance across India's professional services sector.</p>
+  <p class="sec-sub">Accounting, audit, philanthropic finance, and tax compliance across India and Singapore.</p>
   <div>
-    <div class="exp-item"><div class="exp-date">Jun 2026 – Present</div><div><div class="exp-role">Finance &amp; Operations Intern</div><div class="exp-firm">Tsao Family Foundation — Singapore · Philanthropy &amp; Social Impact</div><ul class="exp-bullets"><li>Track 27 active grants through the disbursement lifecycle, building a status-monitoring system to flag compliance deadlines and payment timing across the portfolio</li><li>Lead CRM/GRM system implementation for grant and donor data, structuring 50+ active records for consistent portfolio-level reporting and cutting average record retrieval from 30 seconds to 10 seconds — a 67% reduction</li></ul></div></div>
-
+    <div class="exp-item"><div class="exp-date">Jun 2026 – Present</div><div><div class="exp-role">Finance &amp; Operations Intern</div><div class="exp-firm">Tsao Family Foundation — Singapore · Philanthropy &amp; Social Impact</div><ul class="exp-bullets"><li>Track 27 active grants through the disbursement lifecycle, building a status-monitoring system to flag compliance deadlines and payment timing across the portfolio</li><li>Lead CRM/GRM system implementation for grant and donor data, structuring 50+ active records for consistent portfolio-level reporting and cutting average record retrieval from 30 seconds to 10 seconds, a 67% reduction</li></ul></div></div>
     <div class="exp-item"><div class="exp-date">Jul 2024 – Jun 2026</div><div><div class="exp-role">Finance &amp; Operations Head</div><div class="exp-firm">Bansal Cloth Store — Jalesar, India · Retail Apparel</div><ul class="exp-bullets"><li>Managed end-to-end AR/AP reconciliation in QuickBooks, reducing matching discrepancies by 15%</li><li>Optimised vendor payment cycle by 10%, improving cash flow visibility for management</li><li>Maintained monthly closing entries across 500+ transaction records</li></ul></div></div>
     <div class="exp-item"><div class="exp-date">Aug 2023 – Jan 2024</div><div><div class="exp-role">Audit Intern</div><div class="exp-firm">Agarwal Manoj Nidhi &amp; Associates — Delhi, India · Audit &amp; Valuation</div><ul class="exp-bullets"><li>Improved audit efficiency by 20% and financial reporting accuracy by 40% across food, product, and service sector clients</li><li>Documented SOP compliance and audit evidence in accordance with Indian Auditing Standards</li></ul></div></div>
-    <div class="exp-item"><div class="exp-date">Sep 2022 – Mar 2023</div><div><div class="exp-role">Taxation &amp; Compliance Intern</div><div class="exp-firm">ACHS &amp; Co. — Delhi, India · Tax, Valuation &amp; Investment Advisory</div><ul class="exp-bullets"><li>Managed GST compliance for 20+ clients, filing 100+ quarterly returns — zero ITC denials or penalties</li><li>Optimised client tax outcomes through LTCG/STCG planning, minimising liabilities and improving after-tax returns</li></ul></div></div>
+    <div class="exp-item"><div class="exp-date">Sep 2022 – Mar 2023</div><div><div class="exp-role">Taxation &amp; Compliance Intern</div><div class="exp-firm">ACHS &amp; Co. — Delhi, India · Tax, Valuation &amp; Investment Advisory</div><ul class="exp-bullets"><li>Managed GST compliance for 20+ clients, filing 100+ quarterly returns, zero ITC denials or penalties</li><li>Optimised client tax outcomes through LTCG/STCG planning, minimising liabilities and improving after-tax returns</li></ul></div></div>
     <div class="exp-item"><div class="exp-date">Jan – Feb 2025</div><div><div class="exp-role">Team Leader — Finalist</div><div class="exp-firm">E-Summit Case Competition · IIT Roorkee</div><ul class="exp-bullets"><li>Led team to the finals among 100+ competing teams, presenting research-driven strategic solutions</li><li>Designed a Carbon Offset Loyalty Platform with LTV:CAC of ~10x and a four-phase GTM roadmap</li></ul></div></div>
   </div>
 </section>
@@ -886,6 +627,25 @@ function toggleProj(header) {
   body.classList.toggle('open');
   toggle.classList.toggle('open');
 }
+var _scIdx = 0;
+var _scTotal = 6;
+var _scTimer = null;
+function goTo(n) {
+  var cards = document.querySelectorAll('.showcase-card');
+  var dots = document.querySelectorAll('.dot');
+  cards.forEach(function(c){ c.classList.remove('active'); });
+  dots.forEach(function(d){ d.classList.remove('active'); });
+  _scIdx = (n + _scTotal) % _scTotal;
+  if(cards[_scIdx]) cards[_scIdx].classList.add('active');
+  if(dots[_scIdx]) dots[_scIdx].classList.add('active');
+}
+function nextCard() { goTo(_scIdx + 1); resetTimer(); }
+function prevCard() { goTo(_scIdx - 1); resetTimer(); }
+function resetTimer() {
+  if(_scTimer) clearInterval(_scTimer);
+  _scTimer = setInterval(function(){ goTo(_scIdx + 1); }, 4000);
+}
+document.addEventListener('DOMContentLoaded', function(){ resetTimer(); });
 </script>
 
 <div class="dash-modal" id="dash_pfizer" style="display:none;position:fixed;inset:0;z-index:9999;background:#faf8f5;overflow-y:auto;">
@@ -2507,5 +2267,7 @@ document.addEventListener('DOMContentLoaded', function(){
   </div>
 </div>
 
+</body>
+</html>
 </body>
 </html>
