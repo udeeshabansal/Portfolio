@@ -2095,6 +2095,16 @@ function closeDash(key) {
   document.body.style.overflow = '';
   window.scrollTo(0,0);
 }
+
+// Auto-open dashboard from URL param, e.g. ?dash=hala
+(function checkUrlForDash() {
+  var params = new URLSearchParams(window.location.search);
+  var key = params.get('dash');
+  var validKeys = ['pfizer','reliance','hala','cvs','onholding','earnings'];
+  if (key && validKeys.indexOf(key) !== -1) {
+    openDash(key);
+  }
+})();
 function dashTab(key, panelId) {
   var modal = document.getElementById('dash_' + key);
   if (!modal) return;
